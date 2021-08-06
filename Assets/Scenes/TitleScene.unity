@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 79309815}
   - component: {fileID: 79309817}
   - component: {fileID: 79309816}
+  - component: {fileID: 79309818}
   m_Layer: 5
   m_Name: WaitingForPlayer2
   m_TagString: Untagged
@@ -202,6 +203,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79309814}
   m_CullTransparentMesh: 1
+--- !u!114 &79309818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79309814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f49fb218ca5c0f45b50f993a3ab6e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaitingText: {fileID: 79309816}
 --- !u!1 &200193795
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +301,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1741834418}
         m_TargetAssemblyTypeName: GameUI, Assembly-CSharp
-        m_MethodName: JoinConnectButton
+        m_MethodName: JoinMenuConnectButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1873,6 +1887,8 @@ GameObject:
   - component: {fileID: 1741834414}
   - component: {fileID: 1741834418}
   - component: {fileID: 1741834419}
+  - component: {fileID: 1741834421}
+  - component: {fileID: 1741834420}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1975,7 +1991,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c50b98f61b4fc4583c2361fbc5e118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  server: {fileID: 1741834421}
+  client: {fileID: 1741834420}
   menuAnimator: {fileID: 1741834419}
+  addressInput: {fileID: 1424647740}
 --- !u!95 &1741834419
 Animator:
   serializedVersion: 3
@@ -1995,6 +2014,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1741834420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741834413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe957f578f74c734eb605dd410cc1d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1741834421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741834413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f49fb218ca5c0f45b50f993a3ab6e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaitingText: {fileID: 0}
 --- !u!1 &1841148515
 GameObject:
   m_ObjectHideFlags: 0

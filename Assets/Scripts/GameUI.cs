@@ -7,7 +7,11 @@ public class GameUI : MonoBehaviour
 {
     public static GameUI Instance { set; get; }
 
+    public Server server;
+    public Client client;
+
     [SerializeField] private Animator menuAnimator;
+    [SerializeField] private InputField addressInput;
 
     // Wakey-wakey, game starty
     private void Awake()
@@ -19,6 +23,8 @@ public class GameUI : MonoBehaviour
     // Buttons
     public void OnHostGameButton()
     {
+        server.Init(8007);
+        client.Init("127.0.0.1", 8007);
         Debug.Log("OnHostGameButton");
         menuAnimator.SetTrigger("HostMenu");
     }
@@ -34,18 +40,15 @@ public class GameUI : MonoBehaviour
         Debug.Log("OnCreditsButton");
     }
 
-    public void JoinGameButton()
-    {
-        Debug.Log("JoinGameButton");
-    }
-
     public void JoinMenuConnectButton()
     {
-        Debug.Log("JoinMenuConnectButton");
+        client.Init(addressInput.text, 8007);
     }
 
     public void BackToMainMenuButton()
     {
+        server.Shutdown();
+        client.Shutdown();
         Debug.Log("BackToMainMenuButton");
         menuAnimator.SetTrigger("StartMenu");
     }

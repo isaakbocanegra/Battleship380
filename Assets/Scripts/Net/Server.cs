@@ -3,6 +3,7 @@ using Unity.Collections;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Unity.Networking.Transport;
 
 public class Server : MonoBehaviour
@@ -24,6 +25,8 @@ public class Server : MonoBehaviour
     private float lastKeepAlive;
 
     public Action connectionDropped;
+
+    public Text WaitingText;
 
     /* Methods be here beyond this point, brace yourself for networking boogaloo */
 
@@ -77,13 +80,22 @@ public class Server : MonoBehaviour
             return;
         }
 
-        //KeepAlive();
+        KeepAlive();
 
         driver.ScheduleUpdate().Complete();
 
         CleanupConnections();
         AcceptNewConnections();
         UpdateMessagePump();
+    }
+
+    private void KeepAlive()
+    {
+        if(Time.time - lastKeepAlive > keepAliveTickRate)
+        {
+            lastKeepAlive = Time.time;
+            Broadcast(new NetKeepAlive());
+        }
     }
 
     private void CleanupConnections()
@@ -122,14 +134,17 @@ public class Server : MonoBehaviour
             {
                 if(cmd == NetworkEvent.Type.Data)
                 {
-                    // NetUtility.OnData(stream, connections[i], this);
+                    WaitingText.text = "Player 2 has connected!";
+                    NetUtility.OnData(stream, connections[i], this);
+                    
                 }
                 else if(cmd == NetworkEvent.Type.Disconnect)
                 {
+                    WaitingText.text = "Player 2 has disconnected!";
                     Debug.Log("Player 2 disconnected from the server");
                     connections[i] = default(NetworkConnection);
                     connectionDropped?.Invoke();
-                    Shutdown();
+                    Shutdown(); // Would not happen in a game with more than 2 players, only happens here cuz 2 player
                 }
             }
         }
@@ -141,7 +156,7 @@ public class Server : MonoBehaviour
     {
         DataStreamWriter writer;
         driver.BeginSend(connection, out writer);
-        // msg.Serialize(ref writer);
+        msg.Serialize(ref writer);
         driver.EndSend(writer);
     }
 
