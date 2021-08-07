@@ -21,12 +21,11 @@ public class Server : MonoBehaviour
     private NativeList<NetworkConnection> connections;
 
     private bool isActive = false;
-    private const float keepAliveTickRate = 20.0f; //default 30 second w/out update causes timeout, disconnecting the client, this stops that from happening by sending a message every 20 seconds
+    private const float keepAliveTickRate = 10.0f; //default 30 second w/out update causes timeout, disconnecting the client, this stops that from happening by sending a message every 20 seconds
     private float lastKeepAlive;
 
     public Action connectionDropped;
-
-    public Text WaitingText;
+    public Text WaitingForPlayer2;
 
     /* Methods be here beyond this point, brace yourself for networking boogaloo */
 
@@ -134,13 +133,13 @@ public class Server : MonoBehaviour
             {
                 if(cmd == NetworkEvent.Type.Data)
                 {
-                    WaitingText.text = "Player 2 has connected!";
+                    WaitingForPlayer2.text = "Player 2 has connected!";
                     NetUtility.OnData(stream, connections[i], this);
                     
                 }
                 else if(cmd == NetworkEvent.Type.Disconnect)
                 {
-                    WaitingText.text = "Player 2 has disconnected!";
+                    WaitingForPlayer2.text = "Player 2 has disconnected!";
                     Debug.Log("Player 2 disconnected from the server");
                     connections[i] = default(NetworkConnection);
                     connectionDropped?.Invoke();

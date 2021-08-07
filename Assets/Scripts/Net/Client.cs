@@ -3,6 +3,7 @@ using Unity.Collections;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Unity.Networking.Transport;
 
 public class Client : MonoBehaviour
@@ -22,6 +23,7 @@ public class Client : MonoBehaviour
     private bool isActive = false;
 
     public Action connectionDropped;
+    public Text EnterIPText;
 
     // Method for starting the client (clicking on Join Game)
     public void Init(string ipAdress, ushort port)
@@ -87,6 +89,7 @@ public class Client : MonoBehaviour
             {
                 // SendToServer(new NetWelcome());
                 Debug.Log("We're connected! Sweet.");
+                EnterIPText.text = "You are connected to";
             }
             else if(cmd == NetworkEvent.Type.Data)
             {
