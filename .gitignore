@@ -6,3 +6,5 @@
 !ProjectSettings/
 !.gitignore
 !.gitattributes
+.fake
+.ionide

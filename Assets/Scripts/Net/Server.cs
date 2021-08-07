@@ -10,7 +10,6 @@ public class Server : MonoBehaviour
 {
     #region Singleton implementation
     public static Server Instance { set; get; }
-
     private void Awake()
     {
         Instance = this;
@@ -21,7 +20,7 @@ public class Server : MonoBehaviour
     private NativeList<NetworkConnection> connections;
 
     private bool isActive = false;
-    private const float keepAliveTickRate = 10.0f; //default 30 second w/out update causes timeout, disconnecting the client, this stops that from happening by sending a message every 20 seconds
+    private const float keepAliveTickRate = 20.0f; //default 30 second w/out update causes timeout, disconnecting the client, this stops that from happening by sending a message every 20 seconds
     private float lastKeepAlive;
 
     public Action connectionDropped;
@@ -45,7 +44,7 @@ public class Server : MonoBehaviour
         else
         {
             driver.Listen();
-            Debug.Log("Binded to port " + endpoint.Port);
+            Debug.Log("Currently listening on port " + endpoint.Port);
         }
 
         //Max number of players (host and client), is set to 2, because only two people will be playing at a time in a given match of Battleship
@@ -80,9 +79,7 @@ public class Server : MonoBehaviour
         }
 
         KeepAlive();
-
         driver.ScheduleUpdate().Complete();
-
         CleanupConnections();
         AcceptNewConnections();
         UpdateMessagePump();
@@ -135,7 +132,6 @@ public class Server : MonoBehaviour
                 {
                     WaitingForPlayer2.text = "Player 2 has connected!";
                     NetUtility.OnData(stream, connections[i], this);
-                    
                 }
                 else if(cmd == NetworkEvent.Type.Disconnect)
                 {
@@ -158,7 +154,7 @@ public class Server : MonoBehaviour
         msg.Serialize(ref writer);
         driver.EndSend(writer);
     }
-
+    
     public void Broadcast(NetMessage msg)
     {
         for(int i = 0; i < connections.Length; i++)

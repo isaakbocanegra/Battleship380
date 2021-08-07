@@ -1,10 +1,12 @@
+using UnityEngine.UI;
+using Unity.Networking.Transport;
 using System;
 using Unity.Collections;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
 using UnityEngine;
-using UnityEngine.UI;
-using Unity.Networking.Transport;
 
 public class Client : MonoBehaviour
 {
@@ -26,10 +28,11 @@ public class Client : MonoBehaviour
     public Text EnterIPText;
 
     // Method for starting the client (clicking on Join Game)
-    public void Init(string ipAdress, ushort port)
+    public void Init(string ipAddress, ushort port)
     {
         driver = NetworkDriver.Create();
-        NetworkEndPoint endpoint = NetworkEndPoint.Parse(ipAdress, port);
+        NetworkEndPoint endpoint = NetworkEndPoint.Parse(ipAddress, port);
+        endpoint.Port = port;
         connection = driver.Connect(endpoint);
         Debug.Log("Attempting to connect to host with IP: " + endpoint.Address);
         isActive = true;
@@ -98,6 +101,7 @@ public class Client : MonoBehaviour
             else if(cmd == NetworkEvent.Type.Disconnect)
             {
                 Debug.Log("Client was disconnected from server...");
+                EnterIPText.text = "You have disconnected from";
                 connection = default(NetworkConnection);
                 connectionDropped?.Invoke();
                 Shutdown();
@@ -130,3 +134,12 @@ public class Client : MonoBehaviour
         SendToServer(nm);
     }
 }
+
+/*public class CLient : MonoBehaviour
+{
+    public static Client instance;
+    public static int dataBufferSize = 4096;
+
+    public string ip = "127.0.0.1";
+    public int port = 8007;
+}*/
