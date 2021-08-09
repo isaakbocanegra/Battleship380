@@ -17,7 +17,7 @@ public class GameUI : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        DontDestroyOnLoad(Instance);
+        //DontDestroyOnLoad(Instance);
     }
 
     // Buttons

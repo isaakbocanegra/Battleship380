@@ -12,6 +12,12 @@ public enum OpCode
     START_GAME = 4,
     TAKE_TURN = 5,
     REMATCH = 6
+    
+}
+
+public enum GameSettings
+{
+
 }
 
 public static class NetUtility
