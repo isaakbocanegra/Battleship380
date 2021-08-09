@@ -8,8 +8,10 @@ public class Player1Board : MonoBehaviour
     private const int GRID_COUNT_X = 8;
     private const int GRID_COUNT_Y = 8;
     private const int GRID_SPACE_SIZE = 1;
-    private GameObject[,] gridSpaces;
+    public GameObject[,] gridSpaces1;
     public Sprite tempGridSpaces;
+
+    //Player 1 Board Parent Creation
     GameObject p1BoardParent;
     
     // Player 1 ship Color and Sprite Assigner
@@ -26,17 +28,17 @@ public class Player1Board : MonoBehaviour
 
     private void GenerateShipGrid(float gridSpaceSize, int gridCountX, int gridCountY)
     {
-        gridSpaces = new GameObject[gridCountX, gridCountY];
+        gridSpaces1 = new GameObject[gridCountX, gridCountY];
         for(int x = 0; x < gridCountX; x++)
             for(int y = 0; y < gridCountY; y++)
-                gridSpaces[x,y] = GenerateSingleGridSpace(gridSpaceSize, x, y);
+                gridSpaces1[x,y] = GenerateSingleGridSpace(gridSpaceSize, x, y);
     }
 
     private GameObject GenerateSingleGridSpace(float gridSpaceSize, int x, int y)
     {
         GameObject gridSpaceObject = new GameObject(string.Format("X:{0}, Y{1}", x, y));
         gridSpaceObject.transform.parent = p1BoardParent.gameObject.transform;
-        gridSpaceObject.transform.position = new Vector2((float) x*1.3f, (float) y*1.3f);
+        gridSpaceObject.transform.position = new Vector2((float) x*1.327f, (float) y*1.327f);
         gridSpaceObject.AddComponent<SpriteRenderer>().sprite = tempGridSpaces;
         gridSpaceObject.AddComponent<BoxCollider2D>();
 
