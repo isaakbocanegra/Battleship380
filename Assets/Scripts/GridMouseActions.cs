@@ -5,7 +5,7 @@ using UnityEngine;
 public class GridMouseActions : MonoBehaviour
 {
     public SpriteRenderer gridColor;
-
+    
     void Start()
     {
         gridColor = GetComponent<SpriteRenderer>();
@@ -15,6 +15,7 @@ public class GridMouseActions : MonoBehaviour
     {
         gridColor.color = new Color(0.5f, 0.5f, 0.5f, 1);
         print("The current tile should now be hovered.");
+        //print(tempGridScript.tempGrid[0,0].name);
     }
 
     void OnMouseDown()

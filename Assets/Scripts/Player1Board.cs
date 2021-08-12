@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class Player1Board : MonoBehaviour
 {
     // Game Logic:
-    private const int GRID_COUNT_X = 8;
-    private const int GRID_COUNT_Y = 8;
+    public const int GRID_COUNT_X = 8;
+    public const int GRID_COUNT_Y = 8;
     private const int GRID_SPACE_SIZE = 1;
     public GameObject[,] gridSpaces1;
     public Sprite tempGridSpaces;
@@ -25,6 +25,7 @@ public class Player1Board : MonoBehaviour
         GenerateShipGrid(GRID_SPACE_SIZE, GRID_COUNT_X, GRID_COUNT_Y);
         GameObject tempObj = GameObject.Find("Player1Board");
         Destroy(tempObj);
+        tempGridScript.CreateTempBoard();
     }
 
     private void Update()
