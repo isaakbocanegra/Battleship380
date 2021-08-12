@@ -14,11 +14,24 @@ public class GridMouseActions : MonoBehaviour
     void OnMouseEnter()
     {
         gridColor.color = new Color(0.5f, 0.5f, 0.5f, 1);
-        print("The hovered tile should now be red");
+        print("The current tile should now be hovered.");
+    }
+
+    void OnMouseDown()
+    {
+        gridColor.color = new Color(0.25f, 0.25f, 0.25f, 1);
+        print("The current tile is being clicked.");
+    }
+
+    void OnMouseUp()
+    {
+        gridColor.color = new Color(0.5f, 0.5f, 0.5f, 1);
+        print("The current tile is no longer being clicked.");
     }
 
     void OnMouseExit()
     {
         gridColor.color = new Color(1, 1, 1, 1);
+        print("The last tile hovered should no longer be hovered.");
     }
 }
