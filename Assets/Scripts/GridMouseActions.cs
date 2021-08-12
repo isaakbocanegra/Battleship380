@@ -6,11 +6,11 @@ public class GridMouseActions : MonoBehaviour
 {
     public SpriteRenderer gridColor;
     public bool verticle = false;
-    public int shipsize = 3;
+    public int shipsize = 5; //change this for diffrent ship sizes
 
     void Update()
-    {
-       
+    {                     // i tested this function inside of onmouseover but it did not work as intended, only for the 1 tile
+        mouserightclick();// we need this to detect input from the mouse but, the memory leak is a result of since it is constantly checking for detection. -- works fine here for now but, if we can find a solution later it would be amazing
 
 
     }
@@ -26,10 +26,21 @@ public class GridMouseActions : MonoBehaviour
     // name formatting exampple "X:0, Y0"
     void OnMouseEnter()
     {
+        
+
         gridColor.color = new Color(0.5f, 0.5f, 0.5f, 1);
         //print("The current tile should now be hovered.");
+        if (this.verticle == false)
+        {
+            print("we are now doing horizontal only");
+            marksides();
 
-        marksides();
+        }
+        else
+        {
+            print("we are now doing verticle only");
+            marktoptotop();
+        }
 
         //print(tempGridScript.tempGrid[0,0].name);
     }
@@ -63,60 +74,109 @@ public class GridMouseActions : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(1))// 0 is left, 1 is right, 3 is middle
-        {
-            if (verticle)
-            {
-                
-                verticle = false;
-                demarksides();
-            }
-            else
-            {
-                verticle = true;
-            }
-            //print("You just right clicked ");
-        }
+        
 
     }
 
+   
    
 
     void OnMouseExit()
     {
         gridColor.color = new Color(1, 1, 1, 1);
         // print("The last tile hovered should no longer be hovered.");
+        if (this.verticle == false)
+        {
+            print("we are now doing horizontal only");
+            demarksides();
 
-        demarksides();
+        }
+        else
+        {
+            print("we are now doing verticle only");
+            demarktoptotop();
+        }
+        
         //print(tempGridScript.tempGrid[0,0].name);
-
+        
 
     }
-
+    
     /// <summary>
     /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// </summary>
- public void cleansides()
+    /// 
+
+
+private void mouserightclick()
     { 
+        if (Input.GetMouseButtonDown(1))// 0 is left, 1 is right, 3 is middle
+        {
+
+            print("we are trying to detect mouseinput right now");
+            if (this.verticle)
+            {
+                
+                verticle = false;
+                demarktoptotop();
+                print("You just right clicked, we are horizontal now ");
+
+            }
+            else
+            {
+                verticle = true;
+                demarksides();
+                
+                print("You just right clicked, we are verticle now ");
+            }
+            
+        }
     
     }
-    void marksides()
+
+
+    
+
+
+    private void marksides()
     {
         // GameObject.Find("X:0, Y0").GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
 
 
         int[] rowcolumn = extractcordinatename(gridColor);
         int[] selection = gettilesnextto(rowcolumn[0], rowcolumn[1], shipsize);
+        if (shipsize == 2)
+        {
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            
+        }
+
         if (shipsize == 3)
         {
             GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
             GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
             GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
         }
+        if (shipsize == 4)
+        {
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[3]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+        }
+        if (shipsize == 5)
+        {
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[3]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[4]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+        }
 
     }
 
-    void demarksides()
+    private void demarksides()
     {
 
         // GameObject.Find("X:0, Y0").GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
@@ -124,15 +184,111 @@ public class GridMouseActions : MonoBehaviour
 
         int[] rowcolumn = extractcordinatename(gridColor);
         int[] selection = gettilesnextto(rowcolumn[0], rowcolumn[1], shipsize);
+        if (shipsize == 2)
+        {
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            
+        }
+
         if (shipsize == 3)
         {
             GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
             GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
             GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
+        if (shipsize == 4)
+        {
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[3]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+        if (shipsize == 5)
+        {
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[3]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + rowcolumn[0] + ", Y" + selection[4]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+    }
+
+    private void marktoptotop()
+    {
+        int[] rowcolumn = extractcordinatename(gridColor);
+        int[] selection = gettilestoptotop(rowcolumn[0], rowcolumn[1], shipsize);
+
+        if (shipsize == 2)
+        {
+            GameObject.Find("X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            
+        }
+        if (shipsize == 3)
+        {
+            GameObject.Find("X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+        }
+        if (shipsize == 4)
+        {
+            GameObject.Find("X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + selection[3] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+        }
+        if (shipsize == 5)
+        {
+            GameObject.Find("X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + selection[3] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            GameObject.Find("X:" + selection[4] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+        }
+
+
+
 
     }
 
+
+
+    private void demarktoptotop()
+    {
+        // GameObject.Find("X:0, Y0").GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+
+
+        int[] rowcolumn = extractcordinatename(gridColor);
+        int[] selection = gettilestoptotop(rowcolumn[0], rowcolumn[1], shipsize);
+        if (shipsize == 2)
+        {
+            GameObject.Find("X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            
+        }
+        if (shipsize == 3)
+        {
+            GameObject.Find("X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+        if (shipsize == 4)
+        {
+            GameObject.Find("X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + selection[3] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+        if (shipsize == 5)
+        {
+            GameObject.Find("X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + selection[3] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("X:" + selection[4] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+    }
     // the extractcordinatename function will take in a spriterenderer and extract numeracle values from the name for x and y.
     int[] extractcordinatename(SpriteRenderer obj)
     {
@@ -162,6 +318,51 @@ public class GridMouseActions : MonoBehaviour
 
         return rowcolumn;
     }
+
+
+    // the function top to top is for rows
+    int[] gettilestoptotop(int clickpositionrow, int clickpositioncolumn, int shipsize)
+    {
+
+        // in the case below clickpositionrow must stay the same 
+        int[] selectionrow = { -1000, -1000, -1000, -1000, -1000, -1000, };
+        int count = 0; // only horizontal atm
+        int evenodd = 0;
+        selectionrow[0] = clickpositionrow;
+        count++;
+        int positiontrackright = clickpositionrow;
+        int positiontrackleft = clickpositionrow;
+
+        while (count < shipsize)
+        {
+            if (evenodd % 2 == 0)
+            {
+                positiontrackright++;
+                if (positiontrackright < 8)
+                {
+                    selectionrow[count] = positiontrackright;
+                    count++;
+                }
+            }
+            else
+            {
+                positiontrackleft--;
+                if (positiontrackleft >= 0)
+                {
+                    selectionrow[count] = positiontrackleft;
+                    count++;
+                }
+
+            }
+            evenodd++;
+
+        }
+        //pirntarre(selectioncolumn); ;
+        // x range 0-8 
+        //if center position + size
+        return selectionrow;
+    }
+
     int[] gettilesnextto(int clickpositionrow, int clickpositioncolumn, int shipsize)
     {
         // in the case below clickpositionrow must stay the same 
