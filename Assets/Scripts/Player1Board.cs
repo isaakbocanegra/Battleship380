@@ -39,14 +39,14 @@ public class Player1Board : MonoBehaviour
         gridSpaces1 = new GameObject[gridCountX, gridCountY];
         for(int x = 0; x < gridCountX; x++)
             for(int y = 0; y < gridCountY; y++)
-                gridSpaces1[x,y] = GenerateSingleGridSpace(gridSpaceSize, x, y); // swap these x and y -- optional for upright
+                gridSpaces1[x,y] = GenerateSingleGridSpace(gridSpaceSize, y, x); // swap these x and y -- optional for upright
     }
 
     private GameObject GenerateSingleGridSpace(float gridSpaceSize, int x, int y)
     {
-        GameObject gridSpaceObject = new GameObject(string.Format("X:{0}, Y{1}", x, y));  //swap the names -- optional for upright
+        GameObject gridSpaceObject = new GameObject(string.Format("X:{0}, Y{1}", y, x));  //swap the names -- optional for upright
         gridSpaceObject.transform.parent = p1BoardParent.gameObject.transform;
-        gridSpaceObject.transform.position = new Vector2((float) (x)*1.33f, (float) y*1.33f);
+        gridSpaceObject.transform.position = new Vector2((float) (x-1)*1.33f, (float) (y-3)*-1.33f);
         gridSpaceObject.AddComponent<SpriteRenderer>().sprite = tempGridSpaces;
         gridSpaceObject.layer = LayerMask.NameToLayer("Grid");
         gridSpaceObject.AddComponent<BoxCollider2D>();

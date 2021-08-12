@@ -8,6 +8,6 @@ public class tempGridScript : MonoBehaviour
     
     public static void CreateTempBoard()
     {
-        GameObject[,] tempGrid = GameObject.Find("gridSpaces1").GetComponent<Player1Board>().gridSpaces1;
+        //GameObject[,] tempGrid = GameObject.Find("gridSpaces1").GetComponent<Player1Board>().gridSpaces1;
     }
 }
