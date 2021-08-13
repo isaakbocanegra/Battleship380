@@ -23,6 +23,7 @@ public class GridMouseActions : MonoBehaviour
     void OnMouseEnter()
     {
         gridColor.color = new Color(0.5f, 0.5f, 0.5f, 1);
+        //print("The current tile should now be hovered.");
 
         if (!isthisaship())
         {
@@ -161,7 +162,7 @@ public class GridMouseActions : MonoBehaviour
         }
     }
 
-    private void demarksides()
+    void demarksides()
     {
         // GameObject.Find("X:0, Y0").GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
         int[] rowcolumn = extractcoordinatename(gridColor);
