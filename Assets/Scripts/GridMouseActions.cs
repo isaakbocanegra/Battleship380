@@ -12,7 +12,7 @@ public class GridMouseActions : MonoBehaviour
     {                     // i tested this function inside of onmouseover but it did not work as intended, only for the 1 tile
         mouserightclick();// we need this to detect input from the mouse but, the memory leak is a result of since it is constantly checking for detection. -- works fine here for now but, if we can find a solution later it would be amazing
 
-
+       //mousebutton1click();
     }
 
     void Start()
@@ -26,32 +26,45 @@ public class GridMouseActions : MonoBehaviour
     // name formatting exampple "X:0, Y0"
     void OnMouseEnter()
     {
-        
-
+        print("the ship size currently is " + shipsize);
+        whatistheshipsize();
         gridColor.color = new Color(0.5f, 0.5f, 0.5f, 1);
-        //print("The current tile should now be hovered.");
-        if (this.verticle == false)
+
+        if (!isthisaship())
         {
-            print("we are now doing horizontal only");
-            marksides();
+            
+
+
+            //print("The current tile should now be hovered.");
+            if (this.verticle == false)
+            {
+                print("we are now doing horizontal only");
+                marksides();
+
+            }
+            else
+            {
+                print("we are now doing verticle only");
+                marktoptotop();
+            }
+
 
         }
         else
-        {
-            print("we are now doing verticle only");
-            marktoptotop();
-        }
-
+        { }
         //print(tempGridScript.tempGrid[0,0].name);
     }
 
    
     void OnMouseDown() 
     {
-       
+        
         gridColor.color = new Color(0.25f, 0.25f, 0.25f, 1);
+        
+        print("The current tile is being clicked " + gridColor.name);
 
-        print("The current tile is being clicked");
+
+       
     }
 
     void OnMouseUp()
@@ -85,29 +98,104 @@ public class GridMouseActions : MonoBehaviour
     {
         gridColor.color = new Color(1, 1, 1, 1);
         // print("The last tile hovered should no longer be hovered.");
-        if (this.verticle == false)
-        {
-            print("we are now doing horizontal only");
-            demarksides();
 
+
+        if (!isthisaship())
+        {
+
+            if (this.verticle == false)
+            {
+                print("we are now doing horizontal only");
+                demarksides();
+
+            }
+            else
+            {
+                print("we are now doing verticle only");
+                demarktoptotop();
+            }
+
+            //print(tempGridScript.tempGrid[0,0].name);
         }
         else
-        {
-            print("we are now doing verticle only");
-            demarktoptotop();
+        { 
         }
-        
-        //print(tempGridScript.tempGrid[0,0].name);
-        
 
     }
-    
+
     /// <summary>
     /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// </summary>
     /// 
 
 
+    private bool isthisaship()
+    {
+        if (gridColor.name == "Aircraft_Carrier")
+        {
+            return true;
+        }
+        else if (gridColor.name == "Battleship")
+        {
+            this.shipsize = 4;
+            return true;
+        }
+        else if (gridColor.name == "Cruiser")
+        {
+            return true;
+
+        }
+        else if (gridColor.name == "Submarine")
+        {
+            return true;
+
+
+
+        }
+        else if (gridColor.name == "Destroyer")
+        {
+            return true;
+
+
+        }
+        else
+            return false; 
+    }
+   private  void mousebutton1click()
+    {
+        if (Input.GetMouseButtonDown(0))// 0 is left, 1 is right, 3 is middle
+        {
+            whatistheshipsize();
+
+
+        }
+    }
+    private void whatistheshipsize()
+    {
+        print("name right now is " + gridColor.name.ToString());
+        if (gridColor.name.ToString() == "Aircraft_Carrier")
+        {
+            this.shipsize = 5;
+        }
+        else if (gridColor.name.ToString() == "Battleship")
+        {
+            this.shipsize = 4;
+        }
+        else if (gridColor.name.ToString() == "Cruiser")
+        {
+            this.shipsize = 3;
+        }
+        else if (gridColor.name.ToString() == "Submarine")
+        {
+            print("bingo bingo");
+            this.shipsize = 3;
+
+        }
+        else if (gridColor.name.ToString() == "Destroyer")
+        { this.shipsize = 2; 
+        
+        }
+    }
 private void mouserightclick()
     { 
         if (Input.GetMouseButtonDown(1))// 0 is left, 1 is right, 3 is middle
