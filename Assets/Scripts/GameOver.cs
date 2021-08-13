@@ -9,7 +9,7 @@ public class GameOver : MonoBehaviour{
 
     public void OnMainMenu(){
         SceneManager.LoadScene("TitleScene");
-        Debug.Log("TItle");
+        Debug.Log("Title");
     }
     
     // Exit button (will be used throughout game for exiting to desktop/quiting player in Unity Editor)
