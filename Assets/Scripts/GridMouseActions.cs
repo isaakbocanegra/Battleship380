@@ -5,8 +5,9 @@ using UnityEngine;
 public class GridMouseActions : MonoBehaviour
 {
     public SpriteRenderer gridColor;
-    public bool vertical = false;
+    public bool vertical = true;
     public static int shipsize = 5;
+    public static GameObject selectedship;
     //change this for diffrent ship sizes
 
     private void Awake()
@@ -15,7 +16,7 @@ public class GridMouseActions : MonoBehaviour
     }
     void Start()
     {
-        
+        selectedship = GameObject.Find("Aircraft_Carrier");
         gridColor = GetComponent<SpriteRenderer>();
     }
 
@@ -47,6 +48,7 @@ public class GridMouseActions : MonoBehaviour
                 marktoptotop();
             }
         }
+        
     }
    
     void OnMouseDown() 
@@ -90,7 +92,7 @@ public class GridMouseActions : MonoBehaviour
     /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// </summary>
     /// 
-
+   
     private bool isthisaship()
     {
         if (gridColor.name == "Aircraft_Carrier")
@@ -123,20 +125,33 @@ public class GridMouseActions : MonoBehaviour
         {
             print("we are trying to detect mouseinput right now");
             if (this.vertical)
-            {       
+            {   
+                turnship90degrees(vertical);  
                 vertical = false;
                 demarktoptotop();
                 print("You just right clicked, we are horizontal now ");
+                
             }
             else
             {
+                turnship90degrees(vertical);
                 vertical = true;
                 demarksides();
+                
                 print("You just right clicked, we are vertical now ");
             }   
         }
     }
 
+    private void turnship90degrees(bool verticle)
+    {
+        
+        if(vertical)
+            selectedship.transform.rotation = Quaternion.Euler(0,0,  90);
+        else
+            selectedship.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+    }
     private void marksides()
     {
         // GameObject.Find("X:0, Y0").GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);

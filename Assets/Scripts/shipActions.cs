@@ -25,26 +25,31 @@ public class shipActions : MonoBehaviour
     {
         if (this.name.ToString() == "Aircraft_Carrier")
         {
+            GridMouseActions.selectedship= GameObject.Find("Aircraft_Carrier");
             GridMouseActions.shipsize = 5;
             print("the ship size currently is " + GridMouseActions.shipsize);
         }
         else if (gridColor.name.ToString() == "Battleship")
         {
+            GridMouseActions.selectedship = GameObject.Find("Battleship");
             GridMouseActions.shipsize = 4;
             print("the ship size currently is " + GridMouseActions.shipsize);
         }
         else if (gridColor.name.ToString() == "Cruiser")
         {
+            GridMouseActions.selectedship = GameObject.Find("Cruiser");
             GridMouseActions.shipsize = 3;
             print("the ship size currently is " + GridMouseActions.shipsize);
         }
         else if (gridColor.name.ToString() == "Submarine")
         {
+            GridMouseActions.selectedship = GameObject.Find("Submarine");
             GridMouseActions.shipsize = 3;
             print("the ship size currently is " + GridMouseActions.shipsize);
         }
         else if (gridColor.name.ToString() == "Destroyer")
-        { 
+        {
+            GridMouseActions.selectedship = GameObject.Find("Destroyer");
             GridMouseActions.shipsize = 2;
             print("the ship size currently is " + GridMouseActions.shipsize);
         }
