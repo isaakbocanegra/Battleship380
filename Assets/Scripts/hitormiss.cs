@@ -102,8 +102,6 @@ public class hitherormiss : MonoBehaviour
 
     private void gridmapforplr(int plrnumber)
     {
-        int q = 0;
-
         if (plrnumber == 1)
         {
             print(" time to see what player1s grid looks like so far");

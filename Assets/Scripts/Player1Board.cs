@@ -21,11 +21,12 @@ public class Player1Board : MonoBehaviour
     private void Awake()
     {
         p1BoardParent = new GameObject();
-        p1BoardParent.name = "Player1Board";
+        p1BoardParent.name = "Player1BoardParent";
         GenerateShipGrid(GRID_SPACE_SIZE, GRID_COUNT_X, GRID_COUNT_Y);
         GameObject tempObj = GameObject.Find("Player1Board");
         Destroy(tempObj);
-        tempGridScript.CreateTempBoard();
+        
+        //p1BoardParent.SetActive(false);
     }
 
     private void Update()
@@ -48,7 +49,6 @@ public class Player1Board : MonoBehaviour
         gridSpaceObject.transform.parent = p1BoardParent.gameObject.transform;
         gridSpaceObject.transform.position = new Vector2((float) (x-1)*1.33f, (float) (y-3)*-1.33f);
         gridSpaceObject.AddComponent<SpriteRenderer>().sprite = tempGridSpaces;
-        gridSpaceObject.layer = LayerMask.NameToLayer("Grid");
         gridSpaceObject.AddComponent<BoxCollider2D>();
         gridSpaceObject.AddComponent<GridMouseActions>();
 

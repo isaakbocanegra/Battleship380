@@ -12,6 +12,7 @@ public class GameUI : MonoBehaviour
 
     [SerializeField] private Animator menuAnimator;
     [SerializeField] private InputField addressInput;
+    GameObject Player1BoardParent;
 
     // Wakey-wakey, game starty
     private void Awake()
@@ -20,13 +21,19 @@ public class GameUI : MonoBehaviour
         //DontDestroyOnLoad(Instance);
     }
 
+    void Start()
+    {
+        Player1BoardParent = GameObject.Find("Player1BoardParent");
+    }
+
     // Buttons
     public void OnHostGameButton()
     {
-        server.Init(8007);
-        // client.Init("127.0.0.1", 8007);
-        Debug.Log("OnHostGameButton");
+        //server.Init(8007);
+        //client.Init("127.0.0.1", 8007);
+        //Debug.Log("OnHostGameButton");
         menuAnimator.SetTrigger("HostMenu");
+        Player1BoardParent.SetActive(true);
     }
 
     public void OnJoinGameButton()
