@@ -54,6 +54,7 @@ public class GridMouseActions : MonoBehaviour
     void OnMouseDown() 
     {
         gridColor.color = new Color(0.25f, 0.25f, 0.25f, 1);
+        moveship();
         print("The current tile is being clicked " + gridColor.name);
     }
 
@@ -92,7 +93,12 @@ public class GridMouseActions : MonoBehaviour
     /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// </summary>
     /// 
-   
+    private void moveship()
+    {
+        selectedship.transform.position = gridColor.transform.position;
+
+
+    }
     private bool isthisaship()
     {
         if (gridColor.name == "Aircraft_Carrier")
