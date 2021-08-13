@@ -6,7 +6,8 @@ public class GridMouseActions : MonoBehaviour
 {
     public SpriteRenderer gridColor;
     public bool verticle = false;
-    public int shipsize = 5; //change this for diffrent ship sizes
+    public static int shipsize = 5;
+    //change this for diffrent ship sizes
 
     void Update()
     {                     // i tested this function inside of onmouseover but it did not work as intended, only for the 1 tile
@@ -26,8 +27,7 @@ public class GridMouseActions : MonoBehaviour
     // name formatting exampple "X:0, Y0"
     void OnMouseEnter()
     {
-        print("the ship size currently is " + shipsize);
-        whatistheshipsize();
+        //whatistheshipsize();
         gridColor.color = new Color(0.5f, 0.5f, 0.5f, 1);
 
         if (!isthisaship())
@@ -137,7 +137,7 @@ public class GridMouseActions : MonoBehaviour
         }
         else if (gridColor.name == "Battleship")
         {
-            this.shipsize = 4;
+            shipsize = 4;
             return true;
         }
         else if (gridColor.name == "Cruiser")
@@ -148,55 +148,16 @@ public class GridMouseActions : MonoBehaviour
         else if (gridColor.name == "Submarine")
         {
             return true;
-
-
-
         }
         else if (gridColor.name == "Destroyer")
         {
             return true;
-
-
         }
         else
             return false; 
     }
-   private  void mousebutton1click()
-    {
-        if (Input.GetMouseButtonDown(0))// 0 is left, 1 is right, 3 is middle
-        {
-            whatistheshipsize();
-
-
-        }
-    }
-    private void whatistheshipsize()
-    {
-        print("name right now is " + gridColor.name.ToString());
-        if (gridColor.name.ToString() == "Aircraft_Carrier")
-        {
-            this.shipsize = 5;
-        }
-        else if (gridColor.name.ToString() == "Battleship")
-        {
-            this.shipsize = 4;
-        }
-        else if (gridColor.name.ToString() == "Cruiser")
-        {
-            this.shipsize = 3;
-        }
-        else if (gridColor.name.ToString() == "Submarine")
-        {
-            print("bingo bingo");
-            this.shipsize = 3;
-
-        }
-        else if (gridColor.name.ToString() == "Destroyer")
-        { this.shipsize = 2; 
-        
-        }
-    }
-private void mouserightclick()
+    
+    private void mouserightclick()
     { 
         if (Input.GetMouseButtonDown(1))// 0 is left, 1 is right, 3 is middle
         {

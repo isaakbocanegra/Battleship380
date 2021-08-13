@@ -1102,8 +1102,8 @@ GameObject:
   m_Component:
   - component: {fileID: 983028457}
   - component: {fileID: 983028456}
-  - component: {fileID: 983028458}
   - component: {fileID: 983028459}
+  - component: {fileID: 983028458}
   m_Layer: 0
   m_Name: Aircraft_Carrier
   m_TagString: Untagged
@@ -1185,12 +1185,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 983028455}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90fb67cd7facc17439861bba6b9c56c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 4324862fa5c36724fafe57d4c6b26951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridColor: {fileID: 983028456}
-  verticle: 0
-  shipsize: 3
 --- !u!61 &983028459
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1706,8 +1703,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1253679470}
   - component: {fileID: 1253679469}
-  - component: {fileID: 1253679471}
   - component: {fileID: 1253679472}
+  - component: {fileID: 1253679471}
   m_Layer: 0
   m_Name: Cruiser
   m_TagString: Untagged
@@ -1789,12 +1786,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1253679468}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90fb67cd7facc17439861bba6b9c56c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 4324862fa5c36724fafe57d4c6b26951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridColor: {fileID: 1253679469}
-  verticle: 0
-  shipsize: 3
 --- !u!61 &1253679472
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1831,8 +1825,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1419640111}
   - component: {fileID: 1419640110}
-  - component: {fileID: 1419640112}
   - component: {fileID: 1419640113}
+  - component: {fileID: 1419640112}
   m_Layer: 0
   m_Name: Submarine
   m_TagString: Untagged
@@ -1914,12 +1908,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1419640109}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90fb67cd7facc17439861bba6b9c56c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 4324862fa5c36724fafe57d4c6b26951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridColor: {fileID: 1419640110}
-  verticle: 0
-  shipsize: 3
 --- !u!61 &1419640113
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2424,8 +2415,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1806824425}
   - component: {fileID: 1806824424}
-  - component: {fileID: 1806824426}
   - component: {fileID: 1806824427}
+  - component: {fileID: 1806824426}
   m_Layer: 0
   m_Name: Destroyer
   m_TagString: Untagged
@@ -2507,12 +2498,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1806824423}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90fb67cd7facc17439861bba6b9c56c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 4324862fa5c36724fafe57d4c6b26951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridColor: {fileID: 1806824424}
-  verticle: 0
-  shipsize: 3
 --- !u!61 &1806824427
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3143,8 +3131,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2128619224}
   - component: {fileID: 2128619223}
-  - component: {fileID: 2128619225}
   - component: {fileID: 2128619226}
+  - component: {fileID: 2128619225}
   m_Layer: 0
   m_Name: Battleship
   m_TagString: Untagged
@@ -3226,12 +3214,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2128619222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90fb67cd7facc17439861bba6b9c56c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 4324862fa5c36724fafe57d4c6b26951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridColor: {fileID: 2128619223}
-  verticle: 0
-  shipsize: 3
 --- !u!61 &2128619226
 BoxCollider2D:
   m_ObjectHideFlags: 0
