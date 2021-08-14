@@ -124,8 +124,12 @@ public class GridMouseActions : MonoBehaviour
                 
                   
                     print("cool the ship we placed for you is " + shipname.ToString());
-                    placer.placethisship(shipname);
-                    selectedship.transform.position = gridColor.transform.position;
+               
+                    placer.placethisship(shipname); 
+                //this where we transport the ship
+                    getoffsetandplace();
+               
+                    
                
                 ////////
                 placer.printPlayersBoard(1);
@@ -137,6 +141,184 @@ public class GridMouseActions : MonoBehaviour
 
     }
 
+    private int getoffsetandplace()
+    {   string objectoreturn = ""; 
+        int count = 0;
+        string cordgy = "";
+        if (!vertical)
+        {
+            if (shipname == "Aircraft_Carrier") // airfract carrier offset is at position 2  of arre
+            {
+                int[] rowcolumn = extractcoordinatename(gridColor);
+                cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
+                objectoreturn = "Player1BoardParent/X:" + rowcolumn[0] + ", Y" + cordgy[2];
+                selectedship.transform.position = GameObject.Find(objectoreturn).transform.position;
+
+            }
+            else if (shipname == "Battleship") // Battleship  offset is at position 1 of arre+ .77
+            {
+                int[] rowcolumn = extractcoordinatename(gridColor);
+                cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
+                objectoreturn = "Player1BoardParent/X:" + rowcolumn[0] + ", Y" + cordgy[1];
+                selectedship.transform.position = new Vector3((float)(GameObject.Find(objectoreturn).transform.position.x + .77), GameObject.Find(objectoreturn).transform.position.y, GameObject.Find(objectoreturn).transform.position.z);
+
+            }
+            else if (shipname == "Cruiser") // cruiser  offset is at position 1 
+            {
+                int[] rowcolumn = extractcoordinatename(gridColor);
+                cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
+                objectoreturn = "Player1BoardParent/X:" + rowcolumn[0] + ", Y" + cordgy[1];
+                selectedship.transform.position = GameObject.Find(objectoreturn).transform.position;
+
+            }
+            else if (shipname == "Submarine") // Submarine  offset is at position 1 
+            {
+                int[] rowcolumn = extractcoordinatename(gridColor);
+                cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
+                objectoreturn = "Player1BoardParent/X:" + rowcolumn[0] + ", Y" + cordgy[1];
+                selectedship.transform.position = GameObject.Find(objectoreturn).transform.position;
+
+            }
+            else if (shipname == "Destroyer") // Destroyer  offset is at position 1 
+            {
+                int[] rowcolumn = extractcoordinatename(gridColor);
+                cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
+                objectoreturn = "Player1BoardParent/X:" + rowcolumn[0] + ", Y" + cordgy[0];
+                selectedship.transform.position = new Vector3((float)(GameObject.Find(objectoreturn).transform.position.x + .87), (float)(GameObject.Find(objectoreturn).transform.position.y + .36), GameObject.Find(objectoreturn).transform.position.z);
+
+            }
+
+        }
+        else
+        {
+
+            if (shipname == "Aircraft_Carrier") // airfract carrier offset is at position 2  of arre
+            {
+                int[] rowcolumn = extractcoordinatename(gridColor);
+                cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
+                objectoreturn = "Player1BoardParent/X:" + cordgy[2] + ", Y" + rowcolumn[1];
+                selectedship.transform.position = GameObject.Find(objectoreturn).transform.position;
+
+            }
+            else if (shipname == "Battleship") // Battleship  offset is at position 1 of arre+ .77
+            {
+                int[] rowcolumn = extractcoordinatename(gridColor);
+                cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
+                objectoreturn = "Player1BoardParent/X:" + cordgy[1] + ", Y" + rowcolumn[1];
+                selectedship.transform.position = new Vector3((float)(GameObject.Find(objectoreturn).transform.position.x -.18 ), (float)(GameObject.Find(objectoreturn).transform.position.y-.6), GameObject.Find(objectoreturn).transform.position.z);
+
+            }
+            else if (shipname == "Cruiser") // cruiser  offset is at position 1 
+            {
+                int[] rowcolumn = extractcoordinatename(gridColor);
+                cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
+                objectoreturn = "Player1BoardParent/X:" + cordgy[1] + ", Y" + rowcolumn[1];
+                selectedship.transform.position = GameObject.Find(objectoreturn).transform.position;
+
+            }
+            else if (shipname == "Submarine") // Submarine  offset is at position 1 
+            {
+                int[] rowcolumn = extractcoordinatename(gridColor);
+                cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
+                objectoreturn = "Player1BoardParent/X:" + cordgy[1] + ", Y" + rowcolumn[1];
+                selectedship.transform.position = GameObject.Find(objectoreturn).transform.position;
+
+            }
+            else if (shipname == "Destroyer") // Destroyer  offset is at position 1 
+            {
+                int[] rowcolumn = extractcoordinatename(gridColor);
+                cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
+                objectoreturn = "Player1BoardParent/X:" + cordgy[0] + ", Y" + rowcolumn[1];
+                selectedship.transform.position = new Vector3((float)(GameObject.Find(objectoreturn).transform.position.x +.26), (float)(GameObject.Find(objectoreturn).transform.position.y -.82), GameObject.Find(objectoreturn).transform.position.z);
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+        return 0;
+    }
+
+    public string sortandgetbackgoodcordsnexttonext(int [] rowcolumn, bool verticle )
+    {
+        int arreacount=0;
+        int count = 0;
+        string cordgy = "";
+        if (!verticle)
+        {
+            int[] selection = gettilesnextto(rowcolumn[0], rowcolumn[1], shipsize);
+            pirntarre(selection);
+            bubbleSort(selection);
+            while (arreacount <= shipsize && count < selection.Length)
+            {
+
+                if (selection[count] >= 0)
+                {
+                    print("compareing 0 with " + selection[count]);
+                    cordgy = cordgy + selection[count].ToString();
+                    count++;
+                    arreacount++;
+                }
+                else
+                    count++;
+
+            }
+        }
+        else {
+
+            int[] selection = gettilestoptotop(rowcolumn[0], rowcolumn[1], shipsize);
+            pirntarre(selection);
+            bubbleSort(selection);
+            while (arreacount <= shipsize && count < selection.Length)
+            {
+
+                if (selection[count] >= 0)
+                {
+                    print("compareing 0 with " + selection[count]);
+                    cordgy = cordgy + selection[count].ToString();
+                    count++;
+                    arreacount++;
+                }
+                else
+                    count++;
+
+            }
+
+
+
+        }
+         print("your cordgy is " + cordgy);
+        //   print("your cordgy midpoint is " + cordgy[2]);
+
+        return cordgy;
+
+    }
+
+    static void bubbleSort(int[] arr)
+    {
+        int n = arr.Length;
+        for (int i = 0; i < n - 1; i++)
+            for (int j = 0; j < n - i - 1; j++)
+                if (arr[j] > arr[j + 1])
+                {
+                    // swap temp and arr[i]
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+    }
 
     private string getdetailedcords()
     { int count = 0;
@@ -493,10 +675,10 @@ public class GridMouseActions : MonoBehaviour
 
     void pirntarre(int[] arre)
     {
-        //print("Printing array below ");
+        print("Printing array below ");
         foreach (var item in arre)
         {
-            //print(item);
+            print(item);
         }
     }
 }
