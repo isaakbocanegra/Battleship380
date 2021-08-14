@@ -26,7 +26,7 @@ public class Player1Board : MonoBehaviour
         GenerateShipGrid(GRID_SPACE_SIZE, GRID_COUNT_X, GRID_COUNT_Y);
         GameObject tempObj = GameObject.Find("Player1Board");
         Destroy(tempObj);
-        p1BoardParent.SetActive(false);
+        //p1BoardParent.SetActive(false);
     }
 
     private void Update()

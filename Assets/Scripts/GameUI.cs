@@ -45,6 +45,27 @@ public class GameUI : MonoBehaviour
         Debug.Log("OnCreditsButton");
     }
 
+    public void BackToMainFromConnect(){
+        server.Shutdown();
+        client.Shutdown();
+        Vector3 tempPos = Camera.main.transform.position;
+        Debug.Log(Camera.main.transform.position.y);
+        tempPos.y +=18f;
+        Camera.main.transform.position = tempPos;
+        Debug.Log(Camera.main.transform.position.y);
+        Debug.Log("BackToMainMenuButton");
+        menuAnimator.SetTrigger("StartMenu");
+    }
+
+    public void OnJoinConnect(){
+        menuAnimator.SetTrigger("Connect");
+        Vector3 tempPos = Camera.main.transform.position;
+        Debug.Log(Camera.main.transform.position.y);
+        tempPos.y -=18f;
+        Camera.main.transform.position = tempPos;
+        Debug.Log(Camera.main.transform.position.y);
+    }
+    
     public void JoinMenuConnectButton()
     {
         client.Init(addressInput.text, 8007);
