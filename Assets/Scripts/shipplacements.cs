@@ -54,11 +54,6 @@ public class placeship: MonoBehaviour{
     
     }
 
-
-
-    public placeship(){
-        
-    }
     public bool isthatshipinallready(string ship) // should print falso if there is no ship allready in there by that name
     {
         bool isshipin=false;

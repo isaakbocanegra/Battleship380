@@ -11,9 +11,10 @@ public class Player1Board : MonoBehaviour
     private const int GRID_SPACE_SIZE = 1;
     public GameObject[,] gridSpaces1;
     public Sprite tempGridSpaces;
+    private SpriteRenderer layer;
 
     //Player 1 Board Parent Creation
-    GameObject p1BoardParent;
+    public static GameObject p1BoardParent;
     
     // Player 1 ship Color and Sprite Assigner
     SpriteRenderer p1Ship_SpriteRenderer;
@@ -25,8 +26,7 @@ public class Player1Board : MonoBehaviour
         GenerateShipGrid(GRID_SPACE_SIZE, GRID_COUNT_X, GRID_COUNT_Y);
         GameObject tempObj = GameObject.Find("Player1Board");
         Destroy(tempObj);
-        
-        //p1BoardParent.SetActive(false);
+        p1BoardParent.SetActive(false);
     }
 
     private void Update()
@@ -51,18 +51,9 @@ public class Player1Board : MonoBehaviour
         gridSpaceObject.AddComponent<SpriteRenderer>().sprite = tempGridSpaces;
         gridSpaceObject.AddComponent<BoxCollider2D>();
         gridSpaceObject.AddComponent<GridMouseActions>();
-
+        layer = gridSpaceObject.GetComponent<SpriteRenderer>();
+        layer.sortingLayerName = "Grid";
+        //gridSpaceObject.AddComponent<SpriteRenderer>().sortingOrder = 6;
         return gridSpaceObject;
     }
-
-    // Operations
-   /* private string LookupGridIndex(GameObject hitInfo)
-    {
-        for(int x = 0; x < GRID_COUNT_X; x++)
-            for(int y = 0; y < GRID_COUNT_Y; y++)
-                if(gridSpaces1[x,y] == hitInfo)
-                    return new Vector2Int(x, y);
-
-        return -Vector2Int.one; // An invalid, should crash the game (hope it doesnt lol)
-    }*/
 }
