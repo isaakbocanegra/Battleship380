@@ -7,21 +7,23 @@ public class shipplacements : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        placeship data = new placeship();
-        data.placeships(1,3,"010203");
-        data.placeships(1,3,"011121");
-        data.placeships(1,2,"5152");  
-        data.placeships(1,3,"222324");
-        data.placeships(1,3,"606162");
-        data.placeships(1,2,"1415");
+      //  placeship data = new placeship();
+      //  bool istherecollision = data.placeships(1,3,"010203");
+       // data.placeships(1,3,"011121");
+       // data.placeships(1,2,"5152");  
+       // data.placeships(1,3,"222324");
+       // data.placeships(1,3,"606162");
+       // data.placeships(1,2,"1415");
 
-        data.printPlayersBoard(1);
+       // data.printPlayersBoard(1);
     }
 
 }
 
 
 public class placeship: MonoBehaviour{
+    public string [] shipsplaced = { "", "", "", "", "" };
+    private int shiplacedcount = 0;
     private int[,] plr1board = {
 
         { 0,0,0,0,0,0,0,0},
@@ -35,7 +37,7 @@ public class placeship: MonoBehaviour{
         };
     private int[,] plr2board = {
 
-        { 0,0,0,0,0,1,0,0},
+        { 0,0,0,0,0,0,0,0},
         { 0,0,0,0,0,0,0,0},
         { 0,0,0,0,0,0,0,0},
         { 0,0,0,0,0,0,0,0},
@@ -44,17 +46,44 @@ public class placeship: MonoBehaviour{
         { 0,0,0,0,0,0,0,0},
         { 0,0,0,0,0,0,0,0}
         };
+    public void placethisship(string ship)
+    {
+        shipsallreadyplaced();
+          shipsplaced[shiplacedcount] = ship;
+        shiplacedcount++;
+    
+    }
+
+
 
     public placeship(){
         
     }
+    public bool isthatshipinallready(string ship) // should print falso if there is no ship allready in there by that name
+    {
+        bool isshipin=false;
+        int count = 0;
 
-    public void placeships(int player, int shipsize, string RowColumns){
+        foreach (string i in shipsplaced)
+        {
+            if(ship == shipsplaced[count])
+            isshipin= true ;
+            
+            count++;
+        }
+
+        
+        return isshipin; 
+
+
+    }
+    public bool placeships(int player, int shipsize, string RowColumns){
         if(isCollision(player, shipsize, RowColumns)){
 
              // RC   ==    515253
 
             print(RowColumns +" is taken. Pick somewhere else!");
+            return false; 
         }
         else{
             print(RowColumns+" has been placed.");
@@ -74,6 +103,8 @@ public class placeship: MonoBehaviour{
                 j = j+2;
                 k = k+2;
             }
+
+            return true; 
         }
     }
 
@@ -103,6 +134,11 @@ public class placeship: MonoBehaviour{
             return false;
         }
         return true;
+    }
+
+    public void shipsallreadyplaced()
+    {
+        print("ships in so far are " + shipsplaced[0] + " " + shipsplaced[1] + " " + shipsplaced[2] + " " + " " + shipsplaced[3] + " " + " " + shipsplaced[4] + " ");
     }
 
     public void printPlayersBoard(int player){

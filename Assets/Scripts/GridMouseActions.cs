@@ -6,8 +6,10 @@ public class GridMouseActions : MonoBehaviour
 {
     public SpriteRenderer gridColor;
     public bool vertical = true;
+    public static string shipname = "Aircraft_Carrier";
     public static int shipsize = 5;
     public static GameObject selectedship;
+    public placeship placer = shipActions.placer;
     //change this for diffrent ship sizes
 
     private void Awake()
@@ -39,12 +41,12 @@ public class GridMouseActions : MonoBehaviour
             //print("The current tile should now be hovered.");
             if (this.vertical == false)
             {
-                print("we are now doing horizontal only");
+              //  print("we are now doing horizontal only");
                 marksides();
             }
             else
             {
-                print("we are now doing vertical only");
+             //   print("we are now doing vertical only");
                 marktoptotop();
             }
         }
@@ -54,13 +56,15 @@ public class GridMouseActions : MonoBehaviour
     void OnMouseDown() 
     {
         gridColor.color = new Color(0.25f, 0.25f, 0.25f, 1);
+
+         
         moveship();
-        print("The current tile is being clicked " + gridColor.name);
+      //  print("The current tile is being clicked " + gridColor.name);
     }
 
     void OnMouseUp()
     {
-        gridColor.color = new Color(0.5f, 0.5f, 0.5f, 1);
+        gridColor.color = new Color(1, 1, 1, 1);
        // print("The current tile is no longer being clicked.");
     }  
 
@@ -73,12 +77,12 @@ public class GridMouseActions : MonoBehaviour
         {
             if (this.vertical == false)
             {
-                print("we are now doing horizontal only");
+               // print("we are now doing horizontal only");
                 demarksides();
             }
             else
             {
-                print("we are now doing vertical only");
+               // print("we are now doing vertical only");
                 demarktoptotop();
             }
             //print(tempGridScript.tempGrid[0,0].name);
@@ -95,10 +99,98 @@ public class GridMouseActions : MonoBehaviour
     /// 
     private void moveship()
     {
-        selectedship.transform.position = gridColor.transform.position;
+            if (vertical)
+            {
+                selectedship.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if(!vertical)
+            {
+                selectedship.transform.rotation = Quaternion.Euler(0, 0, 90);
+            }
+
+        string cords =getdetailedcords();
+
+        if (placer.isthatshipinallready(shipname))
+        {
+            print("you allready placed the " + shipname.ToString());
+            placer.shipsallreadyplaced();
+        }
+        else
+        {
+
+            if (placer.placeships(1, shipsize, cords))
+            {
+                /////
+                
+                  
+                    print("cool the ship we placed for you is " + shipname.ToString());
+                    placer.placethisship(shipname);
+                    selectedship.transform.position = gridColor.transform.position;
+               
+                ////////
+                placer.printPlayersBoard(1);
+            }
+        }
+
+        
 
 
     }
+
+
+    private string getdetailedcords()
+    { int count = 0;
+       
+        string cords = "";
+      //  if (isthisaship())
+      //  {
+            print("your entering the cord zone ");
+            //print("The current tile should now be hovered.");
+            if (this.vertical == false)
+            {
+                
+                print("we are gathering cordinates ");
+                // GameObject.Find("X:0, Y0").GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+               //print("we are marking sides and ship size is " + shipsize);
+                int[] rowcolumn = extractcoordinatename(gridColor);
+                int[] selection = gettilesnextto(rowcolumn[0], rowcolumn[1], shipsize);
+             //   print("we are marking sides and ship size is " + shipsize);
+                while (count<shipsize)
+                {
+                    cords =cords + rowcolumn[0].ToString() + selection[count].ToString();
+                    count++;
+                }
+                print("the cords are now "+ cords);
+            }
+            else
+            {
+
+            print("we are gathering cordinates ");
+            // GameObject.Find("X:0, Y0").GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+            //print("we are marking sides and ship size is " + shipsize);
+            int[] rowcolumn = extractcoordinatename(gridColor);
+            int[] selection = gettilestoptotop(rowcolumn[0], rowcolumn[1], shipsize);
+            //   print("we are marking sides and ship size is " + shipsize);
+            while (count < shipsize)
+            {
+                cords = cords + selection[count].ToString() + rowcolumn[1].ToString();
+                count++;
+            }
+            print("the cords are now " + cords);
+
+
+
+            //  print("we are now doing vertical only");
+            //   marktoptotop();
+        }
+        //}
+
+        
+        return cords; 
+    }
+
+
+
     private bool isthisaship()
     {
         if (gridColor.name == "Aircraft_Carrier")
@@ -126,26 +218,29 @@ public class GridMouseActions : MonoBehaviour
     }
     
     private void mouserightclick()
-    { 
+    {
         if (Input.GetMouseButtonDown(1))// 0 is left, 1 is right, 3 is middle
         {
-            print("we are trying to detect mouseinput right now");
-            if (this.vertical)
-            {   
-                turnship90degrees(vertical);  
-                vertical = false;
-                demarktoptotop();
-                print("You just right clicked, we are horizontal now ");
-                
-            }
-            else
+            // print("we are trying to detect mouseinput right now");
+            if (!placer.isthatshipinallready(shipname))
             {
-                turnship90degrees(vertical);
-                vertical = true;
-                demarksides();
-                
-                print("You just right clicked, we are vertical now ");
-            }   
+                if (this.vertical)
+                {
+                    turnship90degrees(vertical);
+                    vertical = false;
+                    demarktoptotop();
+                    //   print("You just right clicked, we are horizontal now ");
+
+                }
+                else
+                {
+                    turnship90degrees(vertical);
+                    vertical = true;
+                    demarksides();
+
+                    //  print("You just right clicked, we are vertical now ");
+                }
+            }
         }
     }
 
@@ -161,7 +256,7 @@ public class GridMouseActions : MonoBehaviour
     private void marksides()
     {
         // GameObject.Find("X:0, Y0").GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-        print("we are marking sides and ship size is " + shipsize);
+      //  print("we are marking sides and ship size is " + shipsize);
         int[] rowcolumn = extractcoordinatename(gridColor);
         int[] selection = gettilesnextto(rowcolumn[0], rowcolumn[1], shipsize);
         if (shipsize == 2)
@@ -401,7 +496,7 @@ public class GridMouseActions : MonoBehaviour
         //print("Printing array below ");
         foreach (var item in arre)
         {
-            print(item);
+            //print(item);
         }
     }
 }
