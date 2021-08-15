@@ -46,6 +46,8 @@ public class GameUI : MonoBehaviour
     }
 
     public void BackToMainFromConnect(){
+        //GameObject tempObj = GameObject.Find("Player1BoardParent");
+        //Destroy(tempObj);
         server.Shutdown();
         client.Shutdown();
         Vector3 tempPos = Camera.main.transform.position;

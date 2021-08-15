@@ -25,13 +25,21 @@ public class Player1Board : MonoBehaviour
         p1BoardParent.name = "Player1BoardParent";
         GenerateShipGrid(GRID_SPACE_SIZE, GRID_COUNT_X, GRID_COUNT_Y);
         GameObject tempObj = GameObject.Find("Player1Board");
-        Destroy(tempObj);
+        Destroy(tempObj); 
         //p1BoardParent.SetActive(false);
     }
 
     private void Update()
     {
         
+    }
+
+    public void GenerateP1Board(){
+        p1BoardParent = new GameObject();
+        p1BoardParent.name = "Player1BoardParent";
+        GenerateShipGrid(GRID_SPACE_SIZE, GRID_COUNT_X, GRID_COUNT_Y);
+        GameObject tempObj = GameObject.Find("Player1Board");
+        Destroy(tempObj);
     }
 
     // Generates the Battleship Board
