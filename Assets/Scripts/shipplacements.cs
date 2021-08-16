@@ -94,6 +94,9 @@ public class placeship: MonoBehaviour{
 
     }
     public bool placeships(int player, int shipsize, string RowColumns){
+        // Net implementation
+        NetShareShips ss = new NetShareShips();
+        
         if(isCollision(player, shipsize, RowColumns)){
 
              // RC   ==    515253

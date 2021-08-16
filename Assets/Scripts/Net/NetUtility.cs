@@ -26,9 +26,9 @@ public static class NetUtility
             case OpCode.KEEP_ALIVE: msg = new NetKeepAlive(stream); break;
             case OpCode.WELCOME: msg = new NetWelcome(stream); break;
             case OpCode.SETUP_PHASE: msg = new NetSetupPhase(stream); break;
-            //case OpCode.SHARE_SHIPS: msg = new NetShareShips(stream); break;
+            case OpCode.SHARE_SHIPS: msg = new NetShareShips(stream); break;
             case OpCode.START_GAME: msg = new NetStartGame(stream); break;
-            //case OpCode.TAKE_TURN: msg = new NetTakeTurn(stream); break;
+            case OpCode.TAKE_TURN: msg = new NetTakeTurn(stream); break;
             //case OpCode.REMATCH: msg = new NetRematch(stream); break;
             default:
                 Debug.LogError("Message received had no OpCode");

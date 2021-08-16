@@ -1,13 +1,6 @@
 using UnityEngine;
 using Unity.Networking.Transport;
 
-public enum CameraAngles
-{
-    menu = 0,
-    setup = 1,
-    gameplay = 2,
-}
-
 public class NetActions : MonoBehaviour
 {
     // Multiplayer Logic:
@@ -30,6 +23,9 @@ public class NetActions : MonoBehaviour
 
         NetUtility.S_TAKE_TURN += OnTakeTurnServer;
         NetUtility.C_TAKE_TURN += OnTakeTurnClient;
+
+        NetUtility.S_SHARE_SHIPS += OnShareShipsServer;
+        NetUtility.C_SHARE_SHIPS += OnShareShipsClient;
     }
 
     private void UnRegisterEvents()
@@ -40,8 +36,8 @@ public class NetActions : MonoBehaviour
         NetUtility.S_SETUP_PHASE -= OnSetupPhaseServer;
         NetUtility.C_SETUP_PHASE -= OnSetupPhaseClient;
 
-        NetUtility.S_TAKE_TURN -= OnTakeTurnServer;
-        NetUtility.C_TAKE_TURN += OnTakeTurnClient;
+        NetUtility.S_SHARE_SHIPS -= OnShareShipsServer;
+        NetUtility.C_SHARE_SHIPS -= OnShareShipsClient;
     }
 
     // Server
@@ -72,6 +68,15 @@ public class NetActions : MonoBehaviour
         // Receive turn taken, broadcast back
         Server.Instance.Broadcast(msg);
         
+    }
+
+    private void OnShareShipsServer(NetMessage msg, NetworkConnection cnn)
+    {
+        // Receive message, broadcast back
+        NetShareShips ss = msg as NetShareShips;
+
+        // Receive ship locations, broadcast back
+        Server.Instance.Broadcast(msg);
     }
 
     // Client
@@ -109,6 +114,12 @@ public class NetActions : MonoBehaviour
         {
             hitherormiss.Instance.hitplr(tt.teamID, tt.targetLocationY, tt.targetLocationX);
         }
+    }
+
+    private void OnShareShipsClient(NetMessage msg)
+    {
+        // Receive message, broadcast back
+        NetShareShips ss = msg as NetShareShips;
     }
 #endregion
 }

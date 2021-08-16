@@ -1,17 +1,17 @@
 using UnityEngine;
 using Unity.Networking.Transport;
 
-public class NetShareShipPlacements : NetMessage
+public class NetShareShips : NetMessage
 {
     public int shipLocationX;
     public int shipLocationY;
 
-    public NetShareShipPlacements()
+    public NetShareShips()
     {
        Code = OpCode.SHARE_SHIPS;
     }
 
-    public NetShareShipPlacements(DataStreamReader reader)
+    public NetShareShips(DataStreamReader reader)
     {
         Code = OpCode.SHARE_SHIPS;
         Deserialize(reader);
