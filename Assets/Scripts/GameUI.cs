@@ -17,19 +17,27 @@ public class GameUI : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        //DontDestroyOnLoad(Instance);
+        RegisterEvents();
     }
 
-    void Start()
+    // Activate Boards for P1 and P2
+    public void ActivateBoards()
     {
+        Player1Board.p1BoardParent.SetActive(true);
+        Player2Board.p2BoardParent.SetActive(true);
+    }
+
+    public void ServerToSetupScreen()
+    {
+        BoardCameraChange();
     }
 
     // Buttons
     public void OnHostGameButton()
     {
-        //server.Init(8007);
-        //client.Init("127.0.0.1", 8007);
-        //Debug.Log("OnHostGameButton");
+        server.Init(8007);
+        client.Init("127.0.0.1", 8007);
+        Debug.Log("OnHostGameButton");
         menuAnimator.SetTrigger("HostMenu");
         Player1Board.p1BoardParent.SetActive(true);
     }
@@ -45,7 +53,8 @@ public class GameUI : MonoBehaviour
         Debug.Log("OnCreditsButton");
     }
 
-    public void BackToMainFromConnect(){
+    public void BackToMainFromConnect()
+    {
         server.Shutdown();
         client.Shutdown();
         Vector3 tempPos = Camera.main.transform.position;
@@ -57,18 +66,19 @@ public class GameUI : MonoBehaviour
         menuAnimator.SetTrigger("StartMenu");
     }
 
-    public void OnJoinConnect(){
-        menuAnimator.SetTrigger("Connect");
+    public void OnJoinConnect()
+    {   
+        client.Init(addressInput.text, 8007);
+        BoardCameraChange();
+    }
+
+    public void BoardCameraChange()
+    {
         Vector3 tempPos = Camera.main.transform.position;
         Debug.Log(Camera.main.transform.position.y);
         tempPos.y -=18f;
         Camera.main.transform.position = tempPos;
         Debug.Log(Camera.main.transform.position.y);
-    }
-    
-    public void JoinMenuConnectButton()
-    {
-        client.Init(addressInput.text, 8007);
     }
 
     public void BackToMainMenuButton()
@@ -88,5 +98,27 @@ public class GameUI : MonoBehaviour
         Debug.Log("Game is exiting");
 #endif
     }
-}
 
+#region    
+    private void RegisterEvents()
+    {
+        NetUtility.C_SETUP_PHASE += OnSetupPhaseClient;
+    }
+
+    private void UnRegisterEvents()
+    {
+        NetUtility.C_SETUP_PHASE -= OnSetupPhaseClient;
+    }
+
+    private void OnSetupPhaseClient(NetMessage obj)
+    {
+        menuAnimator.SetTrigger("Connect");
+    }
+#endregion
+}
+/*
+        Vector3 tempPos = Camera.main.transform.position;
+        Debug.Log(Camera.main.transform.position.y);
+        tempPos.y -=18f;
+        Camera.main.transform.position = tempPos;
+        Debug.Log(Camera.main.transform.position.y);*/

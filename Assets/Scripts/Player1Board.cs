@@ -26,12 +26,7 @@ public class Player1Board : MonoBehaviour
         GenerateShipGrid(GRID_SPACE_SIZE, GRID_COUNT_X, GRID_COUNT_Y);
         GameObject tempObj = GameObject.Find("Player1Board");
         Destroy(tempObj);
-        //p1BoardParent.SetActive(false);
-    }
-
-    private void Update()
-    {
-        
+        p1BoardParent.SetActive(false);
     }
 
     // Generates the Battleship Board
@@ -53,7 +48,7 @@ public class Player1Board : MonoBehaviour
         gridSpaceObject.AddComponent<GridMouseActions>();
         layer = gridSpaceObject.GetComponent<SpriteRenderer>();
         layer.sortingLayerName = "Grid";
-        //gridSpaceObject.AddComponent<SpriteRenderer>().sortingOrder = 6;
+
         return gridSpaceObject;
     }
 }

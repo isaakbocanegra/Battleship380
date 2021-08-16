@@ -90,7 +90,7 @@ public class Client : MonoBehaviour
         {
             if(cmd == NetworkEvent.Type.Connect)
             {
-                // SendToServer(new NetWelcome());
+                SendToServer(new NetWelcome());
                 Debug.Log("We're connected! Sweet.");
                 EnterIPText.text = "You are connected to";
             }
@@ -104,9 +104,15 @@ public class Client : MonoBehaviour
                 EnterIPText.text = "You have disconnected from";
                 connection = default(NetworkConnection);
                 connectionDropped?.Invoke();
+                --NetActions.playerCount;
                 Shutdown();
             }
         }
+    }
+
+    IEnumerator Wait2Seconds()
+    {
+        yield return new WaitForSeconds(2);
     }
 
     public void SendToServer(NetMessage msg)

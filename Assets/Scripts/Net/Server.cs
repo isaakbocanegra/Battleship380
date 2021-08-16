@@ -83,6 +83,11 @@ public class Server : MonoBehaviour
         CleanupConnections();
         AcceptNewConnections();
         UpdateMessagePump();
+
+        if(NetActions.playerCount % 2 == 1)
+        {
+            WaitingForPlayer2.text = "Player 2 has connected!";
+        }
     }
 
     private void KeepAlive()
@@ -130,7 +135,6 @@ public class Server : MonoBehaviour
             {
                 if(cmd == NetworkEvent.Type.Data)
                 {
-                    WaitingForPlayer2.text = "Player 2 has connected!";
                     NetUtility.OnData(stream, connections[i], this);
                 }
                 else if(cmd == NetworkEvent.Type.Disconnect)
@@ -139,6 +143,7 @@ public class Server : MonoBehaviour
                     Debug.Log("Player 2 disconnected from the server");
                     connections[i] = default(NetworkConnection);
                     connectionDropped?.Invoke();
+                    --NetActions.playerCount;
                     Shutdown(); // Would not happen in a game with more than 2 players, only happens here cuz 2 player
                 }
             }
