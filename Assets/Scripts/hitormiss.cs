@@ -70,10 +70,10 @@ public class HitOrMiss : MonoBehaviour
 // 0 means water
 // 1 means there is a ship there
 // -1 means there is a ship that got hit there
-//  2 means a shot got shot there and was nothing there
-//       2 0 0 0
-/// exe  0 1 1 0
-///      2 0 0 0  
+//  2 means a shot got shot there and there was nothing there
+//       0 0 0 0
+/// exe -1 1 1 0
+///      2 0 0 2 
 //in this example, there is a ship in the middle of the map and there were misses that happen on the upper and lower left
 
 public class hitherormiss : MonoBehaviour 
