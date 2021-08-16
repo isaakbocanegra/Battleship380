@@ -78,6 +78,8 @@ public class hitormiss : MonoBehaviour
 
 public class hitherormiss : MonoBehaviour 
 {
+    public static hitherormiss Instance { set; get; }
+
     private Color invis ,vis; // for text
     private Text hit, miss;
 
@@ -162,10 +164,12 @@ public class hitherormiss : MonoBehaviour
 
     }
 
-    public void hitplr(int plrnumberwearehiting, int targetLocationY, int targetLocationX)
+    public void hitplr(int teamID, int targetLocationY, int targetLocationX)
     {
+        // Net implementation
+        NetTakeTurn tt = new NetTakeTurn();
 
-        if (plrnumberwearehiting == 1)
+        if (teamID == 1)
         {
             if (this.plr1arre[targetLocationY, targetLocationX] == 1)
             {
@@ -173,10 +177,10 @@ public class hitherormiss : MonoBehaviour
                 // hit.color = vis;
                 //print("There was a hit at row" + targetLocationX + " and at column " + targetLocationY);
                 //print("the new board now for player 1 is ");
-                gridmapforplr(plrnumberwearehiting);
-
-
-
+                gridmapforplr(teamID);
+                tt.targetStatus = this.plr1arre[targetLocationY, targetLocationX];
+                tt.teamID = NetActions.currentTeam;
+                Client.Instance.SendToServer(tt);
             }
             /// above is if we hit a ship 
             /// 
@@ -187,13 +191,15 @@ public class hitherormiss : MonoBehaviour
                 // hit.color = vis;
                 //print("There was a miss at row" + targetLocationX + " and at column " + targetLocationY);
                 //print("the new board now for player 1 is ");
-                gridmapforplr(plrnumberwearehiting);
-
+                gridmapforplr(teamID);
+                tt.targetStatus = this.plr1arre[targetLocationY, targetLocationX];
+                tt.teamID = NetActions.currentTeam;
+                Client.Instance.SendToServer(tt);
             }
             /// above is if we hit empty water
 
         }
-        else if (plrnumberwearehiting==2)
+        else if (teamID==2)
         {
             if (this.plr2arre[targetLocationY, targetLocationX] == 1)
             {
@@ -201,7 +207,10 @@ public class hitherormiss : MonoBehaviour
                 // hit.color = vis;
                 //print("There was a hit at y" + targetLocationX + " and at x " + targetLocationY);
                 //print("the new board now for player 2 is ");
-                gridmapforplr(plrnumberwearehiting);
+                gridmapforplr(teamID);
+                tt.targetStatus = this.plr2arre[targetLocationY, targetLocationX];
+                tt.teamID = NetActions.currentTeam;
+                Client.Instance.SendToServer(tt);
             }
             /// above is if we hit a ship 
             /// 
@@ -212,12 +221,13 @@ public class hitherormiss : MonoBehaviour
                 // hit.color = vis;
                 //print("There was a miss at row" + targetLocationX + " and at column " + targetLocationY);
                 //print("the new board now for player 2 is ");
-                gridmapforplr(plrnumberwearehiting);
-
+                gridmapforplr(teamID);
+                tt.targetStatus = this.plr2arre[targetLocationY, targetLocationX];
+                tt.teamID = NetActions.currentTeam;
+                Client.Instance.SendToServer(tt);
             }
             /// above is if we hit empty water
         }
-
 
     }
 

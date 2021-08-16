@@ -5,6 +5,7 @@ public class NetTakeTurn : NetMessage
 {
     public int targetLocationX;
     public int targetLocationY;
+    public int targetStatus;
     public int teamID;
 
     public NetTakeTurn() // Making the message
@@ -26,6 +27,7 @@ public class NetTakeTurn : NetMessage
         writer.WriteByte((byte)Code);
         writer.WriteInt(targetLocationX);
         writer.WriteInt(targetLocationY);
+        writer.WriteInt(targetStatus);
         writer.WriteInt(teamID);
     }
 
@@ -33,6 +35,7 @@ public class NetTakeTurn : NetMessage
     {
         targetLocationX = reader.ReadInt();
         targetLocationY = reader.ReadInt();
+        targetStatus = reader.ReadInt();
         teamID = reader.ReadInt();
     }
 

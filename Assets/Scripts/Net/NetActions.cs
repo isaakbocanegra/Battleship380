@@ -12,7 +12,7 @@ public class NetActions : MonoBehaviour
 {
     // Multiplayer Logic:
     public static int playerCount = -1;
-    private static int currentTeam = -1;
+    public static int currentTeam = -1;
 
     private void Awake()
     {
@@ -27,11 +27,21 @@ public class NetActions : MonoBehaviour
 
         NetUtility.S_SETUP_PHASE += OnSetupPhaseServer;
         NetUtility.C_SETUP_PHASE += OnSetupPhaseClient;
+
+        NetUtility.S_TAKE_TURN += OnTakeTurnServer;
+        NetUtility.C_TAKE_TURN += OnTakeTurnClient;
     }
 
     private void UnRegisterEvents()
     {
+        NetUtility.S_WELCOME -= OnWelcomeServer;
+        NetUtility.C_WELCOME -= OnWelcomeClient;
 
+        NetUtility.S_SETUP_PHASE -= OnSetupPhaseServer;
+        NetUtility.C_SETUP_PHASE -= OnSetupPhaseClient;
+
+        NetUtility.S_TAKE_TURN -= OnTakeTurnServer;
+        NetUtility.C_TAKE_TURN += OnTakeTurnClient;
     }
 
     // Server
@@ -52,6 +62,16 @@ public class NetActions : MonoBehaviour
             Server.Instance.Broadcast(new NetSetupPhase());
             GameUI.Instance.BoardCameraChange();
         }
+    }
+
+    private void OnTakeTurnServer(NetMessage msg, NetworkConnection cnn)
+    {
+        // Receive message, broadcast back
+        NetTakeTurn tt = msg as NetTakeTurn;
+
+        // Receive turn taken, broadcast back
+        Server.Instance.Broadcast(msg);
+        
     }
 
     // Client
@@ -76,6 +96,19 @@ public class NetActions : MonoBehaviour
     {
         // Activate boards for both players
         GameUI.Instance.ServerToSetupScreen();
+    }
+
+    private void OnTakeTurnClient(NetMessage msg)
+    {
+        NetTakeTurn tt = msg as NetTakeTurn;
+
+
+        Debug.Log($"TT : {tt.teamID} : Attack at grid location ({tt.targetLocationY}, {tt.targetLocationX}) resulted in {tt.targetStatus}");
+
+        if(tt.teamID != currentTeam)
+        {
+            hitherormiss.Instance.hitplr(tt.teamID, tt.targetLocationY, tt.targetLocationX);
+        }
     }
 #endregion
 }
