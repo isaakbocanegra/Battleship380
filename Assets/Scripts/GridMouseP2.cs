@@ -112,7 +112,7 @@ public class GridMouseP2 : MonoBehaviour
                 objectoreturn = "Player2BoardParent/X:" + rowcolumn[0] + ", Y" + cordgy[2];
                 selectedship.transform.position = GameObject.Find(objectoreturn).transform.position;
             }
-            else if (shipname == "P2Battleship") // Battleship  offset is at position 1 of arre+ .77
+            else if (shipname == "P2Battleship") // Battleship offset is at position 1 of arre+ .77
             {
                 int[] rowcolumn = extractcoordinatename(gridColor);
                 cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);

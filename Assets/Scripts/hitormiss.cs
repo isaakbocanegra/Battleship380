@@ -162,16 +162,16 @@ public class hitherormiss : MonoBehaviour
 
     }
 
-    public void hitplr(int plrnumberwearehiting, int row, int column)
+    public void hitplr(int plrnumberwearehiting, int targetLocationY, int targetLocationX)
     {
 
         if (plrnumberwearehiting == 1)
         {
-            if (this.plr1arre[row, column] == 1)
+            if (this.plr1arre[targetLocationY, targetLocationX] == 1)
             {
-                this.plr1arre[row, column] = -1;
+                this.plr1arre[targetLocationY, targetLocationX] = -1;
                 // hit.color = vis;
-                //print("There was a hit at row" + column + " and at column " + row);
+                //print("There was a hit at row" + targetLocationX + " and at column " + targetLocationY);
                 //print("the new board now for player 1 is ");
                 gridmapforplr(plrnumberwearehiting);
 
@@ -181,11 +181,11 @@ public class hitherormiss : MonoBehaviour
             /// above is if we hit a ship 
             /// 
 
-            if (this.plr1arre[row, column] == 0)
+            if (this.plr1arre[targetLocationY, targetLocationX] == 0)
             {
-                this.plr1arre[row, column] = 2;
+                this.plr1arre[targetLocationY, targetLocationX] = 2;
                 // hit.color = vis;
-                //print("There was a miss at row" + column + " and at column " + row);
+                //print("There was a miss at row" + targetLocationX + " and at column " + targetLocationY);
                 //print("the new board now for player 1 is ");
                 gridmapforplr(plrnumberwearehiting);
 
@@ -195,22 +195,22 @@ public class hitherormiss : MonoBehaviour
         }
         else if (plrnumberwearehiting==2)
         {
-            if (this.plr2arre[row, column] == 1)
+            if (this.plr2arre[targetLocationY, targetLocationX] == 1)
             {
-                this.plr2arre[row, column] = -1;
+                this.plr2arre[targetLocationY, targetLocationX] = -1;
                 // hit.color = vis;
-                //print("There was a hit at y" + column + " and at x " + row);
+                //print("There was a hit at y" + targetLocationX + " and at x " + targetLocationY);
                 //print("the new board now for player 2 is ");
                 gridmapforplr(plrnumberwearehiting);
             }
             /// above is if we hit a ship 
             /// 
 
-            if (this.plr2arre[row, column] == 0)
+            if (this.plr2arre[targetLocationY, targetLocationX] == 0)
             {
-                this.plr2arre[row, column] = 2;
+                this.plr2arre[targetLocationY, targetLocationX] = 2;
                 // hit.color = vis;
-                //print("There was a miss at row" + column + " and at column " + row);
+                //print("There was a miss at row" + targetLocationX + " and at column " + targetLocationY);
                 //print("the new board now for player 2 is ");
                 gridmapforplr(plrnumberwearehiting);
 
