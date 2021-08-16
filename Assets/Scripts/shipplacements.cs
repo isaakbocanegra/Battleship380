@@ -26,7 +26,7 @@ public class ShipPlacements : MonoBehaviour
 public class placeship: MonoBehaviour{
     public string [] shipsplaced = { "", "", "", "", "" };
     private int shiplacedcount = 0;
-    private int[,] plr1board = {
+    public static int[,] plr1board = {
 
         { 0,0,0,0,0,0,0,0},
         { 0,0,0,0,0,0,0,0},
