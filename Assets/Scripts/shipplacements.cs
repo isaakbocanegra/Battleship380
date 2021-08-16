@@ -7,15 +7,17 @@ public class shipplacements : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      //  placeship data = new placeship();
-      //  bool istherecollision = data.placeships(1,3,"010203");
-       // data.placeships(1,3,"011121");
-       // data.placeships(1,2,"5152");  
-       // data.placeships(1,3,"222324");
-       // data.placeships(1,3,"606162");
-       // data.placeships(1,2,"1415");
+        /* Hard coded testing:
 
-       // data.printPlayersBoard(1);
+        placeship data = new placeship();
+        bool istherecollision = data.placeships(1,3,"010203");
+        data.placeships(1,3,"011121");
+        data.placeships(1,2,"5152");  
+        data.placeships(1,3,"222324");
+        data.placeships(1,3,"606162");
+        data.placeships(1,2,"1415");
+
+        data.printPlayersBoard(1); */
     }
 
 }

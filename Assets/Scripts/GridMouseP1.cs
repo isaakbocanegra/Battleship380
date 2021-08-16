@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridMouseActions : MonoBehaviour
+public class GridMouseP1 : MonoBehaviour
 {
     public SpriteRenderer gridColor;
     public bool vertical = true;
-    public static string shipname = "Aircraft_Carrier";
+    public static string shipname = "P1Aircraft_Carrier";
     public static int shipsize = 5;
     public static GameObject selectedship;
-    public placeship placer = shipActions.placer;
+    public placeship placer = ShipActionsP1.placer;
     //change this for diffrent ship sizes
 
     private void Awake()
@@ -18,7 +18,7 @@ public class GridMouseActions : MonoBehaviour
     }
     void Start()
     {
-        selectedship = GameObject.Find("Aircraft_Carrier");
+        selectedship = GameObject.Find("P1Aircraft_Carrier");
         gridColor = GetComponent<SpriteRenderer>();
     }
 
@@ -112,7 +112,7 @@ public class GridMouseActions : MonoBehaviour
 
         if (placer.isthatshipinallready(shipname))
         {
-            print("you allready placed the " + shipname.ToString());
+            print("you already placed the " + shipname.ToString());
             placer.shipsallreadyplaced();
         }
         else
@@ -147,7 +147,7 @@ public class GridMouseActions : MonoBehaviour
         string cordgy = "";
         if (!vertical)
         {
-            if (shipname == "Aircraft_Carrier") // airfract carrier offset is at position 2  of arre
+            if (shipname == "P1Aircraft_Carrier") // airfract carrier offset is at position 2  of arre
             {
                 int[] rowcolumn = extractcoordinatename(gridColor);
                 cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
@@ -155,7 +155,7 @@ public class GridMouseActions : MonoBehaviour
                 selectedship.transform.position = GameObject.Find(objectoreturn).transform.position;
 
             }
-            else if (shipname == "Battleship") // Battleship  offset is at position 1 of arre+ .77
+            else if (shipname == "P1Battleship") // Battleship offset is at position 1 of arre+ .77
             {
                 int[] rowcolumn = extractcoordinatename(gridColor);
                 cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
@@ -163,7 +163,7 @@ public class GridMouseActions : MonoBehaviour
                 selectedship.transform.position = new Vector3((float)(GameObject.Find(objectoreturn).transform.position.x + .77), GameObject.Find(objectoreturn).transform.position.y, GameObject.Find(objectoreturn).transform.position.z);
 
             }
-            else if (shipname == "Cruiser") // cruiser  offset is at position 1 
+            else if (shipname == "P1Cruiser") // cruiser offset is at position 1 
             {
                 int[] rowcolumn = extractcoordinatename(gridColor);
                 cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
@@ -171,7 +171,7 @@ public class GridMouseActions : MonoBehaviour
                 selectedship.transform.position = GameObject.Find(objectoreturn).transform.position;
 
             }
-            else if (shipname == "Submarine") // Submarine  offset is at position 1 
+            else if (shipname == "P1Submarine") // Submarine offset is at position 1 
             {
                 int[] rowcolumn = extractcoordinatename(gridColor);
                 cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
@@ -179,7 +179,7 @@ public class GridMouseActions : MonoBehaviour
                 selectedship.transform.position = GameObject.Find(objectoreturn).transform.position;
 
             }
-            else if (shipname == "Destroyer") // Destroyer  offset is at position 1 
+            else if (shipname == "P1Destroyer") // Destroyer  offset is at position 1 
             {
                 int[] rowcolumn = extractcoordinatename(gridColor);
                 cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
@@ -192,7 +192,7 @@ public class GridMouseActions : MonoBehaviour
         else
         {
 
-            if (shipname == "Aircraft_Carrier") // airfract carrier offset is at position 2  of arre
+            if (shipname == "P1Aircraft_Carrier") // airfract carrier offset is at position 2  of arre
             {
                 int[] rowcolumn = extractcoordinatename(gridColor);
                 cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
@@ -200,7 +200,7 @@ public class GridMouseActions : MonoBehaviour
                 selectedship.transform.position = GameObject.Find(objectoreturn).transform.position;
 
             }
-            else if (shipname == "Battleship") // Battleship  offset is at position 1 of arre+ .77
+            else if (shipname == "P1Battleship") // Battleship  offset is at position 1 of arre+ .77
             {
                 int[] rowcolumn = extractcoordinatename(gridColor);
                 cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
@@ -208,7 +208,7 @@ public class GridMouseActions : MonoBehaviour
                 selectedship.transform.position = new Vector3((float)(GameObject.Find(objectoreturn).transform.position.x -.18 ), (float)(GameObject.Find(objectoreturn).transform.position.y-.6), GameObject.Find(objectoreturn).transform.position.z);
 
             }
-            else if (shipname == "Cruiser") // cruiser  offset is at position 1 
+            else if (shipname == "P1Cruiser") // cruiser  offset is at position 1 
             {
                 int[] rowcolumn = extractcoordinatename(gridColor);
                 cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
@@ -216,7 +216,7 @@ public class GridMouseActions : MonoBehaviour
                 selectedship.transform.position = GameObject.Find(objectoreturn).transform.position;
 
             }
-            else if (shipname == "Submarine") // Submarine  offset is at position 1 
+            else if (shipname == "P1Submarine") // Submarine  offset is at position 1 
             {
                 int[] rowcolumn = extractcoordinatename(gridColor);
                 cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
@@ -224,7 +224,7 @@ public class GridMouseActions : MonoBehaviour
                 selectedship.transform.position = GameObject.Find(objectoreturn).transform.position;
 
             }
-            else if (shipname == "Destroyer") // Destroyer  offset is at position 1 
+            else if (shipname == "P1Destroyer") // Destroyer  offset is at position 1 
             {
                 int[] rowcolumn = extractcoordinatename(gridColor);
                 cordgy = sortandgetbackgoodcordsnexttonext(rowcolumn, vertical);
@@ -266,7 +266,7 @@ public class GridMouseActions : MonoBehaviour
 
                 if (selection[count] >= 0)
                 {
-                    print("compareing 0 with " + selection[count]);
+                    print("comparing 0 with " + selection[count]);
                     cordgy = cordgy + selection[count].ToString();
                     count++;
                     arreacount++;
@@ -286,7 +286,7 @@ public class GridMouseActions : MonoBehaviour
 
                 if (selection[count] >= 0)
                 {
-                    print("compareing 0 with " + selection[count]);
+                    print("comparing 0 with " + selection[count]);
                     cordgy = cordgy + selection[count].ToString();
                     count++;
                     arreacount++;
@@ -342,7 +342,7 @@ public class GridMouseActions : MonoBehaviour
                     cords =cords + rowcolumn[0].ToString() + selection[count].ToString();
                     count++;
                 }
-                print("the cords are now "+ cords);
+                print("the coords are now "+ cords);
             }
             else
             {
@@ -358,7 +358,7 @@ public class GridMouseActions : MonoBehaviour
                 cords = cords + selection[count].ToString() + rowcolumn[1].ToString();
                 count++;
             }
-            print("the cords are now " + cords);
+            print("the coords are now " + cords);
 
 
 
@@ -375,23 +375,23 @@ public class GridMouseActions : MonoBehaviour
 
     private bool isthisaship()
     {
-        if (gridColor.name == "Aircraft_Carrier")
+        if (gridColor.name == "P1Aircraft_Carrier")
         {
             return true;
         }
-        else if (gridColor.name == "Battleship")
+        else if (gridColor.name == "P1Battleship")
         {
             return true;
         }
-        else if (gridColor.name == "Cruiser")
+        else if (gridColor.name == "P1Cruiser")
         {
             return true;
         }
-        else if (gridColor.name == "Submarine")
+        else if (gridColor.name == "P1Submarine")
         {
             return true;
         }
-        else if (gridColor.name == "Destroyer")
+        else if (gridColor.name == "P1Destroyer")
         {
             return true;
         }
