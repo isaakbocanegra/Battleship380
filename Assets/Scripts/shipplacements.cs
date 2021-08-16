@@ -55,7 +55,26 @@ public class placeship: MonoBehaviour{
         shiplacedcount++;
     
     }
+    public bool arealltheshipsin()
+    { bool allin = true;
 
+        int count = 0; 
+
+        while(count< shipsplaced.Length)
+       {
+
+            if (shipsplaced[count] == "")
+            {
+                
+                allin = false; 
+            
+            
+            }
+            count++;
+        }
+
+        return allin;
+    }
     public bool isthatshipinallready(string ship) // should print falso if there is no ship allready in there by that name
     {
         bool isshipin=false;
