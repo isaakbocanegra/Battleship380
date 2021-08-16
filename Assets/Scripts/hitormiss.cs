@@ -78,7 +78,7 @@ public class hitormiss : MonoBehaviour
 
 public class hitherormiss : MonoBehaviour 
 {
-    private Color invis ,vis; 
+    private Color invis ,vis; // for text
     private Text hit, miss;
 
 
@@ -104,7 +104,7 @@ public class hitherormiss : MonoBehaviour
     {
         if (plrnumber == 1)
         {
-            print(" time to see what player1s grid looks like so far");
+            //print(" time to see what player1s grid looks like so far");
             for (int i = 0; i < 8; i++)
             {
                 print(this.plr1arre[i, 0] + " " + this.plr1arre[i, 1] + " " + this.plr1arre[i, 2] + " " + this.plr1arre[i, 3] + " " + this.plr1arre[i, 4] + " " + this.plr1arre[i, 5] + " " + this.plr1arre[i, 6] + " " + this.plr1arre[i, 7]);
@@ -115,7 +115,7 @@ public class hitherormiss : MonoBehaviour
 
         }
         else {
-            print(" time to see what player2s grid looks like so far");
+            //print(" time to see what player2s grid looks like so far");
             for (int i = 0; i < 8; i++)
             {
                 print(this.plr2arre[i, 0] + " " + this.plr2arre[i, 1] + " " + this.plr2arre[i, 2] + " " + this.plr2arre[i, 3] + " " + this.plr2arre[i, 4] + " " + this.plr2arre[i, 5] + " " + this.plr2arre[i, 6] + " " + this.plr2arre[i, 7]);
@@ -154,12 +154,7 @@ public class hitherormiss : MonoBehaviour
             {
                 for (int q = 0; q < 8; q++)
                 {
-
                     this.plr2arre[i, q] = arretocopy[i, q];
-
-
-
-
                 }
             }
 
@@ -176,8 +171,8 @@ public class hitherormiss : MonoBehaviour
             {
                 this.plr1arre[row, column] = -1;
                 // hit.color = vis;
-                print("There was a hit at row" + column + " and at column " + row);
-                print("the new board now for player 1 is ");
+                //print("There was a hit at row" + column + " and at column " + row);
+                //print("the new board now for player 1 is ");
                 gridmapforplr(plrnumberwearehiting);
 
 
@@ -190,8 +185,8 @@ public class hitherormiss : MonoBehaviour
             {
                 this.plr1arre[row, column] = 2;
                 // hit.color = vis;
-                print("There was a miss at row" + column + " and at column " + row);
-                print("the new board now for player 1 is ");
+                //print("There was a miss at row" + column + " and at column " + row);
+                //print("the new board now for player 1 is ");
                 gridmapforplr(plrnumberwearehiting);
 
             }
@@ -204,8 +199,8 @@ public class hitherormiss : MonoBehaviour
             {
                 this.plr2arre[row, column] = -1;
                 // hit.color = vis;
-                print("There was a hit at y" + column + " and at x " + row);
-                print("the new board now for player 2 is ");
+                //print("There was a hit at y" + column + " and at x " + row);
+                //print("the new board now for player 2 is ");
                 gridmapforplr(plrnumberwearehiting);
             }
             /// above is if we hit a ship 
@@ -215,14 +210,13 @@ public class hitherormiss : MonoBehaviour
             {
                 this.plr2arre[row, column] = 2;
                 // hit.color = vis;
-                print("There was a miss at row" + column + " and at column " + row);
-                print("the new board now for player 2 is ");
+                //print("There was a miss at row" + column + " and at column " + row);
+                //print("the new board now for player 2 is ");
                 gridmapforplr(plrnumberwearehiting);
 
             }
             /// above is if we hit empty water
         }
-
 
 
     }
@@ -272,18 +266,18 @@ public class hitherormiss : MonoBehaviour
 
             if (plr1winfound)
             {
-                print("plr 1 has won returning 1");
+                //print("plr 1 has won returning 1");
                 return 1;
             }
             else
             {
-                print("plr 2 has won returning 1");
+                //print("plr 2 has won returning 1");
                 return 2;
             }
         }
         else
         {
-            print("no one has won yet");
+            //print("no one has won yet");
             return 0;
         }
 
