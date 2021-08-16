@@ -87,6 +87,12 @@ public class GridMouseP2 : MonoBehaviour
         if (placer.isthatshipinallready(shipname)){
             print("you already placed the " + shipname.ToString());
             placer.shipsallreadyplaced();
+
+            if (placer.arealltheshipsin())
+            {
+                print("all the ships are in for player2, fiz do some magic here");
+
+            }
         }
         else{
             if (placer.placeships(1, shipsize, cords))
