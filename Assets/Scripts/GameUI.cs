@@ -14,57 +14,62 @@ public class GameUI : MonoBehaviour
     [SerializeField] private InputField addressInput;
 
     // Wakey-wakey, game starty
-    private void Awake()
-    {
+    private void Awake(){
         Instance = this;
         RegisterEvents();
     }
 
     // Activate Boards for P1 and P2
-    public void ActivateBoards()
-    {
+    public void ActivateBoards(){
         Player1Board.p1BoardParent.SetActive(true);
         Player2Board.p2BoardParent.SetActive(true);
-        if(NetActions.currentTeam == 1)
-        {
+        if(NetActions.currentTeam == 1){
             BoardCameraChange();
         }
     }
 
-    public void ServerToSetupScreen()
-    {
+    public void ServerToSetupScreen(){
         BoardCameraChange();
     }
 
-    // Buttons
-    public void OnHostGameButton()
-    {
+    /*********** Buttons **********/
+    public void OnHostGameButton(){
         server.Init(8007);
         client.Init("127.0.0.1", 8007);
         Debug.Log("OnHostGameButton");
         menuAnimator.SetTrigger("HostMenu");
     }
 
-    public void OnJoinGameButton()
-    {
+    // "join game" from main
+    public void OnJoinGameButton(){
         Debug.Log("OnJoinGameButton");
         menuAnimator.SetTrigger("JoinMenu");
     }
 
-    public void OnCreditsButton()
-    {
+    // "cred" from main
+    public void OnCreditsButton(){
         Debug.Log("OnCreditsButton");
     }
 
-    public void BackToMainFromConnect()
-    {
+    public void BackToMainFromConnect(){
         server.Shutdown();
         client.Shutdown();
-        Vector3 tempPos = Camera.main.transform.position;
-        Debug.Log(Camera.main.transform.position.y);
-        tempPos.y +=18f;
-        Camera.main.transform.position = tempPos;
-        Debug.Log(Camera.main.transform.position.y);
+        // if player=1
+        if(NetActions.currentTeam == 0){
+            Vector3 tempPos = Camera.main.transform.position;
+            Debug.Log(Camera.main.transform.position.y);
+            tempPos.y +=18f;
+            Camera.main.transform.position = tempPos;
+            Debug.Log(Camera.main.transform.position.y);
+        }
+        // if player=2
+        else if(NetActions.currentTeam == 1){
+            Vector3 tempPos = Camera.main.transform.position;
+            Debug.Log(Camera.main.transform.position.y);
+            tempPos.y +=36f;
+            Camera.main.transform.position = tempPos;
+            Debug.Log(Camera.main.transform.position.y);
+        }
         Debug.Log("BackToMainMenuButton");
         menuAnimator.SetTrigger("StartMenu");
     }
@@ -74,17 +79,24 @@ public class GameUI : MonoBehaviour
         client.Init(addressInput.text, 8007);
     }
 
-    public void BoardCameraChange()
-    {
-        Vector3 tempPos = Camera.main.transform.position;
-        Debug.Log(Camera.main.transform.position.y);
-        tempPos.y -=18f;
-        Camera.main.transform.position = tempPos;
-        Debug.Log(Camera.main.transform.position.y);
+    public void BoardCameraChange(){
+        if(NetActions.currentTeam == 0){
+            Vector3 tempPos = Camera.main.transform.position;
+            Debug.Log(Camera.main.transform.position.y);
+            tempPos.y -=18f;
+            Camera.main.transform.position = tempPos;
+            Debug.Log(Camera.main.transform.position.y);
+        }
+        else if(NetActions.currentTeam == 1){
+            Vector3 tempPos = Camera.main.transform.position;
+            Debug.Log(Camera.main.transform.position.y);
+            tempPos.y -=36f;
+            Camera.main.transform.position = tempPos;
+            Debug.Log(Camera.main.transform.position.y);
+        }
     }
 
-    public void BackToMainMenuButton()
-    {
+    public void BackToMainMenuButton(){
         server.Shutdown();
         client.Shutdown();
         Debug.Log("BackToMainMenuButton");
@@ -92,35 +104,25 @@ public class GameUI : MonoBehaviour
     }
 
     // Exit button (will be used throughout game for exiting to desktop/quiting player in Unity Editor)
-    public void OnExitGameButton()
-    {
+    public void OnExitGameButton(){
         Application.Quit();
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         Debug.Log("Game is exiting");
-#endif
+    #endif
     }
 
 #region    
-    private void RegisterEvents()
-    {
+    private void RegisterEvents(){
         NetUtility.C_SETUP_PHASE += OnSetupPhaseClient;
     }
 
-    private void UnRegisterEvents()
-    {
+    private void UnRegisterEvents(){
         NetUtility.C_SETUP_PHASE -= OnSetupPhaseClient;
     }
 
-    private void OnSetupPhaseClient(NetMessage obj)
-    {
+    private void OnSetupPhaseClient(NetMessage obj){
         menuAnimator.SetTrigger("Connect");
     }
 #endregion
 }
-/*
-        Vector3 tempPos = Camera.main.transform.position;
-        Debug.Log(Camera.main.transform.position.y);
-        tempPos.y -=18f;
-        Camera.main.transform.position = tempPos;
-        Debug.Log(Camera.main.transform.position.y);*/
