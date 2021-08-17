@@ -25,6 +25,10 @@ public class GameUI : MonoBehaviour
     {
         Player1Board.p1BoardParent.SetActive(true);
         Player2Board.p2BoardParent.SetActive(true);
+        if(NetActions.currentTeam == 1)
+        {
+            BoardCameraChange();
+        }
     }
 
     public void ServerToSetupScreen()
@@ -39,7 +43,6 @@ public class GameUI : MonoBehaviour
         client.Init("127.0.0.1", 8007);
         Debug.Log("OnHostGameButton");
         menuAnimator.SetTrigger("HostMenu");
-        Player1Board.p1BoardParent.SetActive(true);
     }
 
     public void OnJoinGameButton()
@@ -69,7 +72,6 @@ public class GameUI : MonoBehaviour
     public void OnJoinConnect()
     {   
         client.Init(addressInput.text, 8007);
-        BoardCameraChange();
     }
 
     public void BoardCameraChange()
