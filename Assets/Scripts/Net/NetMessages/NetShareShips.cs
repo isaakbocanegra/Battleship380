@@ -6,7 +6,9 @@ public class NetShareShips : NetMessage
     public int shipLocationX;
     public int shipLocationY;
     public int teamID;
-    
+    public int shipsize;
+    public string rowcolumn;
+
     public NetShareShips()
     {
        Code = OpCode.SHARE_SHIPS;
@@ -23,6 +25,9 @@ public class NetShareShips : NetMessage
         writer.WriteByte((byte)Code);
         writer.WriteInt(shipLocationX);
         writer.WriteInt(shipLocationY);
+        writer.WriteInt(teamID);
+        writer.WriteInt(shipsize);
+        //writer.WriteSring(rowcolumn);
     }
     
 
@@ -31,6 +36,9 @@ public class NetShareShips : NetMessage
         // Already read the byte in NetUtility
         shipLocationX = reader.ReadInt();
         shipLocationY = reader.ReadInt();
+        teamID = reader.ReadInt();
+        shipsize = reader.ReadInt();
+        //rowcolumn = reader.ReadString();
     }
 
     public override void ReceivedOnClient()

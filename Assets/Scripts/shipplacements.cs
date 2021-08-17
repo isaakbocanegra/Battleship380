@@ -24,6 +24,9 @@ public class ShipPlacements : MonoBehaviour
 
 
 public class placeship : MonoBehaviour {
+
+    public static placeship Instance { set; get; }
+
     public string[] shipsplaced = { "", "", "", "", "" };
     private int shiplacedcount = 0;
     public static int[,] plr1board = {
@@ -96,6 +99,10 @@ public class placeship : MonoBehaviour {
     public bool placeships(int player, int shipsize, string RowColumns) {
         // Net implementation
         NetShareShips ss = new NetShareShips();
+        ss.shipsize = shipsize;
+        ss.rowcolumn = RowColumns;
+        int tempJ = 0;
+        int tempK = 0;
 
         if (isCollision(player, shipsize, RowColumns)) {
 
@@ -111,18 +118,18 @@ public class placeship : MonoBehaviour {
             char[] tempRC = RowColumns.ToCharArray();  // convert str="1234" to int=1234
 
             for (int i = 0; i < shipsize; i++) {
-                int tempJ = tempRC[j] - '0';
-                int tempK = tempRC[k] - '0';
-                if (player == 1) {
+                tempJ = tempRC[j] - '0';
+                tempK = tempRC[k] - '0';
+                if (NetActions.currentTeam == 0) {
                     plr1board[tempJ, tempK] = 1;
                 }
-                else if (player == 2) {
+                else if (NetActions.currentTeam == 1) {
                     plr2board[tempJ, tempK] = 1;
                 }
+                beginsendinglocalboard(player);
                 j = j + 2;
                 k = k + 2;
             }
-
             return true;
         }
     }
@@ -144,7 +151,6 @@ public class placeship : MonoBehaviour {
                         ss.shipLocationY = p;
                         ss.teamID = NetActions.currentTeam;
                         Client.Instance.SendToServer(ss);
-                        
                     }
 
 

@@ -107,7 +107,6 @@ public class NetActions : MonoBehaviour
     {
         NetTakeTurn tt = msg as NetTakeTurn;
 
-
         Debug.Log($"TT : {tt.teamID} : Attack at grid location ({tt.targetLocationY}, {tt.targetLocationX}) resulted in {tt.targetStatus}");
 
         if(tt.teamID != currentTeam)
@@ -118,12 +117,15 @@ public class NetActions : MonoBehaviour
 
     private void OnShareShipsClient(NetMessage msg)
     {
-        
-
         // Receive message, broadcast back
         NetShareShips ss = msg as NetShareShips;
 
-        
+        Debug.Log($"SS : {ss.teamID} : Ship now occupies ({ss.shipLocationY}, {ss.shipLocationX}).");
+
+        if(ss.teamID != currentTeam)
+        {
+            placeship.Instance.placeships(ss.teamID, ss.shipsize, ss.rowcolumn);
+        }
     }
 #endregion
 }
