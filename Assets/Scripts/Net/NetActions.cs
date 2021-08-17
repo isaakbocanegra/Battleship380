@@ -118,8 +118,12 @@ public class NetActions : MonoBehaviour
 
     private void OnShareShipsClient(NetMessage msg)
     {
+        
+
         // Receive message, broadcast back
         NetShareShips ss = msg as NetShareShips;
+
+        
     }
 #endregion
 }

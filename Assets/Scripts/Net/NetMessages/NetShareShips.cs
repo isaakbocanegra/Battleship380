@@ -5,7 +5,7 @@ public class NetShareShips : NetMessage
 {
     public int shipLocationX;
     public int shipLocationY;
-
+    public int teamID; 
     public NetShareShips()
     {
        Code = OpCode.SHARE_SHIPS;

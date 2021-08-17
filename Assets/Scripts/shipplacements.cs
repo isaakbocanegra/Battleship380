@@ -23,8 +23,8 @@ public class ShipPlacements : MonoBehaviour
 }
 
 
-public class placeship: MonoBehaviour{
-    public string [] shipsplaced = { "", "", "", "", "" };
+public class placeship : MonoBehaviour {
+    public string[] shipsplaced = { "", "", "", "", "" };
     private int shiplacedcount = 0;
     public static int[,] plr1board = {
 
@@ -51,24 +51,24 @@ public class placeship: MonoBehaviour{
     public void placethisship(string ship)
     {
         shipsallreadyplaced();
-          shipsplaced[shiplacedcount] = ship;
+        shipsplaced[shiplacedcount] = ship;
         shiplacedcount++;
-    
+
     }
     public bool arealltheshipsin()
     { bool allin = true;
 
-        int count = 0; 
+        int count = 0;
 
-        while(count< shipsplaced.Length)
-       {
+        while (count < shipsplaced.Length)
+        {
 
             if (shipsplaced[count] == "")
             {
-                
-                allin = false; 
-            
-            
+
+                allin = false;
+
+
             }
             count++;
         }
@@ -77,56 +77,101 @@ public class placeship: MonoBehaviour{
     }
     public bool isthatshipinallready(string ship) // should print falso if there is no ship allready in there by that name
     {
-        bool isshipin=false;
+        bool isshipin = false;
         int count = 0;
 
         foreach (string i in shipsplaced)
         {
-            if(ship == shipsplaced[count])
-            isshipin= true ;
-            
+            if (ship == shipsplaced[count])
+                isshipin = true;
+
             count++;
         }
 
-        
-        return isshipin; 
+
+        return isshipin;
 
 
     }
-    public bool placeships(int player, int shipsize, string RowColumns){
+    public bool placeships(int player, int shipsize, string RowColumns) {
         // Net implementation
         NetShareShips ss = new NetShareShips();
-        
-        if(isCollision(player, shipsize, RowColumns)){
 
-             // RC   ==    515253
+        if (isCollision(player, shipsize, RowColumns)) {
 
-            print(RowColumns +" is taken. Pick somewhere else!");
-            return false; 
+            // RC   ==    515253
+
+            print(RowColumns + " is taken. Pick somewhere else!");
+            return false;
         }
-        else{
-            print(RowColumns+" has been placed.");
+        else {
+            print(RowColumns + " has been placed.");
             // places ships on coords 
-            int j =0, k=1;  // j & k are x&y coords
-            char []tempRC = RowColumns.ToCharArray();  // convert str="1234" to int=1234
+            int j = 0, k = 1;  // j & k are x&y coords
+            char[] tempRC = RowColumns.ToCharArray();  // convert str="1234" to int=1234
 
-            for (int i = 0; i <shipsize; i++){
-                int tempJ = tempRC[j]-'0';
-                int tempK = tempRC[k]-'0';
-                if(player==1){
-                    plr1board[tempJ,tempK] = 1;
+            for (int i = 0; i < shipsize; i++) {
+                int tempJ = tempRC[j] - '0';
+                int tempK = tempRC[k] - '0';
+                if (player == 1) {
+                    plr1board[tempJ, tempK] = 1;
                 }
-                else if(player==2){
-                    plr2board[tempJ,tempK] = 1;
+                else if (player == 2) {
+                    plr2board[tempJ, tempK] = 1;
                 }
-                j = j+2;
-                k = k+2;
+                j = j + 2;
+                k = k + 2;
             }
 
-            return true; 
+            return true;
         }
     }
 
+    public void beginsendinglocalboard(int playernumber)
+    {
+        NetShareShips ss = new NetShareShips();
+
+        for (int i = 0; i < 8; i++)
+        {
+            for (int p = 0; p < 8; p++)
+            {
+
+                if (playernumber == 1)
+                {
+                    if (plr1board[i, p] == 1)
+                    {
+                        ss.shipLocationX = i;
+                        ss.shipLocationY = p;
+                        ss.teamID = NetActions.currentTeam;
+                        Client.Instance.SendToServer(ss);
+                        
+                    }
+
+
+                }
+                else
+                {
+                    if (plr2board[i, p] == 1)
+                    { // we send i,p
+                        ss.shipLocationX = i;
+                        ss.shipLocationY = p;
+                        ss.teamID = NetActions.currentTeam;
+                        Client.Instance.SendToServer(ss);
+                    }
+
+                }
+            }
+
+
+        }
+
+
+    }
+
+    
+    
+    
+    
     private bool isCollision(int player, int shipsize, string RowColumns){
         int num = 0; // stores coord into array
         int j =0, k =1;

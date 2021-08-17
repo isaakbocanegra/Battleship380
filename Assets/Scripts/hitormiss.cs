@@ -16,40 +16,18 @@ public class HitOrMiss : MonoBehaviour
 
         print("naruto is amazing" +1);
 
-        int[,] plr1board = {
+        
 
-        { 0,0,0,0,1,1,1,1},
-        { 0,0,0,0,0,0,0,0},
-        { 0,0,0,0,0,0,0,0},
-        { 0,0,0,0,1,1,1,0},
-        { 0,0,0,0,0,0,0,0},
-        { 0,0,0,0,0,0,0,0},
-        { 0,0,0,0,0,0,0,0},
-        { 0,0,0,0,0,0,0,0}
-        };
-
-        int[,] plr2board = {
-
-        { 0,2,2,2,2,2,2,2},
-        { 0,0,0,2,2,0,2,2},
-        { 2,1,0,0,0,0,2,2},
-        { 2,1,2,0,0,0,2,2},
-        { 2,1,2,0,0,0,2,2},
-        { 2,2,2,0,0,0,2,2},
-        { 2,2,2,0,0,0,2,2},
-        { 2,2,2,0,0,0,2,2}
-        };
-
-        hitherormiss data = new hitherormiss(plr1board, plr2board , hit, miss, vis, invis);
+        hitherormiss data = new hitherormiss();
 
         data.hitplr(1, 0, 5);
-        data.hitplr(2, 0, 0);
-        data.hitplr(2, 1, 0);
-        data.hitplr(2, 1, 1);
-        data.hitplr(2, 1, 1);
-        data.hitplr(2, 2, 1);
-        data.hitplr(2, 3, 1);
-        data.hitplr(2, 4, 1);
+       // data.hitplr(2, 0, 0);
+       // data.hitplr(2, 1, 0);
+       // data.hitplr(2, 1, 1);
+       // data.hitplr(2, 1, 1);
+       // data.hitplr(2, 2, 1);
+       // data.hitplr(2, 3, 1);
+       // data.hitplr(2, 4, 1);
 
         int isthereawinner = data.detectwinner(); 
 
@@ -85,22 +63,64 @@ public class hitherormiss : MonoBehaviour
 
 
     //doublearray with map and ship positios for player 1
-    private int[,] plr1arre = new int[8, 8];
+    public  int[,] plr1arre = {
+
+        { 0,0,0,0,0,0,0,0},
+        { 0,0,0,0,0,0,0,0},
+        { 0,0,0,0,0,0,0,0},
+        { 0,0,0,0,0,0,0,0},
+        { 0,0,0,0,0,0,0,0},
+        { 0,0,0,0,0,0,0,0},
+        { 0,0,0,0,0,0,0,0},
+        { 0,0,0,0,0,0,0,0}
+        };
 
     //doublearray with map and ship positios for player 2
-    private int[,] plr2arre = new int[8, 8];
+    public  int[,] plr2arre = {
 
-    public hitherormiss(int[,] plr1arree, int[,] plr2arree, Text hit, Text miss, Color vis , Color invis)
+        { 0,0,0,0,0,0,0,0},
+        { 0,0,0,0,0,0,0,0},
+        { 0,0,0,0,0,0,0,0},
+        { 0,0,0,0,0,0,0,0},
+        { 0,0,0,0,0,0,0,0},
+        { 0,0,0,0,0,0,0,0},
+        { 0,0,0,0,0,0,0,0},
+        { 0,0,0,0,0,0,0,0}
+        };
+
+    //public hitherormiss(int[,] plr1arree, int[,] plr2arree, Text hit, Text miss, Color vis , Color invis) //////// this constructor does not need to be used and can be ignored
+    //  {
+    //     this.vis = vis;
+    //    this.invis = invis; 
+    //    this.hit = hit;
+    //    this.miss = miss; 
+    //   copy2dforplrarray(plr1arree, 1);
+    //   copy2dforplrarray(plr2arree, 2);
+    //   gridmapforplr(1);
+    //   gridmapforplr(2);
+    // }
+
+
+    public void loadlocalplayersboardin (int playernumber, int [,] localboard)  // this function should just load the local players board-- no networking here
     {
-        this.vis = vis;
-        this.invis = invis; 
-        this.hit = hit;
-        this.miss = miss; 
-        copy2dforplrarray(plr1arree, 1);
-        copy2dforplrarray(plr2arree, 2);
-        gridmapforplr(1);
-        gridmapforplr(2);
+        copy2dforplrarray(localboard, playernumber);
+
+
     }
+
+    public void loadotherplayersboardin(int playernumber, int row,int column)        // this function
+    {
+        if (playernumber == 1)
+        {
+            plr1arre[row, column] = 1;
+        }
+        else
+        {
+            plr2arre[row, column] = 1;
+        }
+    
+    }
+
 
     private void gridmapforplr(int plrnumber)
     {
