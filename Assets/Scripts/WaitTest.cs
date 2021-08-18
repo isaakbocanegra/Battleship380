@@ -22,8 +22,8 @@ public class WaitTest : MonoBehaviour
         // waits 10 seconds
         // then prints "we ended"
 
-     //   if (start == false)
-          //  Destroy(panel);
+        if (start == false)
+            Destroy(panel);
 
 
         //----------------------------------------
