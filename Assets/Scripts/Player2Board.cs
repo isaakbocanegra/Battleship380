@@ -42,7 +42,7 @@ public class Player2Board : MonoBehaviour
     {
         GameObject gridSpaceObject = new GameObject(string.Format("X:{0}, Y{1}", y, x));  //swap the names -- optional for upright
         gridSpaceObject.transform.parent = p2BoardParent.gameObject.transform;
-        gridSpaceObject.transform.position = new Vector2((float) (x-1)*1.33f, (float) (y+10)*-1.33f);
+        gridSpaceObject.transform.position = new Vector2((float) (x+20)*1.33f, (float) (y-3)*-1.33f);
         gridSpaceObject.AddComponent<SpriteRenderer>().sprite = tempGridSpaces;
         gridSpaceObject.AddComponent<BoxCollider2D>();
         gridSpaceObject.AddComponent<GridMouseP2>();

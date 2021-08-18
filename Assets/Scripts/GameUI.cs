@@ -48,6 +48,8 @@ public class GameUI : MonoBehaviour
 
     // "cred" from main
     public void OnCreditsButton(){
+        Player1Board.p1BoardParent.SetActive(true);
+        Player2Board.p2BoardParent.SetActive(true);
         Debug.Log("OnCreditsButton");
     }
 
@@ -57,22 +59,39 @@ public class GameUI : MonoBehaviour
         // if player=1
         if(NetActions.currentTeam == 0){
             Vector3 tempPos = Camera.main.transform.position;
-            Debug.Log(Camera.main.transform.position.y);
-            tempPos.y +=18f;
+            Debug.Log(Camera.main.transform.position.x);
+            tempPos.x -=21f;
             Camera.main.transform.position = tempPos;
-            Debug.Log(Camera.main.transform.position.y);
+            Debug.Log(Camera.main.transform.position.x);
         }
         // if player=2
         else if(NetActions.currentTeam == 1){
             Vector3 tempPos = Camera.main.transform.position;
-            Debug.Log(Camera.main.transform.position.y);
-            tempPos.y +=36f;
+            Debug.Log(Camera.main.transform.position.x);
+            tempPos.x -= 54.8f;
             Camera.main.transform.position = tempPos;
-            Debug.Log(Camera.main.transform.position.y);
+            Debug.Log(Camera.main.transform.position.x);
         }
         Debug.Log("BackToMainMenuButton");
         menuAnimator.SetTrigger("StartMenu");
     }
+
+    public void SubmitShipPlacements(){
+        GameObject temp;
+        for (int i = 0; i < 8; i++){
+            for (int j = 0; j < 8; j++){
+                temp = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
+                temp.transform.position = new Vector2(temp.transform.position.x-15,temp.transform.position.y);
+            }
+        }
+        Vector3 tempPos = Camera.main.transform.position;
+        Debug.Log(Camera.main.transform.position.x);
+        tempPos.x +=11.9f;
+        Camera.main.transform.position = tempPos;
+        //GameUI.SubmitShipPlacements.SetActive(false);
+        Debug.Log(Camera.main.transform.position.x);
+    }
+   
 
     public void OnJoinConnect()
     {   
@@ -82,17 +101,17 @@ public class GameUI : MonoBehaviour
     public void BoardCameraChange(){
         if(NetActions.currentTeam == 0){
             Vector3 tempPos = Camera.main.transform.position;
-            Debug.Log(Camera.main.transform.position.y);
-            tempPos.y -=18f;
+            Debug.Log(Camera.main.transform.position.x);
+            tempPos.x +=21f;
             Camera.main.transform.position = tempPos;
-            Debug.Log(Camera.main.transform.position.y);
+            Debug.Log(Camera.main.transform.position.x);
         }
         else if(NetActions.currentTeam == 1){
             Vector3 tempPos = Camera.main.transform.position;
-            Debug.Log(Camera.main.transform.position.y);
-            tempPos.y -=36f;
+            Debug.Log(Camera.main.transform.position.x);
+            tempPos.x +=54.8f;
             Camera.main.transform.position = tempPos;
-            Debug.Log(Camera.main.transform.position.y);
+            Debug.Log(Camera.main.transform.position.x);
         }
     }
 
