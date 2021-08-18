@@ -95,7 +95,7 @@ public class GridMouseP2 : MonoBehaviour
             }
         }
         else{
-            if (placer.placeships(1, shipsize, cords))
+            if (placer.placeships(2, shipsize, cords))
             {   
                 print("cool the ship we placed for you is " + shipname.ToString());
                
