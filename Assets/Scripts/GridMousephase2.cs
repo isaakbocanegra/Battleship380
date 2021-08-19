@@ -23,7 +23,6 @@ public class GridMousephase2 : MonoBehaviour
     void OnMouseDown(){
         // greyish
         gridColor.color = new Color(0.25f, 0.25f, 0.25f, 1);
-
     }
 
     void OnMouseUp(){
