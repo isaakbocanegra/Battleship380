@@ -130,11 +130,13 @@ public class GameUI : MonoBehaviour
 
                 if(NetActions.currentTeam == 0){
                     Destroy(temp.GetComponent<GridMouseP1>());
+                    Destroy(temp.GetComponent<GridMouseP2>());
                     temp.AddComponent<GridMousephase2>();
                 }
                 else if(NetActions.currentTeam == 1){
+                    Destroy(temp2.GetComponent<GridMouseP1>());
                     Destroy(temp2.GetComponent<GridMouseP2>());
-                    temp.AddComponent<GridMouse2phase2>();
+                    temp2.AddComponent<GridMouse2phase2>();
                 }
 
             }
