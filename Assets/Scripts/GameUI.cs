@@ -76,7 +76,22 @@ public class GameUI : MonoBehaviour
         menuAnimator.SetTrigger("StartMenu");
     }
 
+    public void BackToMainFromPlayScreen(){
+        server.Shutdown();
+        client.Shutdown();
+        // if player=1
+        Vector3 tempPos = Camera.main.transform.position;
+        Debug.Log(Camera.main.transform.position.x);
+        tempPos.x -= 32.9f;
+        Camera.main.transform.position = tempPos;
+        Debug.Log(Camera.main.transform.position.x);
+        Debug.Log("BackToMainMenuButton");
+        menuAnimator.SetTrigger("StartMenu");
+    }
+
+
     public void SubmitShipPlacements(){
+
         GameObject temp;
         for (int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j++){
@@ -84,14 +99,41 @@ public class GameUI : MonoBehaviour
                 temp.transform.position = new Vector2(temp.transform.position.x-15,temp.transform.position.y);
             }
         }
-        Vector3 tempPos = Camera.main.transform.position;
-        Debug.Log(Camera.main.transform.position.x);
-        tempPos.x +=11.9f;
-        Camera.main.transform.position = tempPos;
-        //GameUI.SubmitShipPlacements.SetActive(false);
-        Debug.Log(Camera.main.transform.position.x);
+        if(NetActions.currentTeam == 0){
+            Vector3 tempPos = Camera.main.transform.position;
+            Debug.Log(Camera.main.transform.position.x);
+            tempPos.x +=11.9f;
+            Camera.main.transform.position = tempPos;
+            Debug.Log(Camera.main.transform.position.x);
+            menuAnimator.SetTrigger("P1_PlayGame");
+        }
+        else if(NetActions.currentTeam == 1){
+            Vector3 tempPos = Camera.main.transform.position;
+            Debug.Log(Camera.main.transform.position.x);
+            tempPos.x -=21.9f;
+            Camera.main.transform.position = tempPos;
+            Debug.Log(Camera.main.transform.position.x);
+            menuAnimator.SetTrigger("P2_PlayGame");
+            //Destroy(GetComponent<GridMouseP2>());
+        }
     }
-   
+/*
+    public void DestroyGridMouseActions(){
+        GridMouseP1 des;
+        GameObject temp;
+
+        for (int i = 0; i < 8; i++){
+            for (int j = 0; j < 8; j++){
+                temp = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
+                //temp.transform.position = new Vector2(temp.transform.position.x-15,temp.transform.position.y);
+
+                des = temp.GetComponent<GridMouseP1>();
+                Destroy(des);
+            }
+        }
+        //Destroy(GetComponent<GridMouseP1>());
+    }
+   */
 
     public void OnJoinConnect()
     {   
