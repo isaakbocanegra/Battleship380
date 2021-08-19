@@ -7,7 +7,7 @@ public class GridMousephase2 : MonoBehaviour
     public SpriteRenderer gridColor;
 
     void Start(){
-        
+        gridColor = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame

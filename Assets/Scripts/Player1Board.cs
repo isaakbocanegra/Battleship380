@@ -46,7 +46,6 @@ public class Player1Board : MonoBehaviour
         gridSpaceObject.AddComponent<SpriteRenderer>().sprite = tempGridSpaces;
         gridSpaceObject.AddComponent<BoxCollider2D>();
         gridSpaceObject.AddComponent<GridMouseP1>();
-        //gridSpaceObject.AddComponent<phase2gridmouse>();
 
         layer = gridSpaceObject.GetComponent<SpriteRenderer>();
         layer.sortingLayerName = "Grid";

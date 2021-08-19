@@ -117,6 +117,7 @@ public class GameUI : MonoBehaviour
             menuAnimator.SetTrigger("P2_PlayGame");
             //Destroy(GetComponent<GridMouseP2>());
         }
+        // switch video player background
     }
 
     //destroy gridmouse action then add phase2 gridmouse actions
@@ -127,14 +128,17 @@ public class GameUI : MonoBehaviour
             for (int j = 0; j < 8; j++){
                 temp = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
                 temp2 = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
+                Destroy(temp.GetComponent<GridMouseP1>());
+                Destroy(temp2.GetComponent<GridMouseP2>());
 
                 if(NetActions.currentTeam == 0){
-                    Destroy(temp.GetComponent<GridMouseP1>());
-                    temp.AddComponent<GridMousephase2>();
+                    //Destroy(temp.GetComponent<GridMouseP1>());
+                    temp2.AddComponent<GridMousephase2>();
+                    //temp.AddComponent<GridMouseP1>();
                 }
                 else if(NetActions.currentTeam == 1){
-                    Destroy(temp2.GetComponent<GridMouseP2>());
-                    temp.AddComponent<GridMouse2phase2>();
+                    //Destroy(temp2.GetComponent<GridMouseP2>());
+                    temp.AddComponent<GridMousephase2>();
                 }
 
             }
