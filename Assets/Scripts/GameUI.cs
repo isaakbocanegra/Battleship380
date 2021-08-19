@@ -119,6 +119,7 @@ public class GameUI : MonoBehaviour
         }
     }
 
+    //destroy gridmouse action then add phase2 gridmouse actions
     public void DestroyGridMouseActions(){
         GameObject temp, temp2;
 
@@ -127,10 +128,15 @@ public class GameUI : MonoBehaviour
                 temp = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
                 temp2 = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
 
-                Destroy(temp.GetComponent<GridMouseP1>());
-                Destroy(temp2.GetComponent<GridMouseP2>());
-                //temp.AddComponent<phase2gridmouse>();
-                //temp2.AddComponent<phase2gridmouse>();
+                if(NetActions.currentTeam == 0){
+                    Destroy(temp.GetComponent<GridMouseP1>());
+                    temp.AddComponent<GridMousephase2>();
+                }
+                else if(NetActions.currentTeam == 1){
+                    Destroy(temp2.GetComponent<GridMouseP2>());
+                    temp.AddComponent<GridMouse2phase2>();
+                }
+
             }
         }
     }
