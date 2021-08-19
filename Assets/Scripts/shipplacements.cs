@@ -27,6 +27,9 @@ public class placeship : MonoBehaviour {
 
     public static placeship Instance { set; get; }
 
+    int tempJ = 0;
+    int tempK = 0;
+
     public string[] shipsplaced = { "", "", "", "", "" };
     private int shiplacedcount = 0;
     public static int[,] plr1board = {
@@ -97,12 +100,7 @@ public class placeship : MonoBehaviour {
 
     }
     public bool placeships(int player, int shipsize, string RowColumns) {
-        // Net implementation
-        NetShareShips ss = new NetShareShips();
-        ss.shipsize = shipsize;
-        ss.rowcolumn = RowColumns;
-        int tempJ = 0;
-        int tempK = 0;
+        
 
         if (isCollision(player, shipsize, RowColumns)) {
 
@@ -126,7 +124,7 @@ public class placeship : MonoBehaviour {
                 else if (NetActions.currentTeam == 1) {
                     plr2board[tempJ, tempK] = 1;
                 }
-                beginsendinglocalboard(player);
+                //beginsendinglocalboard(player);
                 j = j + 2;
                 k = k + 2;
             }
@@ -134,7 +132,12 @@ public class placeship : MonoBehaviour {
         }
     }
 
-    public void beginsendinglocalboard(int playernumber)
+    public void gatherShipInfoAfterPlacing()
+    {
+        
+    }
+
+    /*public void beginsendinglocalboard(int playernumber)
     {
         NetShareShips ss = new NetShareShips();
 
@@ -172,10 +175,18 @@ public class placeship : MonoBehaviour {
         }
 
 
-    }
+    }*/
 
     
-    
+    /*public void ShareTheShipPlacements(int teamID, int shipNum, int horzOrVert, int x, int y)
+    {
+        // Net implementation
+        NetShareShips ss = new NetShareShips();
+        ss.shipNum = GridMouseP1.shipsize;
+        ss.xcoord = tempJ;
+        ss.ycoord = tempK;   
+        ss.orientation = GridMouseP1.orientation;
+    }*/
     
     
     private bool isCollision(int player, int shipsize, string RowColumns){

@@ -3,11 +3,11 @@ using Unity.Networking.Transport;
 
 public class NetShareShips : NetMessage
 {
-    public int shipLocationX;
-    public int shipLocationY;
+    public int xcoord;
+    public int ycoord;
     public int teamID;
-    public int shipsize;
-    public string rowcolumn;
+    public int shipNum;
+    public int orientation;
 
     public NetShareShips()
     {
@@ -23,22 +23,22 @@ public class NetShareShips : NetMessage
     public override void Serialize(ref DataStreamWriter writer)
     {
         writer.WriteByte((byte)Code);
-        writer.WriteInt(shipLocationX);
-        writer.WriteInt(shipLocationY);
+        writer.WriteInt(xcoord);
+        writer.WriteInt(ycoord);
         writer.WriteInt(teamID);
-        writer.WriteInt(shipsize);
-        //writer.WriteSring(rowcolumn);
+        writer.WriteInt(shipNum);
+        writer.WriteInt(orientation);
     }
     
 
     public override void Deserialize(DataStreamReader reader)
     {
         // Already read the byte in NetUtility
-        shipLocationX = reader.ReadInt();
-        shipLocationY = reader.ReadInt();
+        xcoord = reader.ReadInt();
+        ycoord = reader.ReadInt();
         teamID = reader.ReadInt();
-        shipsize = reader.ReadInt();
-        //rowcolumn = reader.ReadString();
+        shipNum = reader.ReadInt();
+        orientation = reader.ReadInt();
     }
 
     public override void ReceivedOnClient()

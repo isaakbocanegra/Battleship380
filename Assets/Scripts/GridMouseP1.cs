@@ -126,6 +126,25 @@ public class GridMouseP1 : MonoBehaviour
 
             if (placer.placeships(1, shipsize, cords))
             {
+                int[] rowcolumn = extractcoordinatename(gridColor);
+                int x = rowcolumn[1];
+                int y = rowcolumn[0];
+
+                // Net Implementation
+                NetShareShips ss = new NetShareShips();
+                ss.xcoord = x;
+                ss.ycoord = y;
+                ss.shipNum = 1;
+                if(vertical)
+                {
+                    ss.orientation = 1;
+                }
+                else
+                {
+                    ss.orientation = 0;
+                }
+                print($"Should be sending coordinate ({ss.xcoord}, {ss.ycoord}), with ship number {ss.shipNum} and orientation number {ss.orientation}.");
+                Server.Instance.Broadcast(ss);
                 /////
                 
                   
@@ -237,19 +256,6 @@ public class GridMouseP1 : MonoBehaviour
                 selectedship.transform.position = new Vector3((float)(GameObject.Find(objectoreturn).transform.position.x +.26), (float)(GameObject.Find(objectoreturn).transform.position.y -.82), GameObject.Find(objectoreturn).transform.position.z);
 
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         }
 
@@ -415,6 +421,7 @@ public class GridMouseP1 : MonoBehaviour
                 {
                     turnship90degrees(vertical);
                     vertical = false;
+                    //orientation = 0;
                     demarktoptotop();
                     //   print("You just right clicked, we are horizontal now ");
 
@@ -423,6 +430,7 @@ public class GridMouseP1 : MonoBehaviour
                 {
                     turnship90degrees(vertical);
                     vertical = true;
+                    //orientation = 1;
                     demarksides();
 
                     //  print("You just right clicked, we are vertical now ");

@@ -36,6 +36,9 @@ public class NetActions : MonoBehaviour
         NetUtility.S_SETUP_PHASE -= OnSetupPhaseServer;
         NetUtility.C_SETUP_PHASE -= OnSetupPhaseClient;
 
+        NetUtility.S_TAKE_TURN -= OnTakeTurnServer;
+        NetUtility.C_TAKE_TURN -= OnTakeTurnClient;
+
         NetUtility.S_SHARE_SHIPS -= OnShareShipsServer;
         NetUtility.C_SHARE_SHIPS -= OnShareShipsClient;
     }
@@ -75,10 +78,8 @@ public class NetActions : MonoBehaviour
         // Receive message, broadcast back
         NetShareShips ss = msg as NetShareShips;
 
-        // Receive ship locations, broadcast back
-        Server.Instance.Broadcast(msg);
+        Debug.Log($"Should be receiving coordinate ({ss.xcoord}, {ss.ycoord}), with ship number {ss.shipNum} and orientation number {ss.orientation}.");
     }
-
     // Client
     private void OnWelcomeClient(NetMessage msg)
     {
@@ -94,7 +95,7 @@ public class NetActions : MonoBehaviour
     private void OnSetupPhaseClient(NetMessage obj)
     {
         // Activate boards for both players
-        GameUI.Instance.ActivateBoards();   
+        GameUI.Instance.ActivateBoards();
     }
 
     private void OnSetupPhaseServer(NetMessage obj, NetworkConnection cnn)
@@ -120,12 +121,7 @@ public class NetActions : MonoBehaviour
         // Receive message, broadcast back
         NetShareShips ss = msg as NetShareShips;
 
-        Debug.Log($"SS : {ss.teamID} : Ship now occupies ({ss.shipLocationY}, {ss.shipLocationX}).");
-
-        if(ss.teamID != currentTeam)
-        {
-            placeship.Instance.placeships(ss.teamID, ss.shipsize, ss.rowcolumn);
-        }
+        Debug.Log($"Should be receiving coordinate ({ss.xcoord}, {ss.ycoord}), with ship number {ss.shipNum} and orientation number {ss.orientation}.");
     }
 #endregion
 }

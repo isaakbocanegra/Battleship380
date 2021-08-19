@@ -97,6 +97,26 @@ public class GridMouseP2 : MonoBehaviour
         else{
             if (placer.placeships(2, shipsize, cords))
             {   
+                int[] rowcolumn = extractcoordinatename(gridColor);
+                int x = rowcolumn[1];
+                int y = rowcolumn[0];
+
+                // Net Implementation
+                NetShareShips ss = new NetShareShips();
+                ss.xcoord = x;
+                ss.ycoord = y;
+                ss.shipNum = 1;
+                if(vertical)
+                {
+                    ss.orientation = 1;
+                }
+                else
+                {
+                    ss.orientation = 0;
+                }
+
+                print($"Should be sending coordinate ({ss.xcoord}, {ss.ycoord}), with ship number {ss.shipNum} and orientation number {ss.orientation}.");
+                Client.Instance.SendToServer(ss);
                 print("cool the ship we placed for you is " + shipname.ToString());
                
                 placer.placethisship(shipname); 
