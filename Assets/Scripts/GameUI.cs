@@ -105,6 +105,7 @@ public class GameUI : MonoBehaviour
             tempPos.x +=11.9f;
             Camera.main.transform.position = tempPos;
             Debug.Log(Camera.main.transform.position.x);
+            DestroyGridMouseActions();
             menuAnimator.SetTrigger("P1_PlayGame");
         }
         else if(NetActions.currentTeam == 1){
@@ -117,23 +118,22 @@ public class GameUI : MonoBehaviour
             //Destroy(GetComponent<GridMouseP2>());
         }
     }
-/*
+
     public void DestroyGridMouseActions(){
-        GridMouseP1 des;
-        GameObject temp;
+        GameObject temp, temp2;
 
         for (int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j++){
                 temp = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
-                //temp.transform.position = new Vector2(temp.transform.position.x-15,temp.transform.position.y);
+                temp2 = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
 
-                des = temp.GetComponent<GridMouseP1>();
-                Destroy(des);
+                Destroy(temp.GetComponent<GridMouseP1>());
+                Destroy(temp2.GetComponent<GridMouseP2>());
+                //temp.AddComponent<phase2gridmouse>();
+                //temp2.AddComponent<phase2gridmouse>();
             }
         }
-        //Destroy(GetComponent<GridMouseP1>());
     }
-   */
 
     public void OnJoinConnect()
     {   

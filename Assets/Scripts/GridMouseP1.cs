@@ -149,7 +149,6 @@ public class GridMouseP1 : MonoBehaviour
 
     private int getoffsetandplace()
     {   string objectoreturn = ""; 
-        int count = 0;
         string cordgy = "";
         if (!vertical)
         {
