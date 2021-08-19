@@ -105,7 +105,28 @@ public class GridMouseP2 : MonoBehaviour
                 NetShareShips ss = new NetShareShips();
                 ss.xcoord = x;
                 ss.ycoord = y;
-                ss.shipNum = 1;
+                
+                if(shipname == "P2Destroyer")
+                {
+                    ss.shipNum = 1;
+                }
+                else if(shipname == "P2Submarine")
+                {
+                    ss.shipNum = 2;
+                }
+                else if(shipname == "P2Cruiser")
+                {
+                    ss.shipNum = 3;
+                }
+                else if(shipname == "P2Battleship")
+                {
+                    ss.shipNum = 4;
+                }
+                else if(shipname == "P2Aircraft_Carrier")
+                {
+                    ss.shipNum = 5;
+                }
+
                 if(vertical)
                 {
                     ss.orientation = 1;

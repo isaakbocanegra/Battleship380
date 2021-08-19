@@ -6,6 +6,7 @@ public class NetActions : MonoBehaviour
     // Multiplayer Logic:
     public static int playerCount = -1;
     public static int currentTeam = -1;
+    public static placeship sendShip = new placeship();
 
     private void Awake()
     {
@@ -77,9 +78,12 @@ public class NetActions : MonoBehaviour
     {
         // Receive message, broadcast back
         NetShareShips ss = msg as NetShareShips;
-
+     
         Debug.Log($"Should be receiving coordinate ({ss.xcoord}, {ss.ycoord}), with ship number {ss.shipNum} and orientation number {ss.orientation}.");
+
+        sendShip.receivedShipNowPlace(ss.xcoord, ss.ycoord, ss.shipNum, ss.orientation);
     }
+    
     // Client
     private void OnWelcomeClient(NetMessage msg)
     {
@@ -122,6 +126,8 @@ public class NetActions : MonoBehaviour
         NetShareShips ss = msg as NetShareShips;
 
         Debug.Log($"Should be receiving coordinate ({ss.xcoord}, {ss.ycoord}), with ship number {ss.shipNum} and orientation number {ss.orientation}.");
+
+        sendShip.receivedShipNowPlace(ss.xcoord, ss.ycoord, ss.shipNum, ss.orientation);
     }
 #endregion
 }

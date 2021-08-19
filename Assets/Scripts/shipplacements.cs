@@ -27,9 +27,6 @@ public class placeship : MonoBehaviour {
 
     public static placeship Instance { set; get; }
 
-    int tempJ = 0;
-    int tempK = 0;
-
     public string[] shipsplaced = { "", "", "", "", "" };
     private int shiplacedcount = 0;
     public static int[,] plr1board = {
@@ -101,6 +98,8 @@ public class placeship : MonoBehaviour {
     }
     public bool placeships(int player, int shipsize, string RowColumns) {
         
+        int tempJ = 0;
+        int tempK = 0;
 
         if (isCollision(player, shipsize, RowColumns)) {
 
@@ -132,62 +131,10 @@ public class placeship : MonoBehaviour {
         }
     }
 
-    public void gatherShipInfoAfterPlacing()
+    public void receivedShipNowPlace(int xcoord, int ycoord, int shipNum, int orientation)
     {
-        
+        Debug.Log($"Received from ShipPlacement class: ({xcoord},{ycoord}), ship {shipNum} and orientation {orientation}");
     }
-
-    /*public void beginsendinglocalboard(int playernumber)
-    {
-        NetShareShips ss = new NetShareShips();
-
-        for (int i = 0; i < 8; i++)
-        {
-            for (int p = 0; p < 8; p++)
-            {
-
-                if (playernumber == 1)
-                {
-                    if (plr1board[i, p] == 1)
-                    {
-                        ss.shipLocationX = i;
-                        ss.shipLocationY = p;
-                        ss.teamID = NetActions.currentTeam;
-                        Client.Instance.SendToServer(ss);
-                    }
-
-
-                }
-                else
-                {
-                    if (plr2board[i, p] == 1)
-                    { // we send i,p
-                        ss.shipLocationX = i;
-                        ss.shipLocationY = p;
-                        ss.teamID = NetActions.currentTeam;
-                        Client.Instance.SendToServer(ss);
-                    }
-
-                }
-            }
-
-
-        }
-
-
-    }*/
-
-    
-    /*public void ShareTheShipPlacements(int teamID, int shipNum, int horzOrVert, int x, int y)
-    {
-        // Net implementation
-        NetShareShips ss = new NetShareShips();
-        ss.shipNum = GridMouseP1.shipsize;
-        ss.xcoord = tempJ;
-        ss.ycoord = tempK;   
-        ss.orientation = GridMouseP1.orientation;
-    }*/
-    
     
     private bool isCollision(int player, int shipsize, string RowColumns){
         int num = 0; // stores coord into array
