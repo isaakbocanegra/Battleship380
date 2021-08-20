@@ -25,6 +25,14 @@ public class ShipPlacements : MonoBehaviour
 
 public class placeship : MonoBehaviour {
 
+    public static bool ship1P2 = false;
+    public static bool ship2P2 = false;
+    public static bool ship3P2 = false;
+    public static bool ship4P2 = false;
+    public static bool ship5P2 = false;
+    public static int localShipCount = 0;
+    bool allin = false;
+    
     public static placeship Instance { set; get; }
 
     public string[] shipsplaced = { "", "", "", "", "" };
@@ -51,6 +59,7 @@ public class placeship : MonoBehaviour {
         { 0,0,0,0,0,0,0,0},
         { 0,0,0,0,0,0,0,0}
         };
+
     public void placethisship(string ship)
     {
         shipsallreadyplaced();
@@ -59,8 +68,7 @@ public class placeship : MonoBehaviour {
 
     }
     public bool arealltheshipsin()
-    { bool allin = true;
-
+    { 
         int count = 0;
 
         while (count < shipsplaced.Length)
@@ -74,6 +82,10 @@ public class placeship : MonoBehaviour {
 
             }
             count++;
+        }
+        if(shipsplaced[4] != "")
+        {
+            allin = true;
         }
 
         return allin;
@@ -110,6 +122,7 @@ public class placeship : MonoBehaviour {
         }
         else {
             print(RowColumns + " has been placed.");
+            localShipCount++;
             // places ships on coords 
             int j = 0, k = 1;  // j & k are x&y coords
             char[] tempRC = RowColumns.ToCharArray();  // convert str="1234" to int=1234
@@ -134,6 +147,28 @@ public class placeship : MonoBehaviour {
     public void receivedShipNowPlace(int xcoord, int ycoord, int shipNum, int orientation) //if orientation ==1 its verticle else its horizontal
     {
         bool verticlee = false;
+        
+        if(shipNum == 1)
+        {
+            ship1P2 = true;
+        }
+        if(shipNum == 2)
+        {
+            ship2P2 = true;
+        }
+        if(shipNum == 3)
+        {
+            ship3P2 = true;
+        }
+        if(shipNum == 4)
+        {
+            ship4P2 = true;
+        }
+        if(shipNum == 5)
+        {
+            ship5P2 = true;
+        }
+
         if (orientation == 1)
             verticlee = true; 
         
@@ -169,9 +204,6 @@ public class placeship : MonoBehaviour {
 
         Debug.Log($"Received from ShipPlacement class: ({xcoord},{ycoord}), ship {shipNum} and orientation {orientation}");
         
-
-
-
     }
 
     public void colorotherguysships(bool host)

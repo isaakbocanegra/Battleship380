@@ -119,7 +119,6 @@ public class GridMouseP1 : MonoBehaviour
                 print("all the ships are in for player1, fiz do some magic here--------------------------------------------------------------");
             
             }
-
         }
         else
         {
