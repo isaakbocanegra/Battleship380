@@ -133,7 +133,6 @@ public class GameUI : MonoBehaviour
                 tempPos.x +=10.69f;
                 tempPos.y -=1.21f;
                 Camera.main.transform.position = tempPos;
-                Debug.Log(Camera.main.transform.position.x);
                 DestroyGridMouseActionsP1();
             }
             else if(NetActions.currentTeam == 1){
@@ -142,8 +141,8 @@ public class GameUI : MonoBehaviour
                 tempPos.x -=23.14f;
                 tempPos.y -=1.22f;
                 Camera.main.transform.position = tempPos;
-                Debug.Log(Camera.main.transform.position.x);
-                moveP1AircraftOutTheWay();
+                P2AfterSubmitShips();
+                moveP1AircraftOutTheWay(); // idk why this shit not working, but ill fix tom
                 DestroyGridMouseActionsP2();
             }
             // moves P2s ships with P2 board to in-game view
