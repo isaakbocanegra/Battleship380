@@ -100,6 +100,14 @@ public class NetActions : MonoBehaviour
     {
         // Activate boards for both players
         GameUI.Instance.ActivateBoards();
+        if(NetActions.currentTeam == 0)
+        {
+            GameUI.Instance.DestroyP2GridMouseActionsP1();
+        }
+        else if(NetActions.currentTeam == 1)
+        {
+            GameUI.Instance.DestroyP1GridMouseActionsP2();
+        }
     }
 
     private void OnSetupPhaseServer(NetMessage obj, NetworkConnection cnn)

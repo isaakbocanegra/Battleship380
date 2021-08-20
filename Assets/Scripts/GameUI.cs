@@ -105,7 +105,7 @@ public class GameUI : MonoBehaviour
             tempPos.x +=11.9f;
             Camera.main.transform.position = tempPos;
             Debug.Log(Camera.main.transform.position.x);
-            DestroyGridMouseActions();
+            DestroyGridMouseActionsP1();
         }
         else if(NetActions.currentTeam == 1){
             Vector3 tempPos = Camera.main.transform.position;
@@ -113,34 +113,63 @@ public class GameUI : MonoBehaviour
             tempPos.x -=21.9f;
             Camera.main.transform.position = tempPos;
             Debug.Log(Camera.main.transform.position.x);
-            DestroyGridMouseActions();
-            //Destroy(GetComponent<GridMouseP2>());
+            DestroyGridMouseActionsP2();
         }
         // switch video player background
         menuAnimator.SetTrigger("InGame");
     }
 
-    //destroy gridmouse action then add phase2 gridmouse actions
-    public void DestroyGridMouseActions(){
-        GameObject temp, temp2;
+    public void DestroyP2GridMouseActionsP1()
+    {
+        GameObject temp2;
+
+        for (int i = 0; i < 8; i++){
+            for (int j = 0; j < 8; j++){
+                temp2 = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
+                Destroy(temp2.GetComponent<GridMouseP2>());
+            }
+        }
+    }
+
+    public void DestroyP1GridMouseActionsP2()
+    {
+        GameObject temp;
 
         for (int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j++){
                 temp = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
-                temp2 = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
                 Destroy(temp.GetComponent<GridMouseP1>());
-                Destroy(temp2.GetComponent<GridMouseP2>());
+            }
+        }
+    }
+
+    //destroy gridmouse action then add phase2 gridmouse actions
+    public void DestroyGridMouseActionsP1(){
+        GameObject temp;
+
+        for (int i = 0; i < 8; i++){
+            for (int j = 0; j < 8; j++){
+                temp = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
+                Destroy(temp.GetComponent<GridMouseP1>());
 
                 if(NetActions.currentTeam == 0){
-                    //Destroy(temp.GetComponent<GridMouseP1>());
-                    temp2.AddComponent<GridMousephase2>();
-                    //temp.AddComponent<GridMouseP1>();
+                    temp.AddComponent<GridMousephase2>();
                 }
-                else if(NetActions.currentTeam == 1){
-                    //Destroy(temp2.GetComponent<GridMouseP2>());
-                    temp.AddComponent<GridMouse2phase2>();
-                }
+            }
+        }
+    }
 
+    public void DestroyGridMouseActionsP2(){
+        GameObject temp2;
+
+        for (int i = 0; i < 8; i++){
+            for (int j = 0; j < 8; j++){
+                temp2 = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
+                Destroy(temp2.GetComponent<GridMouseP2>());
+
+                if(NetActions.currentTeam == 1){
+                    temp2.AddComponent<GridMouse2phase2>();
+                }
             }
         }
     }
