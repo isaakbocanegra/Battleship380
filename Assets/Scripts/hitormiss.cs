@@ -187,15 +187,39 @@ public class hitherormiss : MonoBehaviour
 
     }
 
-    public bool hitlocalotherplr(int plr, int row, int column)
+    public bool hitlocalotherplr(int plr, int row, int column) // plr = player ima hit
     {
-        bool allreadyhitthatspot = false;
+        // if hit water(0), = miss(2) & return true
+        // if hit ship(1),  = hit(-1) & return true
+        // if hit spot thats already been hit (-1 or 2), return false
+        if(plr == 1){
+            if(plr1arre[row,column] == 0){
+                plr1arre[row, column] = 2;
+                return true;
+            }
+            else if(plr1arre[row,column] == 1){
+                plr1arre[row, column] = -1;
+                return true;
+            }
+            else if(plr1arre[row,column] == -1 || plr1arre[row,column] == 2){
+                return false;
+            }
+        }
+        if(plr == 2){
+            if(plr2arre[row,column] == 0){
+                plr2arre[row, column] = 2;
+                return true;
+            }
+            else if(plr2arre[row,column] == 1){
+                plr2arre[row, column] = -1;
+                return true;
+            }
+            else if(plr2arre[row,column] == -1 || plr2arre[row,column] == 2){
+                return false;
+            }
+        }
+        return false;
 
-
-
-
-
-        return allreadyhitthatspot; 
     }
 
 

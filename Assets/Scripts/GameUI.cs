@@ -150,7 +150,6 @@ public class GameUI : MonoBehaviour
                     looperInsideHitOrMissLooper++;
                 }
 
-                 // idk why this shit not working, but ill fix tom
                 DestroyGridMouseActionsP2();
             }
             // moves P2s ships with P2 board to in-game view
