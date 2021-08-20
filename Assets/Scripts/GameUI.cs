@@ -61,6 +61,7 @@ public class GameUI : MonoBehaviour
     public void OnHostGameButton(){
         server.Init(8007);
         client.Init("127.0.0.1", 8007);
+        //Camera.main.orthographicSize = 100f;
         Debug.Log("OnHostGameButton");
         menuAnimator.SetTrigger("HostMenu");
     }
@@ -102,7 +103,7 @@ public class GameUI : MonoBehaviour
     public void BackToMainFromPlayScreen(){
         server.Shutdown();
         client.Shutdown();
-        // if player=1
+        // if player=2
         Vector3 tempPos = Camera.main.transform.position;
         Debug.Log(Camera.main.transform.position.x);
         tempPos.x -= 32.9f;
@@ -120,7 +121,6 @@ public class GameUI : MonoBehaviour
             GameObject temp;
             // moves P2s board to main cam
             for (int j = 0; j < 8; j++){
-<<<<<<< HEAD
                 for (int k = 0; k < 8; k++){
                     temp = GameObject.Find("Player2BoardParent/X:"+j+", Y"+k);
                     temp.transform.position = new Vector2(temp.transform.position.x-15.48f,temp.transform.position.y);
@@ -143,10 +143,6 @@ public class GameUI : MonoBehaviour
                 Camera.main.transform.position = tempPos;
                 Debug.Log(Camera.main.transform.position.x);
                 DestroyGridMouseActionsP2();
-=======
-                temp = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
-                temp.transform.position = new Vector2(temp.transform.position.x-15,temp.transform.position.y);
->>>>>>> parent of ae13afd (Annoyingshit)
             }
             // moves P2s ships with P2 board to in-game view
             P2AfterSubmitShips();
@@ -160,23 +156,32 @@ public class GameUI : MonoBehaviour
         if(NetActions.currentTeam == 0){
             Vector3 tempPos = Camera.main.transform.position;
             Debug.Log(Camera.main.transform.position.x);
-            tempPos.x +=11.9f;
+            tempPos.x +=10.69f;
+            tempPos.y -=1.21f;
             Camera.main.transform.position = tempPos;
-            Debug.Log(Camera.main.transform.position.x);
             DestroyGridMouseActionsP1();
         }
         else if(NetActions.currentTeam == 1){
             Vector3 tempPos = Camera.main.transform.position;
             Debug.Log(Camera.main.transform.position.x);
-            tempPos.x -=21.9f;
+            tempPos.x -=23.14f;//+2.44
+            tempPos.y -=1.22f; //+3.68
             Camera.main.transform.position = tempPos;
-            Debug.Log(Camera.main.transform.position.x);
+            moveP1AircraftOutTheWay();
             DestroyGridMouseActionsP2();
         }
         // moves P2s ships with P2 board to in-game view
         P2AfterSubmitShips();
         // switch video player background
         menuAnimator.SetTrigger("InGame");
+        // resizing main cam
+        Camera.main.orthographicSize = 7.148989f;
+    }
+
+    public void moveP1AircraftOutTheWay(){
+        GameObject temp;
+        temp = GameObject.Find("P1Aircraft_Carrier");
+        temp.transform.position = new Vector2(temp.transform.position.x-5f,temp.transform.position.y);
     }
 
     public void DestroyP2GridMouseActionsP1()
@@ -264,7 +269,7 @@ public class GameUI : MonoBehaviour
     public void P2AfterSubmitShips(){
         GameObject temp;
         temp = GameObject.Find("P2_Ships");
-        temp.transform.position = new Vector2(temp.transform.position.x-15,temp.transform.position.y);
+        temp.transform.position = new Vector2(temp.transform.position.x-15.48f,temp.transform.position.y);
     }
 
     public void BackToMainMenuButton(){
