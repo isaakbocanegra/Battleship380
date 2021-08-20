@@ -223,6 +223,47 @@ public class hitherormiss : MonoBehaviour
     }
 
 
+    public void scanandcolorlocalother(int plrboardtoscanandcolor)
+    {
+        if (plrboardtoscanandcolor == 1)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                for (int q = 0; q < 8; q++)
+                {
+                    if (plr1arre[i, q] == 2)
+                        GameObject.Find("Player1BoardParent/X:" + i + ", Y" + q).GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 1f, 1); //blue
+
+                    if (plr1arre[i, q] == -1)
+                        GameObject.Find("Player1BoardParent/X:" + i + ", Y" + q).GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f, 1); //red
+
+                }
+            }
+
+
+
+        }
+        else if (plrboardtoscanandcolor == 2)
+        {
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int q = 0; q < 8; q++)
+                {
+
+                    if (plr2arre[i, q] == 2)
+                        GameObject.Find("Player2BoardParent/X:" + i + ", Y" + q).GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 1f, 1);
+
+                    if (plr2arre[i, q] == -1)
+                        GameObject.Find("Player2BoardParent/X:" + i + ", Y" + q).GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f, 1);
+
+                }
+            }
+
+        }
+
+    }
+
     public void hitplr(int teamID, int targetLocationY, int targetLocationX)
     {
         // Net implementation

@@ -210,7 +210,7 @@ public class GameUI : MonoBehaviour
                 Destroy(temp2.GetComponent<GridMouseP1>());
 
                 if(NetActions.currentTeam == 0){
-                    temp.AddComponent<GridMouse2phase2>();
+                    temp.AddComponent<GridMousephase2>();
                 }
             }
         }
@@ -227,7 +227,7 @@ public class GameUI : MonoBehaviour
                 Destroy(temp2.GetComponent<GridMouseP2>());
 
                 if(NetActions.currentTeam == 1){
-                    temp.AddComponent<GridMousephase2>();
+                    temp.AddComponent<GridMouse2phase2>();
                 }
             }
         }
