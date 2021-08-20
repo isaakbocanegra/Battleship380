@@ -120,7 +120,6 @@ public class GameUI : MonoBehaviour
             GameObject temp;
             // moves P2s board to main cam
             for (int j = 0; j < 8; j++){
-<<<<<<< HEAD
                 for (int k = 0; k < 8; k++){
                     temp = GameObject.Find("Player2BoardParent/X:"+j+", Y"+k);
                     temp.transform.position = new Vector2(temp.transform.position.x-15.48f,temp.transform.position.y);
@@ -143,13 +142,6 @@ public class GameUI : MonoBehaviour
                 Camera.main.transform.position = tempPos;
                 Debug.Log(Camera.main.transform.position.x);
                 DestroyGridMouseActionsP2();
-=======
-                temp = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
-                temp.transform.position = new Vector2(temp.transform.position.x-15,temp.transform.position.y);
-<<<<<<< HEAD
->>>>>>> parent of ae13afd (Annoyingshit)
-=======
->>>>>>> parent of ae13afd (Annoyingshit)
             }
             // moves P2s ships with P2 board to in-game view
             P2AfterSubmitShips();
@@ -159,27 +151,6 @@ public class GameUI : MonoBehaviour
             placeship.localShipCount++;
             P1AllShipsPlaced = false;
         }
-        // moves each players main cam to in-game view
-        if(NetActions.currentTeam == 0){
-            Vector3 tempPos = Camera.main.transform.position;
-            Debug.Log(Camera.main.transform.position.x);
-            tempPos.x +=11.9f;
-            Camera.main.transform.position = tempPos;
-            Debug.Log(Camera.main.transform.position.x);
-            DestroyGridMouseActionsP1();
-        }
-        else if(NetActions.currentTeam == 1){
-            Vector3 tempPos = Camera.main.transform.position;
-            Debug.Log(Camera.main.transform.position.x);
-            tempPos.x -=21.9f;
-            Camera.main.transform.position = tempPos;
-            Debug.Log(Camera.main.transform.position.x);
-            DestroyGridMouseActionsP2();
-        }
-        // moves P2s ships with P2 board to in-game view
-        P2AfterSubmitShips();
-        // switch video player background
-        menuAnimator.SetTrigger("InGame");
     }
 
     public void DestroyP2GridMouseActionsP1()

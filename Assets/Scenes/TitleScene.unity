@@ -390,6 +390,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2Board
       objectReference: {fileID: 0}
+    - target: {fileID: 3101662066318792822, guid: 0c43dae8e6dd3cc4fa692bcd20f5842f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 67a98ba302482cd449274cef34b4509b, type: 3}
+    - target: {fileID: 3101662066318792823, guid: 0c43dae8e6dd3cc4fa692bcd20f5842f, type: 3}
+      propertyPath: tempGridSpaces
+      value: 
+      objectReference: {fileID: 21300000, guid: 67a98ba302482cd449274cef34b4509b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c43dae8e6dd3cc4fa692bcd20f5842f, type: 3}
 --- !u!1 &244093333
@@ -3102,6 +3110,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8861185847184618441, guid: 649066033702c3448a7940425a129b5b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 67a98ba302482cd449274cef34b4509b, type: 3}
+    - target: {fileID: 8861185847184618441, guid: 649066033702c3448a7940425a129b5b, type: 3}
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
@@ -3113,6 +3125,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8861185847184618486, guid: 649066033702c3448a7940425a129b5b, type: 3}
+      propertyPath: tempGridSpaces
+      value: 
+      objectReference: {fileID: 21300000, guid: 67a98ba302482cd449274cef34b4509b, type: 3}
     - target: {fileID: 8861185847184618487, guid: 649066033702c3448a7940425a129b5b, type: 3}
       propertyPath: m_Name
       value: Player1Board
@@ -4685,6 +4701,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   server: {fileID: 1741834421}
   client: {fileID: 1741834420}
+  submitButton: {fileID: 0}
+  P1AllShipsPlaced: 0
+  P2AllShipsPlaced: 0
+  hitOrMissLooper: 0
   menuAnimator: {fileID: 1741834419}
   addressInput: {fileID: 1424647740}
 --- !u!95 &1741834419
