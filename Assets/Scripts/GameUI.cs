@@ -12,7 +12,8 @@ public class GameUI : MonoBehaviour
     public Button submitButton;
     public bool P1AllShipsPlaced = false;
     public bool P2AllShipsPlaced = false;
-    public int hitOrMissLooper = 0;
+    public int hitOrMissSceneChangeLooper = 0;
+    public int looperInsideHitOrMissLooper = 0;
     
     [SerializeField] private Animator menuAnimator;
     [SerializeField] private InputField addressInput;
@@ -115,7 +116,7 @@ public class GameUI : MonoBehaviour
     public void HitOrMissStart()
     {
         print("should only print once");
-        while(hitOrMissLooper < 1)
+        while(hitOrMissSceneChangeLooper < 1)
         {
             GameObject temp;
             // moves P2s board to main cam
@@ -136,32 +137,40 @@ public class GameUI : MonoBehaviour
                 DestroyGridMouseActionsP1();
             }
             else if(NetActions.currentTeam == 1){
+                print("Client should now move to gameplay scene");
                 Vector3 tempPos = Camera.main.transform.position;
                 Debug.Log(Camera.main.transform.position.x);
                 tempPos.x -=23.14f;
                 tempPos.y -=1.22f;
                 Camera.main.transform.position = tempPos;
-                P2AfterSubmitShips();
-                moveP1AircraftOutTheWay(); // idk why this shit not working, but ill fix tom
+                
+                while(looperInsideHitOrMissLooper < 1){
+                    P2AfterSubmitShips();
+                    moveP1AircraftOutTheWay();
+                    looperInsideHitOrMissLooper++;
+                }
+
+                 // idk why this shit not working, but ill fix tom
                 DestroyGridMouseActionsP2();
             }
             // moves P2s ships with P2 board to in-game view
-            P2AfterSubmitShips();
+            //P2AfterSubmitShips();
             // switch video player background
+            
+            
             menuAnimator.SetTrigger("InGame");
             // resizing main cam
             Camera.main.orthographicSize = 7.128989f;
 
-            hitOrMissLooper++;
+            hitOrMissSceneChangeLooper++;
             placeship.localShipCount++;
             P1AllShipsPlaced = false;
-
         }
     }
 
     public void moveP1AircraftOutTheWay(){
         GameObject temp;
-        temp = GameObject.Find("P1AirCraft_Carrier");
+        temp = GameObject.Find("AllShips");
         temp.transform.position = new Vector2(temp.transform.position.x-5f, temp.transform.position.y);
     }
 
