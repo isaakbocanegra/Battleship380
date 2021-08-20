@@ -130,7 +130,8 @@ public class GameUI : MonoBehaviour
             if(NetActions.currentTeam == 0){
                 Vector3 tempPos = Camera.main.transform.position;
                 Debug.Log(Camera.main.transform.position.x);
-                tempPos.x +=11.9f;
+                tempPos.x +=10.69f;
+                tempPos.y -=1.21f;
                 Camera.main.transform.position = tempPos;
                 Debug.Log(Camera.main.transform.position.x);
                 DestroyGridMouseActionsP1();
@@ -138,20 +139,33 @@ public class GameUI : MonoBehaviour
             else if(NetActions.currentTeam == 1){
                 Vector3 tempPos = Camera.main.transform.position;
                 Debug.Log(Camera.main.transform.position.x);
-                tempPos.x -=21.9f;
+                tempPos.x -=23.14f;
+                tempPos.y -=1.22f;
                 Camera.main.transform.position = tempPos;
                 Debug.Log(Camera.main.transform.position.x);
+                moveP1AircraftOutTheWay();
                 DestroyGridMouseActionsP2();
             }
             // moves P2s ships with P2 board to in-game view
             P2AfterSubmitShips();
             // switch video player background
             menuAnimator.SetTrigger("InGame");
+            // resizing main cam
+            Camera.main.orthographicSize = 7.128989f;
+
             hitOrMissLooper++;
             placeship.localShipCount++;
             P1AllShipsPlaced = false;
+
         }
     }
+
+    public void moveP1AircraftOutTheWay(){
+        GameObject temp;
+        temp = GameObject.Find("P1AirCraft_Carrier");
+        temp.transform.position = new Vector2(temp.transform.position.x-5f, temp.transform.position.y);
+    }
+
 
     public void DestroyP2GridMouseActionsP1()
     {
@@ -238,7 +252,7 @@ public class GameUI : MonoBehaviour
     public void P2AfterSubmitShips(){
         GameObject temp;
         temp = GameObject.Find("P2_Ships");
-        temp.transform.position = new Vector2(temp.transform.position.x-15,temp.transform.position.y);
+        temp.transform.position = new Vector2(temp.transform.position.x-15.48f,temp.transform.position.y);
     }
 
     public void BackToMainMenuButton(){
