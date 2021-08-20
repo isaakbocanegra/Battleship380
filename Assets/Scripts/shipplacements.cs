@@ -25,6 +25,14 @@ public class ShipPlacements : MonoBehaviour
 
 public class placeship : MonoBehaviour {
 
+    public static bool ship1P2 = false;
+    public static bool ship2P2 = false;
+    public static bool ship3P2 = false;
+    public static bool ship4P2 = false;
+    public static bool ship5P2 = false;
+    public static int localShipCount = 0;
+    bool allin = false;
+    
     public static placeship Instance { set; get; }
 
     public string[] shipsplaced = { "", "", "", "", "" };
@@ -51,6 +59,7 @@ public class placeship : MonoBehaviour {
         { 0,0,0,0,0,0,0,0},
         { 0,0,0,0,0,0,0,0}
         };
+
     public void placethisship(string ship)
     {
         shipsallreadyplaced();
@@ -59,8 +68,7 @@ public class placeship : MonoBehaviour {
 
     }
     public bool arealltheshipsin()
-    { bool allin = true;
-
+    { 
         int count = 0;
 
         while (count < shipsplaced.Length)
@@ -74,6 +82,10 @@ public class placeship : MonoBehaviour {
 
             }
             count++;
+        }
+        if(shipsplaced[4] != "")
+        {
+            allin = true;
         }
 
         return allin;
@@ -110,6 +122,7 @@ public class placeship : MonoBehaviour {
         }
         else {
             print(RowColumns + " has been placed.");
+            localShipCount++;
             // places ships on coords 
             int j = 0, k = 1;  // j & k are x&y coords
             char[] tempRC = RowColumns.ToCharArray();  // convert str="1234" to int=1234
@@ -134,6 +147,28 @@ public class placeship : MonoBehaviour {
     public void receivedShipNowPlace(int xcoord, int ycoord, int shipNum, int orientation) //if orientation ==1 its verticle else its horizontal
     {
         bool verticlee = false;
+        
+        if(shipNum == 1)
+        {
+            ship1P2 = true;
+        }
+        if(shipNum == 2)
+        {
+            ship2P2 = true;
+        }
+        if(shipNum == 3)
+        {
+            ship3P2 = true;
+        }
+        if(shipNum == 4)
+        {
+            ship4P2 = true;
+        }
+        if(shipNum == 5)
+        {
+            ship5P2 = true;
+        }
+
         if (orientation == 1)
             verticlee = true; 
         
@@ -141,12 +176,12 @@ public class placeship : MonoBehaviour {
         int [] rowcolumn = { ycoord, xcoord };
         if (NetActions.currentTeam == 0)
         {
-            print("Congrats you are the host");
+           // print("Congrats you are the host");
             host = true;
         }
         else if (NetActions.currentTeam == 1)
         {
-            print("Congrats you are the client");
+           // print("Congrats you are the client");
             host = false;
         }
         int shipsize = getshipsize(shipNum);
@@ -160,15 +195,52 @@ public class placeship : MonoBehaviour {
        // int[] rowcolumn = extractcoordinatename(gridColor);
         
 
-        
+        colorotherguysships(host);
+      //  print("you recieved a new ship ------------------------------------------------------------------------------");
+       // printPlayersBoard(1);
+       // print("player 1 board is above------------------- player2 board is below -------------------------------");
+      //  printPlayersBoard(2);
+
 
         Debug.Log($"Received from ShipPlacement class: ({xcoord},{ycoord}), ship {shipNum} and orientation {orientation}");
-
-
-
-
+        
     }
 
+    public void colorotherguysships(bool host)
+    {
+        if (host)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                for (int q = 0; q < 8; q++)
+                {
+                    if (plr2board[i, q] == 1)
+                        GameObject.Find("Player2BoardParent/X:" + i + ", Y" + q).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+
+
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                for (int q = 0; q < 8; q++)
+                {
+                    if (plr1board[i, q] == 1)
+                        GameObject.Find("Player1BoardParent/X:" + i + ", Y" + q).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+
+
+                }
+            }
+
+
+
+
+        }
+    
+    }
+    
     public void writetoP1board(int shipsize, int [] rowcolumn,bool verticlee)
     {
         if (verticlee)
@@ -177,64 +249,94 @@ public class placeship : MonoBehaviour {
 
             if (shipsize == 2)
             {
-                GameObject.Find("Player1BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                plr1board[selection[0], rowcolumn[1]] = 1;
+                plr1board[selection[1], rowcolumn[1]] = 1;
+                /* GameObject.Find("Player1BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player1BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1); */
 
-            }
-            if (shipsize == 3)
-            {
-                GameObject.Find("Player1BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+             }
+             if (shipsize == 3)
+             {
+                 plr1board[selection[0], rowcolumn[1]] = 1;
+                 plr1board[selection[1], rowcolumn[1]] = 1;
+                 plr1board[selection[2], rowcolumn[1]] = 1;
+                /*   GameObject.Find("Player1BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                   GameObject.Find("Player1BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                   GameObject.Find("Player1BoardParent/X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1); */
             }
             if (shipsize == 4)
-            {
-                GameObject.Find("Player1BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + selection[3] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+               {
+                   plr1board[selection[0], rowcolumn[1]] = 1;
+                   plr1board[selection[1], rowcolumn[1]] = 1;
+                   plr1board[selection[2], rowcolumn[1]] = 1;
+                   plr1board[selection[3], rowcolumn[1]] = 1;
+                /*   GameObject.Find("Player1BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                  GameObject.Find("Player1BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                  GameObject.Find("Player1BoardParent/X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                  GameObject.Find("Player1BoardParent/X:" + selection[3] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);*/
             }
             if (shipsize == 5)
-            {
-                GameObject.Find("Player1BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + selection[3] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + selection[4] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+              {
+                  plr1board[selection[0], rowcolumn[1]] = 1;
+                  plr1board[selection[1], rowcolumn[1]] = 1;
+                  plr1board[selection[2], rowcolumn[1]] = 1;
+                  plr1board[selection[3], rowcolumn[1]] = 1;
+                  plr1board[selection[4], rowcolumn[1]] = 1;
+                /*   GameObject.Find("Player1BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                  GameObject.Find("Player1BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                  GameObject.Find("Player1BoardParent/X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                  GameObject.Find("Player1BoardParent/X:" + selection[3] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                  GameObject.Find("Player1BoardParent/X:" + selection[4] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);*/
             }
 
 
         }
-        else
-        {
+          else
+          {
 
-            int[] selection = gettilesnextto(rowcolumn[0], rowcolumn[1], shipsize);
+              int[] selection = gettilesnextto(rowcolumn[0], rowcolumn[1], shipsize);
 
-            if (shipsize == 2)
-            {
-                GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+              if (shipsize == 2)
+              {
+                  plr1board[rowcolumn[0], selection[0]] = 1;
+                  plr1board[rowcolumn[0], selection[1]] = 1;
+                  /*  GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                   GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);*/
             }
             if (shipsize == 3)
-            {
-                GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+             {
+                 plr1board[rowcolumn[0], selection[0]] = 1;
+                 plr1board[rowcolumn[0], selection[1]] = 1;
+                 plr1board[rowcolumn[0], selection[2]] = 1;
+                 /* GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                  GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                  GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1); */
             }
             if (shipsize == 4)
-            {
-                GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[3]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+             {
+                 plr1board[rowcolumn[0], selection[0]] = 1;
+                 plr1board[rowcolumn[0], selection[1]] = 1;
+                 plr1board[rowcolumn[0], selection[2]] = 1;
+                 plr1board[rowcolumn[0], selection[3]] = 1;
+                 /* GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                  GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                  GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                  GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[3]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);*/
             }
             if (shipsize == 5)
-            {
-                GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[3]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[4]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+             {
+                 plr1board[rowcolumn[0], selection[0]] = 1;
+                 plr1board[rowcolumn[0], selection[1]] = 1;
+                 plr1board[rowcolumn[0], selection[2]] = 1;
+                 plr1board[rowcolumn[0], selection[3]] = 1;
+                 plr1board[rowcolumn[0], selection[4]] = 1;
+
+                 /*
+                 GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[3]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player1BoardParent/X:" + rowcolumn[0] + ", Y" + selection[4]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1); */
             }
 
 
@@ -251,30 +353,46 @@ public class placeship : MonoBehaviour {
 
             if (shipsize == 2)
             {
-                GameObject.Find("Player2BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                plr2board[selection[0], rowcolumn[1]] = 1;
+                plr2board[selection[1], rowcolumn[1]] = 1;
+
+
+               /* GameObject.Find("Player2BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                GameObject.Find("Player2BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);*/
 
             }
             if (shipsize == 3)
             {
-                GameObject.Find("Player2BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                plr2board[selection[0], rowcolumn[1]] = 1;
+                plr2board[selection[1], rowcolumn[1]] = 1;
+                plr2board[selection[2], rowcolumn[1]] = 1;
+                /*GameObject.Find("Player2BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
                 GameObject.Find("Player2BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                GameObject.Find("Player2BoardParent/X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);*/
             }
             if (shipsize == 4)
             {
-                GameObject.Find("Player2BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + selection[3] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                plr2board[selection[0], rowcolumn[1]] = 1;
+                plr2board[selection[1], rowcolumn[1]] = 1;
+                plr2board[selection[2], rowcolumn[1]] = 1;
+                plr2board[selection[3], rowcolumn[1]] = 1;
+                /* GameObject.Find("Player2BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player2BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player2BoardParent/X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player2BoardParent/X:" + selection[3] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);*/
             }
             if (shipsize == 5)
             {
-                GameObject.Find("Player2BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + selection[3] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + selection[4] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                plr2board[selection[0], rowcolumn[1]] = 1;
+                plr2board[selection[1], rowcolumn[1]] = 1;
+                plr2board[selection[2], rowcolumn[1]] = 1;
+                plr2board[selection[3], rowcolumn[1]] = 1;
+                plr2board[selection[4], rowcolumn[1]] = 1;
+                /*  GameObject.Find("Player2BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player2BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player2BoardParent/X:" + selection[2] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player2BoardParent/X:" + selection[3] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player2BoardParent/X:" + selection[4] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);*/
             }
 
 
@@ -286,29 +404,45 @@ public class placeship : MonoBehaviour {
 
             if (shipsize == 2)
             {
-                GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                plr2board[rowcolumn[0], selection[0]] = 1;
+                plr2board[rowcolumn[0], selection[1]] = 1;
+
+
+                /* GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);*/
             }
             if (shipsize == 3)
             {
-                GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                plr2board[rowcolumn[0], selection[0]] = 1;
+                plr2board[rowcolumn[0], selection[1]] = 1;
+                plr2board[rowcolumn[0], selection[2]] = 1;
+                /*  GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);*/
             }
             if (shipsize == 4)
             {
-                GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[3]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                plr2board[rowcolumn[0], selection[0]] = 1;
+                plr2board[rowcolumn[0], selection[1]] = 1;
+                plr2board[rowcolumn[0], selection[2]] = 1;
+                plr2board[rowcolumn[0], selection[3]] = 1;
+                /*  GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                  GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                  GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                  GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[3]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);*/
             }
             if (shipsize == 5)
             {
-                GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[3]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[4]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                plr2board[rowcolumn[0], selection[0]] = 1;
+                plr2board[rowcolumn[0], selection[1]] = 1;
+                plr2board[rowcolumn[0], selection[2]] = 1;
+                plr2board[rowcolumn[0], selection[3]] = 1;
+                plr2board[rowcolumn[0], selection[4]] = 1;
+                /* GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[0]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[2]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[3]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+                 GameObject.Find("Player2BoardParent/X:" + rowcolumn[0] + ", Y" + selection[4]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);*/
             }
 
 

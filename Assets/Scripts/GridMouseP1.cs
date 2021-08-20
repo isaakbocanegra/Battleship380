@@ -116,10 +116,9 @@ public class GridMouseP1 : MonoBehaviour
             placer.shipsallreadyplaced();
             if (placer.arealltheshipsin())
             {
-                print("all the ships are in for player1, fiz do some magic here");
+                print("all the ships are in for player1, fiz do some magic here--------------------------------------------------------------");
             
             }
-
         }
         else
         {

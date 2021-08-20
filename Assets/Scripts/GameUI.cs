@@ -9,7 +9,11 @@ public class GameUI : MonoBehaviour
 
     public Server server;
     public Client client;
-
+    public Button submitButton;
+    public bool P1AllShipsPlaced = false;
+    public bool P2AllShipsPlaced = false;
+    public int hitOrMissLooper = 0;
+    
     [SerializeField] private Animator menuAnimator;
     [SerializeField] private InputField addressInput;
 
@@ -19,13 +23,34 @@ public class GameUI : MonoBehaviour
         RegisterEvents();
     }
 
+    public void Update()
+    {
+        if(placeship.localShipCount == 5)
+        {
+            P1AllShipsPlaced = true;
+        }
+        if(placeship.ship1P2 && placeship.ship2P2 && placeship.ship3P2 && placeship.ship4P2 && placeship.ship5P2)
+        {
+            P2AllShipsPlaced = true;
+        }
+        if(P1AllShipsPlaced && P2AllShipsPlaced)
+        {
+            HitOrMissStart();
+        }
+    }
+
     // Activate Boards for P1 and P2
     public void ActivateBoards(){
+        submitButton = GameObject.Find("SubmitShipPlacements").GetComponent<Button>();
         Player1Board.p1BoardParent.SetActive(true);
         Player2Board.p2BoardParent.SetActive(true);
+        
+        submitButton.interactable = false;
+
         if(NetActions.currentTeam == 1){
             BoardCameraChange();
         }
+        
     }
 
     public void ServerToSetupScreen(){
@@ -49,8 +74,6 @@ public class GameUI : MonoBehaviour
 
     // "cred" from main
     public void OnCreditsButton(){
-        Player1Board.p1BoardParent.SetActive(true);
-        Player2Board.p2BoardParent.SetActive(true);
         Debug.Log("OnCreditsButton");
     }
 
@@ -90,15 +113,44 @@ public class GameUI : MonoBehaviour
         menuAnimator.SetTrigger("StartMenu");
     }
 
-    public void SubmitShipPlacements(){
-
-        GameObject temp;
-        // moves P2s board to main cam
-        for (int i = 0; i < 8; i++){
+    public void HitOrMissStart()
+    {
+        print("should only print once");
+        while(hitOrMissLooper < 1)
+        {
+            GameObject temp;
+            // moves P2s board to main cam
             for (int j = 0; j < 8; j++){
-                temp = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
-                temp.transform.position = new Vector2(temp.transform.position.x-15.48f,temp.transform.position.y);
+                for (int k = 0; k < 8; k++){
+                    temp = GameObject.Find("Player2BoardParent/X:"+j+", Y"+k);
+                    temp.transform.position = new Vector2(temp.transform.position.x-15.48f,temp.transform.position.y);
+                }
             }
+            
+            // moves each players main cam to in-game view
+            if(NetActions.currentTeam == 0){
+                Vector3 tempPos = Camera.main.transform.position;
+                Debug.Log(Camera.main.transform.position.x);
+                tempPos.x +=11.9f;
+                Camera.main.transform.position = tempPos;
+                Debug.Log(Camera.main.transform.position.x);
+                DestroyGridMouseActionsP1();
+            }
+            else if(NetActions.currentTeam == 1){
+                Vector3 tempPos = Camera.main.transform.position;
+                Debug.Log(Camera.main.transform.position.x);
+                tempPos.x -=21.9f;
+                Camera.main.transform.position = tempPos;
+                Debug.Log(Camera.main.transform.position.x);
+                DestroyGridMouseActionsP2();
+            }
+            // moves P2s ships with P2 board to in-game view
+            P2AfterSubmitShips();
+            // switch video player background
+            menuAnimator.SetTrigger("InGame");
+            hitOrMissLooper++;
+            placeship.localShipCount++;
+            P1AllShipsPlaced = false;
         }
         // moves each players main cam to in-game view
         if(NetActions.currentTeam == 0){
@@ -158,30 +210,34 @@ public class GameUI : MonoBehaviour
 
     //destroy gridmouse action then add phase2 gridmouse actions
     public void DestroyGridMouseActionsP1(){
-        GameObject temp;
+        GameObject temp, temp2;
 
         for (int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j++){
-                temp = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
-                Destroy(temp.GetComponent<GridMouseP1>());
+                temp = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
+                temp2 = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
+                Destroy(temp.GetComponent<GridMouseP2>());
+                Destroy(temp2.GetComponent<GridMouseP1>());
 
                 if(NetActions.currentTeam == 0){
-                    temp.AddComponent<GridMousephase2>();
+                    temp.AddComponent<GridMouse2phase2>();
                 }
             }
         }
     }
 
     public void DestroyGridMouseActionsP2(){
-        GameObject temp2;
+        GameObject temp, temp2;
 
         for (int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j++){
+                temp = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
                 temp2 = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
+                Destroy(temp.GetComponent<GridMouseP1>());
                 Destroy(temp2.GetComponent<GridMouseP2>());
 
                 if(NetActions.currentTeam == 1){
-                    temp2.AddComponent<GridMouse2phase2>();
+                    temp.AddComponent<GridMousephase2>();
                 }
             }
         }
