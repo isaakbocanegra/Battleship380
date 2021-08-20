@@ -17,7 +17,7 @@ public class Server : MonoBehaviour
     #endregion
 
     public NetworkDriver driver;
-    private NativeList<NetworkConnection> connections;
+    public static NativeList<NetworkConnection> connections;
 
     private bool isActive = false;
     private const float keepAliveTickRate = 20.0f; //default 30 second w/out update causes timeout, disconnecting the client, this stops that from happening by sending a message every 20 seconds

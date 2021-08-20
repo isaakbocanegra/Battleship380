@@ -114,6 +114,7 @@ public class GameUI : MonoBehaviour
             tempPos.x -=21.9f;
             Camera.main.transform.position = tempPos;
             Debug.Log(Camera.main.transform.position.x);
+            DestroyGridMouseActions();
             menuAnimator.SetTrigger("P2_PlayGame");
             //Destroy(GetComponent<GridMouseP2>());
         }
@@ -138,7 +139,7 @@ public class GameUI : MonoBehaviour
                 }
                 else if(NetActions.currentTeam == 1){
                     //Destroy(temp2.GetComponent<GridMouseP2>());
-                    temp.AddComponent<GridMousephase2>();
+                    temp.AddComponent<GridMouse2phase2>();
                 }
 
             }

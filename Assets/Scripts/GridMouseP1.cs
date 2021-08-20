@@ -165,7 +165,7 @@ public class GridMouseP1 : MonoBehaviour
                     ss.orientation = 0;
                 }
                 print($"Should be sending coordinate ({ss.xcoord}, {ss.ycoord}), with ship number {ss.shipNum} and orientation number {ss.orientation}.");
-                Server.Instance.Broadcast(ss);
+                Server.Instance.SendToClient(Server.connections[1], ss);
                 /////
                 
                   

@@ -336,7 +336,7 @@ public class GridMouseP2 : MonoBehaviour
         {
             return true;
         }
-        else if (gridColor.name == "P@Submarine")
+        else if (gridColor.name == "P2Submarine")
         {
             return true;
         }

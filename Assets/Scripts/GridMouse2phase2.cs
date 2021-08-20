@@ -17,22 +17,22 @@ public class GridMouse2phase2 : MonoBehaviour
     }
 
     void OnMouseEnter(){
-        gridColor.color = new Color(0.5f, 0.5f, 0.5f, 1);
+        //gridColor.color = new Color(0.5f, 0.5f, 0.5f, 1);
     }
 
     void OnMouseDown(){
         // greyish
-        gridColor.color = new Color(0.25f, 0.25f, 0.25f, 1);
+        //gridColor.color = new Color(0.25f, 0.25f, 0.25f, 1);
 
     }
 
     void OnMouseUp(){
         // white/transparent
-        gridColor.color = new Color(1, 1, 1, 1);
+        //gridColor.color = new Color(1, 1, 1, 1);
     }
 
     void OnMouseExit(){
         // white/transparent
-        gridColor.color = new Color(1, 1, 1, 1);
+        //gridColor.color = new Color(1, 1, 1, 1);
     }
 }

@@ -137,8 +137,6 @@ public class placeship : MonoBehaviour {
         if (orientation == 1)
             verticlee = true; 
         
-
-
         bool host = false ;
         int [] rowcolumn = { ycoord, xcoord };
         if (NetActions.currentTeam == 0)
@@ -153,9 +151,9 @@ public class placeship : MonoBehaviour {
         }
         int shipsize = getshipsize(shipNum);
 
-        if (host)
+        if(host == true)
             writetoP2board(shipsize, rowcolumn, verticlee);
-        else
+        else if(host == false)
             writetoP1board(shipsize, rowcolumn, verticlee);
 
 
