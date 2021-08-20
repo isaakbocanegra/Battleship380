@@ -146,6 +146,9 @@ public class GameUI : MonoBehaviour
 =======
                 temp = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
                 temp.transform.position = new Vector2(temp.transform.position.x-15,temp.transform.position.y);
+<<<<<<< HEAD
+>>>>>>> parent of ae13afd (Annoyingshit)
+=======
 >>>>>>> parent of ae13afd (Annoyingshit)
             }
             // moves P2s ships with P2 board to in-game view
