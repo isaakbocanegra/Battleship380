@@ -106,7 +106,6 @@ public class GameUI : MonoBehaviour
             Camera.main.transform.position = tempPos;
             Debug.Log(Camera.main.transform.position.x);
             DestroyGridMouseActions();
-            menuAnimator.SetTrigger("P1_PlayGame");
         }
         else if(NetActions.currentTeam == 1){
             Vector3 tempPos = Camera.main.transform.position;
@@ -115,10 +114,10 @@ public class GameUI : MonoBehaviour
             Camera.main.transform.position = tempPos;
             Debug.Log(Camera.main.transform.position.x);
             DestroyGridMouseActions();
-            menuAnimator.SetTrigger("P2_PlayGame");
             //Destroy(GetComponent<GridMouseP2>());
         }
         // switch video player background
+        menuAnimator.SetTrigger("InGame");
     }
 
     //destroy gridmouse action then add phase2 gridmouse actions
