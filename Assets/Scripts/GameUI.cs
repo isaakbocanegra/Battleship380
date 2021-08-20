@@ -89,16 +89,17 @@ public class GameUI : MonoBehaviour
         menuAnimator.SetTrigger("StartMenu");
     }
 
-
     public void SubmitShipPlacements(){
 
         GameObject temp;
+        // moves P2s board to main cam
         for (int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j++){
                 temp = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
                 temp.transform.position = new Vector2(temp.transform.position.x-15,temp.transform.position.y);
             }
         }
+        // moves each players main cam to in-game view
         if(NetActions.currentTeam == 0){
             Vector3 tempPos = Camera.main.transform.position;
             Debug.Log(Camera.main.transform.position.x);
@@ -116,6 +117,8 @@ public class GameUI : MonoBehaviour
             DestroyGridMouseActions();
             //Destroy(GetComponent<GridMouseP2>());
         }
+        // moves P2s ships with P2 board to in-game view
+        P2AfterSubmitShips();
         // switch video player background
         menuAnimator.SetTrigger("InGame");
     }
@@ -165,6 +168,13 @@ public class GameUI : MonoBehaviour
             Camera.main.transform.position = tempPos;
             Debug.Log(Camera.main.transform.position.x);
         }
+    }
+
+    // moving p2s shipPlacements to in-game view
+    public void P2AfterSubmitShips(){
+        GameObject temp;
+        temp = GameObject.Find("P2_Ships");
+        temp.transform.position = new Vector2(temp.transform.position.x-15,temp.transform.position.y);
     }
 
     public void BackToMainMenuButton(){
