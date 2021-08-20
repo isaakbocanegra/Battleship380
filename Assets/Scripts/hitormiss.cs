@@ -18,9 +18,9 @@ public class HitOrMiss : MonoBehaviour
 
         
 
-        hitherormiss data = new hitherormiss();
+        //hitherormiss data = new hitherormiss();
 
-        data.hitplr(1, 0, 5);
+       // data.hitplr(1, 0, 5);
        // data.hitplr(2, 0, 0);
        // data.hitplr(2, 1, 0);
        // data.hitplr(2, 1, 1);
@@ -29,7 +29,7 @@ public class HitOrMiss : MonoBehaviour
        // data.hitplr(2, 3, 1);
        // data.hitplr(2, 4, 1);
 
-        int isthereawinner = data.detectwinner(); 
+        //int isthereawinner = data.detectwinner(); 
 
 
 
@@ -63,7 +63,7 @@ public class hitherormiss : MonoBehaviour
 
 
     //doublearray with map and ship positios for player 1
-    public  int[,] plr1arre = {
+    public   int[,] plr1arre = {
 
         { 0,0,0,0,0,0,0,0},
         { 0,0,0,0,0,0,0,0},
@@ -76,7 +76,7 @@ public class hitherormiss : MonoBehaviour
         };
 
     //doublearray with map and ship positios for player 2
-    public  int[,] plr2arre = {
+    public   int[,] plr2arre = {
 
         { 0,0,0,0,0,0,0,0},
         { 0,0,0,0,0,0,0,0},
@@ -122,11 +122,11 @@ public class hitherormiss : MonoBehaviour
     }
 
 
-    private void gridmapforplr(int plrnumber)
+    public void gridmapforplr(int plrnumber) //this function prints the board for a specific player
     {
         if (plrnumber == 1)
         {
-            //print(" time to see what player1s grid looks like so far");
+            print(" time to see what player1s grid looks like so far in the hit or miss class with data loaded------------------------------------------------------------------");
             for (int i = 0; i < 8; i++)
             {
                 print(this.plr1arre[i, 0] + " " + this.plr1arre[i, 1] + " " + this.plr1arre[i, 2] + " " + this.plr1arre[i, 3] + " " + this.plr1arre[i, 4] + " " + this.plr1arre[i, 5] + " " + this.plr1arre[i, 6] + " " + this.plr1arre[i, 7]);
@@ -136,8 +136,8 @@ public class hitherormiss : MonoBehaviour
 
 
         }
-        else {
-            //print(" time to see what player2s grid looks like so far");
+        else if(plrnumber == 2) {
+            print(" time to see what player2s grid looks like so far in the hit or miss class with data loaded------------------------------------------------------------------");
             for (int i = 0; i < 8; i++)
             {
                 print(this.plr2arre[i, 0] + " " + this.plr2arre[i, 1] + " " + this.plr2arre[i, 2] + " " + this.plr2arre[i, 3] + " " + this.plr2arre[i, 4] + " " + this.plr2arre[i, 5] + " " + this.plr2arre[i, 6] + " " + this.plr2arre[i, 7]);
@@ -149,7 +149,10 @@ public class hitherormiss : MonoBehaviour
     }
 
 
-     private void copy2dforplrarray(int[,] arretocopy, int plr)
+
+
+
+     public  void copy2dforplrarray(int[,] arretocopy, int plr)
     {
 
         if (plr == 1)
@@ -169,7 +172,7 @@ public class hitherormiss : MonoBehaviour
 
 
         }
-        else
+        else if (plr == 2)
         {
 
             for (int i = 0; i < 8; i++)
@@ -183,6 +186,18 @@ public class hitherormiss : MonoBehaviour
         }
 
     }
+
+    public bool hitlocalotherplr(int plr, int row, int column)
+    {
+        bool allreadyhitthatspot = false;
+
+
+
+
+
+        return allreadyhitthatspot; 
+    }
+
 
     public void hitplr(int teamID, int targetLocationY, int targetLocationX)
     {

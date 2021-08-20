@@ -48,7 +48,7 @@ public class placeship : MonoBehaviour {
         { 0,0,0,0,0,0,0,0},
         { 0,0,0,0,0,0,0,0}
         };
-    private int[,] plr2board = {
+    private static int[,] plr2board = {
 
         { 0,0,0,0,0,0,0,0},
         { 0,0,0,0,0,0,0,0},
@@ -67,6 +67,45 @@ public class placeship : MonoBehaviour {
         shiplacedcount++;
 
     }
+
+    public int [,] getboard(int plr)
+    {
+        int[,] playerboard = new int[8, 8];
+        if (plr == 1)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                for (int q = 0; q < 8; q++)
+                {
+                    playerboard[i, q] = plr1board[i, q];
+
+                   
+
+                }
+            }
+        }
+        else if(plr==2)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                for (int q = 0; q < 8; q++)
+                {
+                    playerboard[i, q] = plr2board[i, q];
+
+
+
+                }
+            }
+
+
+
+
+
+        }
+
+        return playerboard;
+    }
+
     public bool arealltheshipsin()
     { 
         int count = 0;
@@ -195,7 +234,7 @@ public class placeship : MonoBehaviour {
        // int[] rowcolumn = extractcoordinatename(gridColor);
         
 
-        colorotherguysships(host);
+       // colorotherguysships();
       //  print("you recieved a new ship ------------------------------------------------------------------------------");
        // printPlayersBoard(1);
        // print("player 1 board is above------------------- player2 board is below -------------------------------");
@@ -206,8 +245,21 @@ public class placeship : MonoBehaviour {
         
     }
 
-    public void colorotherguysships(bool host)
+    public void colorotherguysships()
     {
+        bool host = false ; 
+        if (NetActions.currentTeam == 0)
+        {
+            // print("Congrats you are the host");
+            host = true;
+        }
+        else if (NetActions.currentTeam == 1)
+        {
+            // print("Congrats you are the client");
+            host = false;
+        }
+
+
         if (host)
         {
             for (int i = 0; i < 8; i++)
@@ -240,7 +292,20 @@ public class placeship : MonoBehaviour {
         }
     
     }
-    
+    public void clearallboardsofcolors()
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            for (int q = 0; q < 8; q++)
+            {
+               
+                    GameObject.Find("Player1BoardParent/X:" + i + ", Y" + q).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1) ;
+                    GameObject.Find("Player2BoardParent/X:" + i + ", Y" + q).GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1) ;
+
+            }
+        }
+
+    }
     public void writetoP1board(int shipsize, int [] rowcolumn,bool verticlee)
     {
         if (verticlee)

@@ -1,16 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// this is for p2
 public class GridMouse2phase2 : MonoBehaviour
 {
+   
+   private static placeship data = new placeship();
+    private hitherormiss hit = ShipActionsP2.hit;
+    public SpriteRenderer gridColor;
     int x = 0;
     int y = 0;
     
-    public SpriteRenderer gridColor;
+    
 
     void Start(){
-        gridColor = GetComponent<SpriteRenderer>();
+
+        print("gridmousephase2 has been started and loaded------------------------------");
+
+        data.clearallboardsofcolors();
+       gridColor = GetComponent<SpriteRenderer>();
+        hit.copy2dforplrarray(data.getboard(1),1);
+        hit.copy2dforplrarray(data.getboard(2), 2);
+     
     }
 
     // Update is called once per frame
@@ -25,6 +36,10 @@ public class GridMouse2phase2 : MonoBehaviour
 
     void OnMouseDown(){
         // greyish
+       // data.colorotherguysships();
+        hit.gridmapforplr(1); // this prints the functions
+        hit.gridmapforplr(2);
+
         gridColor.color = new Color(0.25f, 0.25f, 0.25f, 1);
 
         // Net Implementation

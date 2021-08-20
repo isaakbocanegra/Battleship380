@@ -5,8 +5,8 @@ using UnityEngine;
 public class ShipActionsP1 : MonoBehaviour
 {
     public SpriteRenderer gridColor;
-    public static placeship placer= new placeship(); 
-    
+    public static placeship placer= new placeship();
+    public static hitherormiss hit = new hitherormiss();
 
     void Start()
     {
