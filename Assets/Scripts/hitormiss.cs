@@ -14,7 +14,7 @@ public class HitOrMiss : MonoBehaviour
 
 
 
-        print("naruto is amazing" +1);
+        //print("naruto is amazing" +1);
 
         
 
@@ -187,7 +187,7 @@ public class hitherormiss : MonoBehaviour
     public void hitplr(int teamID, int targetLocationY, int targetLocationX)
     {
         // Net implementation
-        NetTakeTurn tt = new NetTakeTurn();
+        //NetTakeTurn tt = new NetTakeTurn();
 
         if (teamID == 1)
         {
@@ -198,9 +198,9 @@ public class hitherormiss : MonoBehaviour
                 //print("There was a hit at row" + targetLocationX + " and at column " + targetLocationY);
                 //print("the new board now for player 1 is ");
                 gridmapforplr(teamID);
-                tt.targetStatus = this.plr1arre[targetLocationY, targetLocationX];
-                tt.teamID = NetActions.currentTeam;
-                Client.Instance.SendToServer(tt);
+                //tt.targetStatus = this.plr1arre[targetLocationY, targetLocationX];
+                //tt.teamID = NetActions.currentTeam;
+                //Client.Instance.SendToServer(tt);
             }
             /// above is if we hit a ship 
             /// 
@@ -212,9 +212,9 @@ public class hitherormiss : MonoBehaviour
                 //print("There was a miss at row" + targetLocationX + " and at column " + targetLocationY);
                 //print("the new board now for player 1 is ");
                 gridmapforplr(teamID);
-                tt.targetStatus = this.plr1arre[targetLocationY, targetLocationX];
-                tt.teamID = NetActions.currentTeam;
-                Client.Instance.SendToServer(tt);
+                //tt.targetStatus = this.plr1arre[targetLocationY, targetLocationX];
+                //tt.teamID = NetActions.currentTeam;
+                //Client.Instance.SendToServer(tt);
             }
             /// above is if we hit empty water
 
@@ -228,9 +228,9 @@ public class hitherormiss : MonoBehaviour
                 //print("There was a hit at y" + targetLocationX + " and at x " + targetLocationY);
                 //print("the new board now for player 2 is ");
                 gridmapforplr(teamID);
-                tt.targetStatus = this.plr2arre[targetLocationY, targetLocationX];
-                tt.teamID = NetActions.currentTeam;
-                Client.Instance.SendToServer(tt);
+                //tt.targetStatus = this.plr2arre[targetLocationY, targetLocationX];
+                //tt.teamID = NetActions.currentTeam;
+                //Client.Instance.SendToServer(tt);
             }
             /// above is if we hit a ship 
             /// 
@@ -242,9 +242,9 @@ public class hitherormiss : MonoBehaviour
                 //print("There was a miss at row" + targetLocationX + " and at column " + targetLocationY);
                 //print("the new board now for player 2 is ");
                 gridmapforplr(teamID);
-                tt.targetStatus = this.plr2arre[targetLocationY, targetLocationX];
-                tt.teamID = NetActions.currentTeam;
-                Client.Instance.SendToServer(tt);
+                //tt.targetStatus = this.plr2arre[targetLocationY, targetLocationX];
+                //tt.teamID = NetActions.currentTeam;
+                //Client.Instance.SendToServer(tt);
             }
             /// above is if we hit empty water
         }

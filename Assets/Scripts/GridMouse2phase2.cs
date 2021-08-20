@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GridMouse2phase2 : MonoBehaviour
 {
+    int x = 0;
+    int y = 0;
+    
     public SpriteRenderer gridColor;
 
     void Start(){
@@ -24,6 +27,12 @@ public class GridMouse2phase2 : MonoBehaviour
         // greyish
         gridColor.color = new Color(0.25f, 0.25f, 0.25f, 1);
 
+        // Net Implementation
+        NetTakeTurn tt = new NetTakeTurn();
+        tt.targetLocationX = x;
+        tt.targetLocationY = y;
+        print($"Location being attacked is ({tt.targetLocationX}, {tt.targetLocationY}).");
+        Client.Instance.SendToServer(tt);
     }
 
     void OnMouseUp(){

@@ -165,7 +165,7 @@ public class GridMouseP1 : MonoBehaviour
                 }
                 print($"Should be sending coordinate ({ss.xcoord}, {ss.ycoord}), with ship number {ss.shipNum} and orientation number {ss.orientation}.");
                 Server.Instance.SendToClient(Server.connections[1], ss);
-                /////
+                
                 
                   
                     print("cool the ship we placed for you is " + shipname.ToString());
@@ -176,7 +176,7 @@ public class GridMouseP1 : MonoBehaviour
                
                     
                
-                ////////
+               
                 placer.printPlayersBoard(1);
             }
         }

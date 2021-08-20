@@ -69,9 +69,7 @@ public class NetActions : MonoBehaviour
         // Receive message, broadcast back
         NetTakeTurn tt = msg as NetTakeTurn;
 
-        // Receive turn taken, broadcast back
-        Server.Instance.Broadcast(msg);
-        
+        Debug.Log($"TT : Receiving attack at grid location ({tt.targetLocationX}, {tt.targetLocationY}).");
     }
 
     private void OnShareShipsServer(NetMessage msg, NetworkConnection cnn)
@@ -120,12 +118,12 @@ public class NetActions : MonoBehaviour
     {
         NetTakeTurn tt = msg as NetTakeTurn;
 
-        Debug.Log($"TT : {tt.teamID} : Attack at grid location ({tt.targetLocationY}, {tt.targetLocationX}) resulted in {tt.targetStatus}");
+        Debug.Log($"TT : Receiving attack at grid location ({tt.targetLocationX}, {tt.targetLocationY}).");
 
-        if(tt.teamID != currentTeam)
+        /*if(tt.teamID != currentTeam)
         {
             hitherormiss.Instance.hitplr(tt.teamID, tt.targetLocationY, tt.targetLocationX);
-        }
+        }*/
     }
 
     private void OnShareShipsClient(NetMessage msg)
