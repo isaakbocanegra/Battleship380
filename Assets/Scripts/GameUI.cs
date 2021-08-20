@@ -114,6 +114,7 @@ public class GameUI : MonoBehaviour
 
     public void HitOrMissStart()
     {
+        print("should only print once");
         while(hitOrMissLooper < 1)
         {
             GameObject temp;
@@ -147,6 +148,8 @@ public class GameUI : MonoBehaviour
             // switch video player background
             menuAnimator.SetTrigger("InGame");
             hitOrMissLooper++;
+            placeship.localShipCount++;
+            P1AllShipsPlaced = false;
         }
     }
 
@@ -181,30 +184,34 @@ public class GameUI : MonoBehaviour
 
     //destroy gridmouse action then add phase2 gridmouse actions
     public void DestroyGridMouseActionsP1(){
-        GameObject temp;
+        GameObject temp, temp2;
 
         for (int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j++){
-                temp = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
-                Destroy(temp.GetComponent<GridMouseP1>());
+                temp = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
+                temp2 = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
+                Destroy(temp.GetComponent<GridMouseP2>());
+                Destroy(temp2.GetComponent<GridMouseP1>());
 
                 if(NetActions.currentTeam == 0){
-                    temp.AddComponent<GridMousephase2>();
+                    temp.AddComponent<GridMouse2phase2>();
                 }
             }
         }
     }
 
     public void DestroyGridMouseActionsP2(){
-        GameObject temp2;
+        GameObject temp, temp2;
 
         for (int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j++){
+                temp = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
                 temp2 = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
+                Destroy(temp.GetComponent<GridMouseP1>());
                 Destroy(temp2.GetComponent<GridMouseP2>());
 
                 if(NetActions.currentTeam == 1){
-                    temp2.AddComponent<GridMouse2phase2>();
+                    temp.AddComponent<GridMousephase2>();
                 }
             }
         }
