@@ -8,10 +8,7 @@ public class GridMouse2phase2 : MonoBehaviour
    private static placeship data = new placeship();
     private hitherormiss hit = ShipActionsP2.hit;
     public SpriteRenderer gridColor;
-    int x = 0;
-    int y = 0;
-    
-    
+    public static int isItMyTurn = 0;
 
     void Start(){
 
@@ -37,16 +34,13 @@ public class GridMouse2phase2 : MonoBehaviour
     void OnMouseDown(){
         // greyish
         // data.colorotherguysships();
-        hittingplayertime();
+        if(isItMyTurn == 1)
+        {
+            hittingplayertime();
+            isItMyTurn = 0;
+        }
 
         //gridColor.color = new Color(0.25f, 0.25f, 0.25f, 1);
-
-        // Net Implementation
-        NetTakeTurn tt = new NetTakeTurn();
-        tt.targetLocationX = x;
-        tt.targetLocationY = y;
-        print($"Location being attacked is ({tt.targetLocationX}, {tt.targetLocationY}).");
-        Client.Instance.SendToServer(tt);
     }
 
     void OnMouseUp(){
@@ -88,16 +82,19 @@ public class GridMouse2phase2 : MonoBehaviour
 
     private void hittingplayertime()
     {
+        // Net Implementation
+        NetTakeTurn tt = new NetTakeTurn();
 
 
         int[] rowcolumn = extractcoordinatename(gridColor);
         if (hit.hitlocalotherplr(1, rowcolumn[0], rowcolumn[1]))
         {
+            tt.targetLocationX = rowcolumn[1];
+            tt.targetLocationY = rowcolumn[0];
             print("Life is good and we are gonna color either red or blue");
             hit.gridmapforplr(1);
             hit.gridmapforplr(2);
             hit.scanandcolorlocalother(1);
-
         }
         else
         {
@@ -106,6 +103,7 @@ public class GridMouse2phase2 : MonoBehaviour
             hit.gridmapforplr(2);
         }
 
-
+        print($"Location being attacked is ({tt.targetLocationX}, {tt.targetLocationY}).");
+        Client.Instance.SendToServer(tt);
     }
 }

@@ -7,6 +7,7 @@ public class NetActions : MonoBehaviour
     public static int playerCount = -1;
     public static int currentTeam = -1;
     public static placeship sendShip = new placeship();
+    public static hitherormiss iGuessTheyNeverMiss = new hitherormiss();
 
     private void Awake()
     {
@@ -70,6 +71,10 @@ public class NetActions : MonoBehaviour
         NetTakeTurn tt = msg as NetTakeTurn;
 
         Debug.Log($"TT : Receiving attack at grid location ({tt.targetLocationX}, {tt.targetLocationY}).");
+
+        iGuessTheyNeverMiss.hitlocalotherplr(1, tt.targetLocationY, tt.targetLocationX);
+        iGuessTheyNeverMiss.scanandcolorlocalother(1);
+        print("this prints if server is attacked");
     }
 
     private void OnShareShipsServer(NetMessage msg, NetworkConnection cnn)
@@ -120,10 +125,8 @@ public class NetActions : MonoBehaviour
 
         Debug.Log($"TT : Receiving attack at grid location ({tt.targetLocationX}, {tt.targetLocationY}).");
 
-        /*if(tt.teamID != currentTeam)
-        {
-            hitherormiss.Instance.hitplr(tt.teamID, tt.targetLocationY, tt.targetLocationX);
-        }*/
+        iGuessTheyNeverMiss.hitlocalotherplr(2, tt.targetLocationY, tt.targetLocationX);
+        iGuessTheyNeverMiss.scanandcolorlocalother(2);
     }
 
     private void OnShareShipsClient(NetMessage msg)

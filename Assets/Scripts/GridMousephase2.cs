@@ -7,8 +7,7 @@ public class GridMousephase2 : MonoBehaviour
     private static placeship data = new placeship();
     private hitherormiss hit = ShipActionsP1.hit;
     public SpriteRenderer gridColor;
-    int x = 0;
-    int y = 0;
+    public static int isItMyTurn = 1;
 
     void Start(){
         print("gridmousephase2 has been started and loaded------------------------------");
@@ -16,7 +15,6 @@ public class GridMousephase2 : MonoBehaviour
         gridColor = GetComponent<SpriteRenderer>();
         hit.copy2dforplrarray(data.getboard(1), 1);
         hit.copy2dforplrarray(data.getboard(2), 2);
-        
     }
 
     // Update is called once per frame
@@ -30,17 +28,12 @@ public class GridMousephase2 : MonoBehaviour
     }
 
     void OnMouseDown(){
-
-        hittingplayertime();
-
+        if(isItMyTurn == 1)
+        {
+            hittingplayertime();
+            isItMyTurn = 0;
+        }
         //gridColor.color = new Color(0.25f, 0.25f, 0.25f, 1);
-
-        // Net Implementation
-        NetTakeTurn tt = new NetTakeTurn();
-        tt.targetLocationX = x;
-        tt.targetLocationY = y;
-        print($"Location being attacked is ({tt.targetLocationX}, {tt.targetLocationY}).");
-        Server.Instance.SendToClient(Server.connections[1], tt);
     }
 
     void OnMouseUp(){
@@ -81,11 +74,15 @@ public class GridMousephase2 : MonoBehaviour
 
     private void hittingplayertime()
     {
+        // Net Implementation
+        NetTakeTurn tt = new NetTakeTurn();
         
-
+        
         int[] rowcolumn = extractcoordinatename(gridColor);
         if (hit.hitlocalotherplr(2, rowcolumn[0], rowcolumn[1]))
         {
+            tt.targetLocationX = rowcolumn[1];
+            tt.targetLocationY = rowcolumn[0];
             print("Life is good and we are gonna color either red or blue");
             hit.gridmapforplr(1);
             hit.gridmapforplr(2);
@@ -99,6 +96,7 @@ public class GridMousephase2 : MonoBehaviour
             hit.gridmapforplr(2);
         }
 
-        
+        print($"Location being attacked is ({tt.targetLocationX}, {tt.targetLocationY}).");
+        Server.Instance.SendToClient(Server.connections[1], tt);
     }
 }

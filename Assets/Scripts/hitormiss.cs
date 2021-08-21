@@ -63,7 +63,7 @@ public class hitherormiss : MonoBehaviour
 
 
     //doublearray with map and ship positios for player 1
-    public   int[,] plr1arre = {
+    public static int[,] plr1arre = {
 
         { 0,0,0,0,0,0,0,0},
         { 0,0,0,0,0,0,0,0},
@@ -76,7 +76,7 @@ public class hitherormiss : MonoBehaviour
         };
 
     //doublearray with map and ship positios for player 2
-    public   int[,] plr2arre = {
+    public static int[,] plr2arre = {
 
         { 0,0,0,0,0,0,0,0},
         { 0,0,0,0,0,0,0,0},
@@ -129,7 +129,7 @@ public class hitherormiss : MonoBehaviour
             print(" time to see what player1s grid looks like so far in the hit or miss class with data loaded------------------------------------------------------------------");
             for (int i = 0; i < 8; i++)
             {
-                print(this.plr1arre[i, 0] + " " + this.plr1arre[i, 1] + " " + this.plr1arre[i, 2] + " " + this.plr1arre[i, 3] + " " + this.plr1arre[i, 4] + " " + this.plr1arre[i, 5] + " " + this.plr1arre[i, 6] + " " + this.plr1arre[i, 7]);
+                print(plr1arre[i, 0] + " " + plr1arre[i, 1] + " " + plr1arre[i, 2] + " " + plr1arre[i, 3] + " " + plr1arre[i, 4] + " " + plr1arre[i, 5] + " " + plr1arre[i, 6] + " " + plr1arre[i, 7]);
 
 
             }
@@ -140,7 +140,7 @@ public class hitherormiss : MonoBehaviour
             print(" time to see what player2s grid looks like so far in the hit or miss class with data loaded------------------------------------------------------------------");
             for (int i = 0; i < 8; i++)
             {
-                print(this.plr2arre[i, 0] + " " + this.plr2arre[i, 1] + " " + this.plr2arre[i, 2] + " " + this.plr2arre[i, 3] + " " + this.plr2arre[i, 4] + " " + this.plr2arre[i, 5] + " " + this.plr2arre[i, 6] + " " + this.plr2arre[i, 7]);
+                print(plr2arre[i, 0] + " " + plr2arre[i, 1] + " " + plr2arre[i, 2] + " " + plr2arre[i, 3] + " " + plr2arre[i, 4] + " " + plr2arre[i, 5] + " " + plr2arre[i, 6] + " " + plr2arre[i, 7]);
 
 
             }
@@ -161,7 +161,7 @@ public class hitherormiss : MonoBehaviour
             {
                 for (int q = 0; q < 8; q++) {
 
-                    this.plr1arre[i, q] = arretocopy[i, q] ;
+                    plr1arre[i, q] = arretocopy[i, q] ;
 
                     
                 
@@ -179,7 +179,7 @@ public class hitherormiss : MonoBehaviour
             {
                 for (int q = 0; q < 8; q++)
                 {
-                    this.plr2arre[i, q] = arretocopy[i, q];
+                    plr2arre[i, q] = arretocopy[i, q];
                 }
             }
 
@@ -195,10 +195,14 @@ public class hitherormiss : MonoBehaviour
         if(plr == 1){
             if(plr1arre[row,column] == 0){
                 plr1arre[row, column] = 2;
+                GridMousephase2.isItMyTurn = 1;
+                print("its p1 turn now");
                 return true;
             }
             else if(plr1arre[row,column] == 1){
                 plr1arre[row, column] = -1;
+                GridMousephase2.isItMyTurn = 1;
+                print("its p1 turn now");
                 return true;
             }
             else if(plr1arre[row,column] == -1 || plr1arre[row,column] == 2){
@@ -208,16 +212,21 @@ public class hitherormiss : MonoBehaviour
         if(plr == 2){
             if(plr2arre[row,column] == 0){
                 plr2arre[row, column] = 2;
+                GridMouse2phase2.isItMyTurn = 1;
+                print("its p2 turn now");
                 return true;
             }
             else if(plr2arre[row,column] == 1){
                 plr2arre[row, column] = -1;
+                GridMouse2phase2.isItMyTurn = 1;
+                print("its p2 turn now");
                 return true;
             }
             else if(plr2arre[row,column] == -1 || plr2arre[row,column] == 2){
                 return false;
             }
         }
+
         return false;
 
     }
@@ -252,10 +261,10 @@ public class hitherormiss : MonoBehaviour
                 {
 
                     if (plr2arre[i, q] == 2)
-                        GameObject.Find("Player2BoardParent/X:" + i + ", Y" + q).GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 1f, 1);
+                        GameObject.Find("Player2BoardParent/X:" + i + ", Y" + q).GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 1f, 1); //blue
 
                     if (plr2arre[i, q] == -1)
-                        GameObject.Find("Player2BoardParent/X:" + i + ", Y" + q).GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f, 1);
+                        GameObject.Find("Player2BoardParent/X:" + i + ", Y" + q).GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f, 1); //red
 
                 }
             }
@@ -271,9 +280,9 @@ public class hitherormiss : MonoBehaviour
 
         if (teamID == 1)
         {
-            if (this.plr1arre[targetLocationY, targetLocationX] == 1)
+            if (plr1arre[targetLocationY, targetLocationX] == 1)
             {
-                this.plr1arre[targetLocationY, targetLocationX] = -1;
+                plr1arre[targetLocationY, targetLocationX] = -1;
                 // hit.color = vis;
                 //print("There was a hit at row" + targetLocationX + " and at column " + targetLocationY);
                 //print("the new board now for player 1 is ");
@@ -285,9 +294,9 @@ public class hitherormiss : MonoBehaviour
             /// above is if we hit a ship 
             /// 
 
-            if (this.plr1arre[targetLocationY, targetLocationX] == 0)
+            if (plr1arre[targetLocationY, targetLocationX] == 0)
             {
-                this.plr1arre[targetLocationY, targetLocationX] = 2;
+                plr1arre[targetLocationY, targetLocationX] = 2;
                 // hit.color = vis;
                 //print("There was a miss at row" + targetLocationX + " and at column " + targetLocationY);
                 //print("the new board now for player 1 is ");
@@ -301,9 +310,9 @@ public class hitherormiss : MonoBehaviour
         }
         else if (teamID==2)
         {
-            if (this.plr2arre[targetLocationY, targetLocationX] == 1)
+            if (plr2arre[targetLocationY, targetLocationX] == 1)
             {
-                this.plr2arre[targetLocationY, targetLocationX] = -1;
+                plr2arre[targetLocationY, targetLocationX] = -1;
                 // hit.color = vis;
                 //print("There was a hit at y" + targetLocationX + " and at x " + targetLocationY);
                 //print("the new board now for player 2 is ");
@@ -315,9 +324,9 @@ public class hitherormiss : MonoBehaviour
             /// above is if we hit a ship 
             /// 
 
-            if (this.plr2arre[targetLocationY, targetLocationX] == 0)
+            if (plr2arre[targetLocationY, targetLocationX] == 0)
             {
-                this.plr2arre[targetLocationY, targetLocationX] = 2;
+                plr2arre[targetLocationY, targetLocationX] = 2;
                 // hit.color = vis;
                 //print("There was a miss at row" + targetLocationX + " and at column " + targetLocationY);
                 //print("the new board now for player 2 is ");
