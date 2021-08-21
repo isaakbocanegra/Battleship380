@@ -28,7 +28,10 @@ public class GridMouse2phase2 : MonoBehaviour
     }
 
     void OnMouseEnter(){
+        int[] rowcolumn = extractcoordinatename(gridColor);
         //gridColor.color = new Color(0.5f, 0.5f, 0.5f, 1);
+        if (hit.gettileinfo(1, rowcolumn[0], rowcolumn[1]) == 0|| hit.gettileinfo(1, rowcolumn[0], rowcolumn[1]) == 1)
+            gridColor.color = new Color(0.5f, 0.5f, 0.5f, 1);
     }
 
     void OnMouseDown(){
@@ -50,7 +53,11 @@ public class GridMouse2phase2 : MonoBehaviour
 
     void OnMouseExit(){
         // white/transparent
-       // gridColor.color = new Color(1, 1, 1, 1);
+        int[] rowcolumn = extractcoordinatename(gridColor);
+        //gridColor.color = new Color(0.5f, 0.5f, 0.5f, 1);
+        if (hit.gettileinfo(1, rowcolumn[0], rowcolumn[1]) == 0 || hit.gettileinfo(1, rowcolumn[0], rowcolumn[1]) == 1)
+            gridColor.color = new Color(1f, 1f, 1f, 1);
+        // gridColor.color = new Color(1, 1, 1, 1);
     }
 
 
