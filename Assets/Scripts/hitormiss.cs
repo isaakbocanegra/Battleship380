@@ -199,40 +199,40 @@ public class hitherormiss : MonoBehaviour
         if(plr == 1){
             if(plr1arre[row,column] == 0){
                 plr1arre[row, column] = 2;
-                GridMousephase2.isItMyTurn = 1;
+                ShipActionsP1.isItMyTurn = 1;
                 print("its p1 turn now");
                 checkThemBoards();
                 return true;
             }
             else if(plr1arre[row,column] == 1){
                 plr1arre[row, column] = -1;
-                GridMousephase2.isItMyTurn = 1;
+                ShipActionsP1.isItMyTurn = 1;
                 print("its p1 turn now");
                 checkThemBoards();
                 return true;
             }
             else if(plr1arre[row,column] == -1 || plr1arre[row,column] == 2){
-                GridMouse2phase2.isItMyTurn = 1;
+                ShipActionsP2.isItMyTurn = 1;
                 return false;
             }
         }
         if(plr == 2){
             if(plr2arre[row,column] == 0){
                 plr2arre[row, column] = 2;
-                GridMouse2phase2.isItMyTurn = 1;
+                ShipActionsP2.isItMyTurn = 1;
                 print("its p2 turn now");
                 checkThemBoards();
                 return true;
             }
             else if(plr2arre[row,column] == 1){
                 plr2arre[row, column] = -1;
-                GridMouse2phase2.isItMyTurn = 1;
+                ShipActionsP2.isItMyTurn = 1;
                 print("its p2 turn now");
                 checkThemBoards();
                 return true;
             }
             else if(plr2arre[row,column] == -1 || plr2arre[row,column] == 2){
-                GridMousephase2.isItMyTurn = 1;
+                ShipActionsP1.isItMyTurn = 1;
                 return false;
             }
         }

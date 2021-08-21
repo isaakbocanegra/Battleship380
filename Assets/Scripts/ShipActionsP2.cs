@@ -7,6 +7,7 @@ public class ShipActionsP2 : MonoBehaviour
     public SpriteRenderer gridColor;
     public static placeship placer = new placeship();
     public static hitherormiss hit = new hitherormiss();
+    public static int isItMyTurn = 0;
 
     void Start()
     {

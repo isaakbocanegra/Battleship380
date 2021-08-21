@@ -7,7 +7,6 @@ public class GridMousephase2 : MonoBehaviour
     private static placeship data = new placeship();
     private hitherormiss hit = ShipActionsP1.hit;
     public SpriteRenderer gridColor;
-    public static int isItMyTurn = 1;
 
     void Start(){
         print("gridmousephase2 has been started and loaded------------------------------");
@@ -28,10 +27,10 @@ public class GridMousephase2 : MonoBehaviour
     }
 
     void OnMouseDown(){
-        if(isItMyTurn == 1)
+        if(ShipActionsP1.isItMyTurn == 1)
         {
+            ShipActionsP1.isItMyTurn = 0;
             hittingplayertime();
-            isItMyTurn = 0;
         }
         //gridColor.color = new Color(0.25f, 0.25f, 0.25f, 1);
     }
