@@ -17,20 +17,19 @@ public class WaitTest : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        bool start = false;
+        //bool start = false;
         // this test prints "for starting"
         // waits 10 seconds
         // then prints "we ended"
 
-        if (start == false)
-            Destroy(panel);
+        
 
 
         //----------------------------------------
         RectTransform panlpos = panel.GetComponent<RectTransform>();
 
         print("your panel position is " + panlpos.position);
-        panlpos.position = new Vector3((float)1000.4, 436, 0);
+        panlpos.position = new Vector3((float)(GameObject.Find("JoinGame").transform.position.x + 700), GameObject.Find("JoinGame").transform.position.y+400, GameObject.Find("JoinGame").transform.position.z);
         print("For starting");
         yield return StartCoroutine(Waitforseconds(5.0f));
         yield return StartCoroutine(makecheemsvisorinvis(false));// make it visable
