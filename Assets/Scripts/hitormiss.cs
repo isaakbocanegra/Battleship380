@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; 
+using UnityEngine.SceneManagement;
+
 public class HitOrMiss : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -60,6 +62,7 @@ public class hitherormiss : MonoBehaviour
 
     private Color invis ,vis; // for text
     private Text hit, miss;
+    public int winConditionMet = 0;
 
 
     //doublearray with map and ship positios for player 1
@@ -99,7 +102,6 @@ public class hitherormiss : MonoBehaviour
     //   gridmapforplr(1);
     //   gridmapforplr(2);
     // }
-
 
     public void loadlocalplayersboardin (int playernumber, int [,] localboard)  // this function should just load the local players board-- no networking here
     {
@@ -197,12 +199,14 @@ public class hitherormiss : MonoBehaviour
                 plr1arre[row, column] = 2;
                 GridMousephase2.isItMyTurn = 1;
                 print("its p1 turn now");
+                checkThemBoards();
                 return true;
             }
             else if(plr1arre[row,column] == 1){
                 plr1arre[row, column] = -1;
                 GridMousephase2.isItMyTurn = 1;
                 print("its p1 turn now");
+                checkThemBoards();
                 return true;
             }
             else if(plr1arre[row,column] == -1 || plr1arre[row,column] == 2){
@@ -214,12 +218,14 @@ public class hitherormiss : MonoBehaviour
                 plr2arre[row, column] = 2;
                 GridMouse2phase2.isItMyTurn = 1;
                 print("its p2 turn now");
+                checkThemBoards();
                 return true;
             }
             else if(plr2arre[row,column] == 1){
                 plr2arre[row, column] = -1;
                 GridMouse2phase2.isItMyTurn = 1;
                 print("its p2 turn now");
+                checkThemBoards();
                 return true;
             }
             else if(plr2arre[row,column] == -1 || plr2arre[row,column] == 2){
@@ -229,6 +235,33 @@ public class hitherormiss : MonoBehaviour
 
         return false;
 
+    }
+
+    public void checkThemBoards()
+    {
+        if(detectwinner() == 1)
+        {
+            if(NetActions.currentTeam == 0)
+            {
+                SceneManager.LoadScene("Win Screen");
+            }
+            if(NetActions.currentTeam == 1)
+            {
+                SceneManager.LoadScene("Lose Screen");
+            }
+        }
+
+        else if(detectwinner() == 2)
+        {
+            if(NetActions.currentTeam == 0)
+            {
+                SceneManager.LoadScene("Lose Screen");
+            }
+            if(NetActions.currentTeam == 1)
+            {
+                SceneManager.LoadScene("Win Screen");
+            }
+        }
     }
 
 
