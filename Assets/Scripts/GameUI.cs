@@ -265,9 +265,9 @@ public class GameUI : MonoBehaviour
     public void BackToMainMenuButton(){
         server.Shutdown();
         client.Shutdown();
-        if(NetActions.playerCount > 0)
+        if(NetActions.currentTeam == 0)
         {
-            NetActions.playerCount -= 1;
+            NetActions.playerCount -=1;
         }
         Debug.Log("BackToMainMenuButton");
         menuAnimator.SetTrigger("StartMenu");
