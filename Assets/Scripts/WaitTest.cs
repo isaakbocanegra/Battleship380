@@ -22,18 +22,20 @@ public class WaitTest : MonoBehaviour
         // waits 10 seconds
         // then prints "we ended"
 
-        yield return StartCoroutine(Waitforseconds(5.0f));
+        
 
 
         //----------------------------------------
-        RectTransform panlpos = panel.GetComponent<RectTransform>();
+        RectTransform rt = panel.GetComponent<RectTransform>();
 
         //print("your panel position is " + panlpos.position);
-        panlpos.localPosition = GameObject.Find("JoinGame").GetComponent<RectTransform>().localPosition;
+        // rt.anchorMin = Vector2.zero;
+        // rt.anchorMax = Vector2.one;
+        rt.transform.position = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0);
         //pan1pos.transform.position = GameObject.Find("JoinGame").transform.position;
         // panlpos.position = new Vector3((float)(GameObject.Find("JoinGame").transform.position.x + 100), GameObject.Find("JoinGame").transform.position.y+100, GameObject.Find("JoinGame").transform.position.z);
         print("For starting");
-       
+        yield return StartCoroutine(Waitforseconds(5.0f));
         yield return StartCoroutine(makecheemsvisorinvis(false));// make it visable
         yield return StartCoroutine(makecheemsvisorinvis(true));
 
