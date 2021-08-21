@@ -59,6 +59,7 @@ public class HitOrMiss : MonoBehaviour
 public class hitherormiss : MonoBehaviour 
 {
     public static hitherormiss Instance { set; get; }
+    public static bool hasBeenClicked = true;
 
     private Color invis ,vis; // for text
     private Text hit, miss;
@@ -194,6 +195,7 @@ public class hitherormiss : MonoBehaviour
         // if hit water(0), = miss(2) & return true
         // if hit ship(1),  = hit(-1) & return true
         // if hit spot thats already been hit (-1 or 2), return false
+        
         if(plr == 1){
             if(plr1arre[row,column] == 0){
                 plr1arre[row, column] = 2;
@@ -210,6 +212,7 @@ public class hitherormiss : MonoBehaviour
                 return true;
             }
             else if(plr1arre[row,column] == -1 || plr1arre[row,column] == 2){
+                GridMouse2phase2.isItMyTurn = 1;
                 return false;
             }
         }
@@ -229,6 +232,7 @@ public class hitherormiss : MonoBehaviour
                 return true;
             }
             else if(plr2arre[row,column] == -1 || plr2arre[row,column] == 2){
+                GridMousephase2.isItMyTurn = 1;
                 return false;
             }
         }

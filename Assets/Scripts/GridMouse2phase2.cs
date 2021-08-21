@@ -95,6 +95,8 @@ public class GridMouse2phase2 : MonoBehaviour
             hit.gridmapforplr(1);
             hit.gridmapforplr(2);
             hit.scanandcolorlocalother(1);
+            print($"Location being attacked is ({tt.targetLocationX}, {tt.targetLocationY}).");
+            Client.Instance.SendToServer(tt);
         }
         else
         {
@@ -102,8 +104,5 @@ public class GridMouse2phase2 : MonoBehaviour
             hit.gridmapforplr(1);
             hit.gridmapforplr(2);
         }
-
-        print($"Location being attacked is ({tt.targetLocationX}, {tt.targetLocationY}).");
-        Client.Instance.SendToServer(tt);
     }
 }

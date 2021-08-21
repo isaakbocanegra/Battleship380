@@ -77,7 +77,6 @@ public class GridMousephase2 : MonoBehaviour
         // Net Implementation
         NetTakeTurn tt = new NetTakeTurn();
         
-        
         int[] rowcolumn = extractcoordinatename(gridColor);
         if (hit.hitlocalotherplr(2, rowcolumn[0], rowcolumn[1]))
         {
@@ -87,7 +86,8 @@ public class GridMousephase2 : MonoBehaviour
             hit.gridmapforplr(1);
             hit.gridmapforplr(2);
             hit.scanandcolorlocalother(2);
-
+            print($"Location being attacked is ({tt.targetLocationX}, {tt.targetLocationY}).");
+            Server.Instance.SendToClient(Server.connections[1], tt);
         }
         else
         {
@@ -95,8 +95,5 @@ public class GridMousephase2 : MonoBehaviour
             hit.gridmapforplr(1);
             hit.gridmapforplr(2);
         }
-
-        print($"Location being attacked is ({tt.targetLocationX}, {tt.targetLocationY}).");
-        Server.Instance.SendToClient(Server.connections[1], tt);
     }
 }
