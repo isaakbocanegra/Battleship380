@@ -29,7 +29,7 @@ public class WaitTest : MonoBehaviour
         RectTransform panlpos = panel.GetComponent<RectTransform>();
 
         print("your panel position is " + panlpos.position);
-        panlpos.position = new Vector3((float)(GameObject.Find("JoinGame").transform.position.x + 700), GameObject.Find("JoinGame").transform.position.y+400, GameObject.Find("JoinGame").transform.position.z);
+        panlpos.position = new Vector3(1150, 750, 0);
         print("For starting");
         yield return StartCoroutine(Waitforseconds(5.0f));
         yield return StartCoroutine(makecheemsvisorinvis(false));// make it visable
