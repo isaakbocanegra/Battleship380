@@ -20,7 +20,7 @@ public class Server : MonoBehaviour
     public static NativeList<NetworkConnection> connections;
 
     private bool isActive = false;
-    private const float keepAliveTickRate = 2.5f; //default 30 second w/out update causes timeout, disconnecting the client, this stops that from happening by sending a message every 20 seconds
+    private const float keepAliveTickRate = 10f; //default 10 second w/out update causes timeout, disconnecting the client, this stops that from happening by sending a message every 20 seconds
     private float lastKeepAlive;
 
     public Action connectionDropped;

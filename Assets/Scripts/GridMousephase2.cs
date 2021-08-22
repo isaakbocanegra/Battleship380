@@ -19,16 +19,13 @@ public class GridMousephase2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        GameUI.Instance.WhosTurnIsIt();
     }
 
     void OnMouseEnter(){
         int[] rowcolumn = extractcoordinatename(gridColor);
         if (hit.gettileinfo(2,rowcolumn[0],rowcolumn[1])==0|| hit.gettileinfo(2, rowcolumn[0], rowcolumn[1]) == 1)
-        gridColor.color = new Color(0.5f, 0.5f, 0.5f, 1);
-
-
-
+            gridColor.color = new Color(0.5f, 0.5f, 0.5f, 1);
     }
 
     void OnMouseDown(){

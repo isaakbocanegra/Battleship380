@@ -14,6 +14,7 @@ public class GameUI : MonoBehaviour
     public bool P2AllShipsPlaced = false;
     public int hitOrMissSceneChangeLooper = 0;
     public int looperInsideHitOrMissLooper = 0;
+    public Text PlayerTurn;
     
     [SerializeField] private Animator menuAnimator;
     [SerializeField] private InputField addressInput;
@@ -279,6 +280,25 @@ public class GameUI : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    // Changes turn text in gameplay
+    public void WhosTurnIsIt()
+    {
+        if(NetActions.currentTeam == 0)
+        {
+            if(ShipActionsP1.isItMyTurn == 1)
+                PlayerTurn.text = "Your Turn";
+            else
+                PlayerTurn.text = "Enemy's Turn";
+        }
+        else if(NetActions.currentTeam == 1)
+        {
+            if(ShipActionsP2.isItMyTurn == 1)
+                PlayerTurn.text = "Your Turn";
+            else
+                PlayerTurn.text = "Enemy's Turn";
         }
     }
 

@@ -64,6 +64,7 @@ public class hitherormiss : MonoBehaviour
     private Color invis ,vis; // for text
     private Text hit, miss;
     public int winConditionMet = 0;
+    public Text PlayerTurn;
 
 
     //doublearray with map and ship positios for player 1
