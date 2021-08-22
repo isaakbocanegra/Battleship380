@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; 
 
 public class GameUI : MonoBehaviour
 {
@@ -71,6 +72,7 @@ public class GameUI : MonoBehaviour
     // "cred" from main
     public void OnCreditsButton(){
         Debug.Log("OnCreditsButton");
+        SceneManager.LoadScene("HowTo");
     }
 
     public void BackToMainFromConnect(){
