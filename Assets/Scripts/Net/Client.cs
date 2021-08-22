@@ -101,11 +101,11 @@ public class Client : MonoBehaviour
             else if(cmd == NetworkEvent.Type.Disconnect)
             {
                 Debug.Log("Client was disconnected from server...");
-                EnterIPText.text = "You have disconnected from";
+                EnterIPText.text = "Enter Host IP Address:";
                 connection = default(NetworkConnection);
                 connectionDropped?.Invoke();
                 --NetActions.playerCount;
-                Shutdown();
+                GameUI.Instance.BackToMainFromPlayScreen();
             }
         }
     }
@@ -140,12 +140,3 @@ public class Client : MonoBehaviour
         SendToServer(nm);
     }
 }
-
-/*public class CLient : MonoBehaviour
-{
-    public static Client instance;
-    public static int dataBufferSize = 4096;
-
-    public string ip = "127.0.0.1";
-    public int port = 8007;
-}*/

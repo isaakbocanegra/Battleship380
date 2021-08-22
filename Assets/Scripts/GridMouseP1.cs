@@ -28,7 +28,7 @@ public class GridMouseP1 : MonoBehaviour
     }
     
     // name formatting exampple "X:0, Y0"
-    void OnMouseEnter()
+    void OnMouseOver()
     {
 
        
@@ -56,8 +56,6 @@ public class GridMouseP1 : MonoBehaviour
     void OnMouseDown() 
     {
         gridColor.color = new Color(0.25f, 0.25f, 0.25f, 1);
-
-         
         moveship();
       //  print("The current tile is being clicked " + gridColor.name);
     }
@@ -187,7 +185,8 @@ public class GridMouseP1 : MonoBehaviour
     }
 
     private int getoffsetandplace()
-    {   string objectoreturn = ""; 
+    {   
+        string objectoreturn = ""; 
         string cordgy = "";
         if (!vertical)
         {

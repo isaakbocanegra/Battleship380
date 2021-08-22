@@ -50,13 +50,15 @@ public class NetActions : MonoBehaviour
     {
         // Client has connected, assign a team (team 1) and return message back to client
         NetWelcome nw = msg as NetWelcome;
-
+        if(playerCount != 0)
+        {
+            playerCount = -1;
+        }
         // Assign the team
         nw.AssignedTeam = ++playerCount;
 
         // Return value back to client
         Server.Instance.SendToClient(cnn, nw);
-
         // If full, move to setup phase
         if(playerCount == 1)
         {

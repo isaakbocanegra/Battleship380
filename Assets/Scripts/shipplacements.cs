@@ -316,8 +316,8 @@ public class placeship : MonoBehaviour {
             {
                 plr1board[selection[0], rowcolumn[1]] = 1;
                 plr1board[selection[1], rowcolumn[1]] = 1;
-                /* GameObject.Find("Player1BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
-                 GameObject.Find("Player1BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1); */
+                //Destroy(GameObject.Find("Player1BoardParent/X:" + selection[0] + ", Y" + rowcolumn[1]).GetComponent<BoxCollider2D>());
+                //Destroy(GameObject.Find("Player1BoardParent/X:" + selection[1] + ", Y" + rowcolumn[1]).GetComponent<BoxCollider2D>());
 
              }
              if (shipsize == 3)

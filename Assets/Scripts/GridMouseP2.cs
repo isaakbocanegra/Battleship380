@@ -24,7 +24,7 @@ public class GridMouseP2 : MonoBehaviour
     }
     
     // name formatting exampple "X:0, Y0"
-    void OnMouseEnter(){
+    void OnMouseOver(){
   
        // GameObject.Find("Player2BoardParent/X:0, Y0").GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
         gridColor.color = new Color(0.5f, 0.5f, 0.5f, 1);
@@ -75,16 +75,16 @@ public class GridMouseP2 : MonoBehaviour
      
     private void moveship()
     {
-        if (vertical){
-            selectedship.transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        else if(!vertical){
-            selectedship.transform.rotation = Quaternion.Euler(0, 0, 90);
-        }
+            if(vertical){
+                selectedship.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if(!vertical){
+                selectedship.transform.rotation = Quaternion.Euler(0, 0, 90);
+            }
 
         string cords =getdetailedcords();
 
-        if (placer.isthatshipinallready(shipname)){
+        if(placer.isthatshipinallready(shipname)){
             print("you already placed the " + shipname.ToString());
             placer.shipsallreadyplaced();
 
@@ -149,6 +149,7 @@ public class GridMouseP2 : MonoBehaviour
     }
 
     private int getoffsetandplace(){
+
         string objectoreturn = ""; 
         string cordgy = "";
         if (!vertical){

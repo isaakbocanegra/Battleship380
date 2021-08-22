@@ -52,12 +52,12 @@ public static class NetUtility
     public static Action<NetMessage> C_SHARE_SHIPS;
     public static Action<NetMessage> C_START_GAME;
     public static Action<NetMessage> C_TAKE_TURN;
-    public static Action<NetMessage> C_REMATCH;
+    //public static Action<NetMessage> C_REMATCH;
     public static Action<NetMessage, NetworkConnection> S_KEEP_ALIVE;
     public static Action<NetMessage, NetworkConnection> S_WELCOME;
     public static Action<NetMessage, NetworkConnection> S_SETUP_PHASE;
     public static Action<NetMessage, NetworkConnection> S_SHARE_SHIPS;
     public static Action<NetMessage, NetworkConnection> S_START_GAME;
     public static Action<NetMessage, NetworkConnection> S_TAKE_TURN;
-    public static Action<NetMessage, NetworkConnection> S_REMATCH;
+    //public static Action<NetMessage, NetworkConnection> S_REMATCH;
 }

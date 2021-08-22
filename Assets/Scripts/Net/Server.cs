@@ -20,7 +20,7 @@ public class Server : MonoBehaviour
     public static NativeList<NetworkConnection> connections;
 
     private bool isActive = false;
-    private const float keepAliveTickRate = 20.0f; //default 30 second w/out update causes timeout, disconnecting the client, this stops that from happening by sending a message every 20 seconds
+    private const float keepAliveTickRate = 2.5f; //default 30 second w/out update causes timeout, disconnecting the client, this stops that from happening by sending a message every 20 seconds
     private float lastKeepAlive;
 
     public Action connectionDropped;
@@ -88,6 +88,10 @@ public class Server : MonoBehaviour
         {
             WaitingForPlayer2.text = "Player 2 has connected!";
         }
+        else
+        {
+            WaitingForPlayer2.text = "Waiting for Player 2...";
+        }
     }
 
     private void KeepAlive()
@@ -144,7 +148,7 @@ public class Server : MonoBehaviour
                     connections[i] = default(NetworkConnection);
                     connectionDropped?.Invoke();
                     --NetActions.playerCount;
-                    Shutdown(); // Would not happen in a game with more than 2 players, only happens here cuz 2 player
+                     // Would not happen in a game with more than 2 players, only happens here cuz 2 player
                 }
             }
         }

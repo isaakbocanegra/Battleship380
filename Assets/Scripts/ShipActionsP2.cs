@@ -25,7 +25,7 @@ public class ShipActionsP2 : MonoBehaviour
 
     private void whatistheshipsize()
     {
-        if (this.name.ToString() == "P2Aircraft_Carrier")
+        if (gridColor.name.ToString() == "P2Aircraft_Carrier")
         {
             GridMouseP2.shipname = "P2Aircraft_Carrier";
             GridMouseP2.selectedship= GameObject.Find("P2Aircraft_Carrier");
@@ -64,32 +64,34 @@ public class ShipActionsP2 : MonoBehaviour
 
     private bool isthisaship()
     {
-        if (gridColor.name == "P2Aircraft_Carrier")
-        {
-            GridMouseP2.shipsize = 5;
-            return true;
+        string shipNameChecker = gridColor.name;
+        if(!placer.isthatshipinallready(shipNameChecker)){
+            if (gridColor.name == "P2Aircraft_Carrier")
+            {
+                GridMouseP2.shipsize = 5;
+                return true;
+            }
+            else if (gridColor.name == "P2Battleship")
+            {
+                GridMouseP2.shipsize = 4;
+                return true;
+            }
+            else if (gridColor.name == "P2Cruiser")
+            {
+                GridMouseP2.shipsize = 2;
+                return true;
+            }
+            else if (gridColor.name == "P2Submarine")
+            {
+                GridMouseP2.shipsize = 2;
+                return true;
+            }
+            else if (gridColor.name == "P2Destroyer")
+            {
+                GridMouseP2.shipsize = 3;
+                return true;
+            }
         }
-        else if (gridColor.name == "P2Battleship")
-        {
-            GridMouseP2.shipsize = 4;
-            return true;
-        }
-        else if (gridColor.name == "P2Cruiser")
-        {
-            GridMouseP2.shipsize = 2;
-            return true;
-        }
-        else if (gridColor.name == "P2Submarine")
-        {
-            GridMouseP2.shipsize = 2;
-            return true;
-        }
-        else if (gridColor.name == "P2Destroyer")
-        {
-            GridMouseP2.shipsize = 3;
-            return true;
-        }
-        else
-            return false; 
+        return false; 
     }
 }

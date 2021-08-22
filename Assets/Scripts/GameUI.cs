@@ -9,7 +9,6 @@ public class GameUI : MonoBehaviour
 
     public Server server;
     public Client client;
-    public Button submitButton;
     public bool P1AllShipsPlaced = false;
     public bool P2AllShipsPlaced = false;
     public int hitOrMissSceneChangeLooper = 0;
@@ -42,11 +41,8 @@ public class GameUI : MonoBehaviour
 
     // Activate Boards for P1 and P2
     public void ActivateBoards(){
-        submitButton = GameObject.Find("SubmitShipPlacements").GetComponent<Button>();
         Player1Board.p1BoardParent.SetActive(true);
         Player2Board.p2BoardParent.SetActive(true);
-        
-        submitButton.interactable = false;
 
         if(NetActions.currentTeam == 1){
             BoardCameraChange();
@@ -78,8 +74,6 @@ public class GameUI : MonoBehaviour
     }
 
     public void BackToMainFromConnect(){
-        server.Shutdown();
-        client.Shutdown();
         // if player=1
         if(NetActions.currentTeam == 0){
             Vector3 tempPos = Camera.main.transform.position;
@@ -87,6 +81,8 @@ public class GameUI : MonoBehaviour
             tempPos.x -=21f;
             Camera.main.transform.position = tempPos;
             Debug.Log(Camera.main.transform.position.x);
+            server.Shutdown();
+            client.Shutdown();
         }
         // if player=2
         else if(NetActions.currentTeam == 1){
@@ -95,6 +91,7 @@ public class GameUI : MonoBehaviour
             tempPos.x -= 54.8f;
             Camera.main.transform.position = tempPos;
             Debug.Log(Camera.main.transform.position.x);
+            client.Shutdown();
         }
         Debug.Log("BackToMainMenuButton");
         menuAnimator.SetTrigger("StartMenu");
@@ -104,13 +101,28 @@ public class GameUI : MonoBehaviour
         server.Shutdown();
         client.Shutdown();
         // if player=1
-        Vector3 tempPos = Camera.main.transform.position;
-        Debug.Log(Camera.main.transform.position.x);
-        tempPos.x -= 32.9f;
-        Camera.main.transform.position = tempPos;
-        Debug.Log(Camera.main.transform.position.x);
-        Debug.Log("BackToMainMenuButton");
-        menuAnimator.SetTrigger("StartMenu");
+        if(NetActions.currentTeam == 0){
+            Vector3 tempPos = Camera.main.transform.position;
+            Debug.Log(Camera.main.transform.position.x);
+            tempPos.x -= 21f;
+            Camera.main.transform.position = tempPos;
+            Debug.Log(Camera.main.transform.position.x);
+            Debug.Log("BackToMainMenuButton");
+            menuAnimator.SetTrigger("StartMenu");
+            server.Shutdown();
+            client.Shutdown();
+        }
+        // if player=2
+        else if(NetActions.currentTeam == 1){
+            Vector3 tempPos = Camera.main.transform.position;
+            Debug.Log(Camera.main.transform.position.x);
+            tempPos.x -= 32.9f;
+            Camera.main.transform.position = tempPos;
+            Debug.Log(Camera.main.transform.position.x);
+            Debug.Log("BackToMainMenuButton");
+            menuAnimator.SetTrigger("StartMenu");
+            client.Shutdown();
+        }
     }
 
     public void HitOrMissStart()
@@ -233,6 +245,41 @@ public class GameUI : MonoBehaviour
         }
     }
 
+    public void DestroyAndAddCorrectGridMouse(){
+        GameObject temp, temp2;
+
+        if(NetActions.currentTeam == 0)
+        {
+            for (int i = 0; i < 8; i++){
+                for (int j = 0; j < 8; j++){
+                    temp = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
+                    temp2 = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
+                    Destroy(temp.GetComponent<GridMouseP2>());
+                    Destroy(temp2.GetComponent<GridMouseP1>());
+
+                    if(NetActions.currentTeam == 0){
+                        temp2.AddComponent<GridMouseP1>();
+                    }
+                }
+            }
+        }
+        else if(NetActions.currentTeam == 1)
+        {
+            for (int i = 0; i < 8; i++){
+                for (int j = 0; j < 8; j++){
+                    temp = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
+                    temp2 = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
+                    Destroy(temp.GetComponent<GridMouseP2>());
+                    Destroy(temp2.GetComponent<GridMouseP1>());
+
+                    if(NetActions.currentTeam == 1){
+                        temp.AddComponent<GridMouseP2>();
+                    }
+                }
+            }
+        }
+    }
+
     public void OnJoinConnect()
     {   
         client.Init(addressInput.text, 8007);
@@ -245,6 +292,7 @@ public class GameUI : MonoBehaviour
             tempPos.x +=21f;
             Camera.main.transform.position = tempPos;
             Debug.Log(Camera.main.transform.position.x);
+            DestroyAndAddCorrectGridMouse();
         }
         else if(NetActions.currentTeam == 1){
             Vector3 tempPos = Camera.main.transform.position;
@@ -252,6 +300,7 @@ public class GameUI : MonoBehaviour
             tempPos.x +=54.8f;
             Camera.main.transform.position = tempPos;
             Debug.Log(Camera.main.transform.position.x);
+            DestroyAndAddCorrectGridMouse();
         }
     }
 
