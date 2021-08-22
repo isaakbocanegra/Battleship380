@@ -148,7 +148,7 @@ public class Server : MonoBehaviour
                     connections[i] = default(NetworkConnection);
                     connectionDropped?.Invoke();
                     --NetActions.playerCount;
-                     // Would not happen in a game with more than 2 players, only happens here cuz 2 player
+                    GameUI.Instance.BackToMainFromPlayScreen();
                 }
             }
         }

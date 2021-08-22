@@ -82,8 +82,15 @@ public class GameUI : MonoBehaviour
     }
 
     public void BackToMainFromConnect(){
+        GameObject temp, temp2;
         // if player=1
         if(NetActions.currentTeam == 0){
+            for (int i = 0; i < 8; i++){
+                for (int j = 0; j < 8; j++){
+                    temp = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
+                    Destroy(temp.GetComponent<GridMouseP1>());
+                }
+            }
             InGameVideoPlayer.clip = menuBG;
             Vector3 tempPos = Camera.main.transform.position;
             Debug.Log(Camera.main.transform.position.x);
@@ -95,6 +102,12 @@ public class GameUI : MonoBehaviour
         }
         // if player=2
         else if(NetActions.currentTeam == 1){
+            for (int i = 0; i < 8; i++){
+                for (int j = 0; j < 8; j++){
+                    temp2 = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
+                    Destroy(temp2.GetComponent<GridMouseP2>());
+                }
+            }
             InGameVideoPlayer.clip = menuBG;
             Vector3 tempPos = Camera.main.transform.position;
             Debug.Log(Camera.main.transform.position.x);
@@ -112,6 +125,7 @@ public class GameUI : MonoBehaviour
         client.Shutdown();
         // if player=1
         if(NetActions.currentTeam == 0){
+            InGameVideoPlayer.clip = menuBG;
             Vector3 tempPos = Camera.main.transform.position;
             Debug.Log(Camera.main.transform.position.x);
             tempPos.x -= 21f;
@@ -124,9 +138,10 @@ public class GameUI : MonoBehaviour
         }
         // if player=2
         else if(NetActions.currentTeam == 1){
+            InGameVideoPlayer.clip = menuBG;
             Vector3 tempPos = Camera.main.transform.position;
             Debug.Log(Camera.main.transform.position.x);
-            tempPos.x -= 32.9f;
+            tempPos.x -= 54.8f;
             Camera.main.transform.position = tempPos;
             Debug.Log(Camera.main.transform.position.x);
             Debug.Log("BackToMainMenuButton");
@@ -196,7 +211,7 @@ public class GameUI : MonoBehaviour
     }
 
 
-    public void DestroyP2GridMouseActionsP1()
+    /*public void DestroyP2GridMouseActionsP1()
     {
         GameObject temp2;
 
@@ -218,7 +233,7 @@ public class GameUI : MonoBehaviour
                 Destroy(temp.GetComponent<GridMouseP1>());
             }
         }
-    }
+    }*/
 
     //destroy gridmouse action then add phase2 gridmouse actions
     public void DestroyGridMouseActionsP1(){
@@ -256,20 +271,14 @@ public class GameUI : MonoBehaviour
     }
 
     public void DestroyAndAddCorrectGridMouse(){
-        GameObject temp, temp2;
+        GameObject temp;
 
         if(NetActions.currentTeam == 0)
         {
             for (int i = 0; i < 8; i++){
                 for (int j = 0; j < 8; j++){
-                    temp = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
-                    temp2 = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
-                    Destroy(temp.GetComponent<GridMouseP2>());
-                    Destroy(temp2.GetComponent<GridMouseP1>());
-
-                    if(NetActions.currentTeam == 0){
-                        temp2.AddComponent<GridMouseP1>();
-                    }
+                    temp = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
+                    temp.AddComponent<GridMouseP1>();
                 }
             }
         }
@@ -278,13 +287,7 @@ public class GameUI : MonoBehaviour
             for (int i = 0; i < 8; i++){
                 for (int j = 0; j < 8; j++){
                     temp = GameObject.Find("Player2BoardParent/X:"+i+", Y"+j);
-                    temp2 = GameObject.Find("Player1BoardParent/X:"+i+", Y"+j);
-                    Destroy(temp.GetComponent<GridMouseP2>());
-                    Destroy(temp2.GetComponent<GridMouseP1>());
-
-                    if(NetActions.currentTeam == 1){
-                        temp.AddComponent<GridMouseP2>();
-                    }
+                    temp.AddComponent<GridMouseP2>();
                 }
             }
         }
@@ -317,6 +320,7 @@ public class GameUI : MonoBehaviour
     public void BoardCameraChange(){
         if(NetActions.currentTeam == 0){
             InGameVideoPlayer.clip = topDown;
+            NetActions.playerCount -=1;
             Vector3 tempPos = Camera.main.transform.position;
             Debug.Log(Camera.main.transform.position.x);
             tempPos.x +=21f;
