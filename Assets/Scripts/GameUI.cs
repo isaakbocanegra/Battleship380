@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement; 
 
@@ -15,6 +16,9 @@ public class GameUI : MonoBehaviour
     public int hitOrMissSceneChangeLooper = 0;
     public int looperInsideHitOrMissLooper = 0;
     public Text PlayerTurn;
+    public VideoPlayer InGameVideoPlayer;
+    public VideoClip menuBG;
+    public VideoClip topDown;
     
     [SerializeField] private Animator menuAnimator;
     [SerializeField] private InputField addressInput;
@@ -23,6 +27,7 @@ public class GameUI : MonoBehaviour
     private void Awake(){
         Instance = this;
         RegisterEvents();
+        InGameVideoPlayer.clip = menuBG;
     }
 
     public void Update()
@@ -79,6 +84,7 @@ public class GameUI : MonoBehaviour
     public void BackToMainFromConnect(){
         // if player=1
         if(NetActions.currentTeam == 0){
+            InGameVideoPlayer.clip = menuBG;
             Vector3 tempPos = Camera.main.transform.position;
             Debug.Log(Camera.main.transform.position.x);
             tempPos.x -=21f;
@@ -89,6 +95,7 @@ public class GameUI : MonoBehaviour
         }
         // if player=2
         else if(NetActions.currentTeam == 1){
+            InGameVideoPlayer.clip = menuBG;
             Vector3 tempPos = Camera.main.transform.position;
             Debug.Log(Camera.main.transform.position.x);
             tempPos.x -= 54.8f;
@@ -309,6 +316,7 @@ public class GameUI : MonoBehaviour
 
     public void BoardCameraChange(){
         if(NetActions.currentTeam == 0){
+            InGameVideoPlayer.clip = topDown;
             Vector3 tempPos = Camera.main.transform.position;
             Debug.Log(Camera.main.transform.position.x);
             tempPos.x +=21f;
@@ -317,6 +325,7 @@ public class GameUI : MonoBehaviour
             DestroyAndAddCorrectGridMouse();
         }
         else if(NetActions.currentTeam == 1){
+            InGameVideoPlayer.clip = topDown;
             Vector3 tempPos = Camera.main.transform.position;
             Debug.Log(Camera.main.transform.position.x);
             tempPos.x +=54.8f;
@@ -336,6 +345,7 @@ public class GameUI : MonoBehaviour
     public void BackToMainMenuButton(){
         server.Shutdown();
         client.Shutdown();
+        InGameVideoPlayer.clip = menuBG;
         if(NetActions.currentTeam == 0)
         {
             NetActions.playerCount -=1;
