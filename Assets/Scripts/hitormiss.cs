@@ -9,7 +9,7 @@ public class HitOrMiss : MonoBehaviour
     // Start is called before the first frame update
     public Text hit, miss;
     public Color invis;
-    public Color vis; 
+    public Color vis;
     void Start()
     { 
         ///everything below is done to test the hitormiss class
@@ -66,6 +66,8 @@ public class hitherormiss : MonoBehaviour
     public int winConditionMet = 0;
     public Text PlayerTurn;
 
+    [SerializeField] private Animator gameplayAnimator;
+
 
     //doublearray with map and ship positios for player 1
     public static int[,] plr1arre = {
@@ -104,6 +106,11 @@ public class hitherormiss : MonoBehaviour
     //   gridmapforplr(1);
     //   gridmapforplr(2);
     // }
+
+    void Start()
+    {
+        gameplayAnimator = GetComponent<Animator>();
+    }
 
     public void loadlocalplayersboardin (int playernumber, int [,] localboard)  // this function should just load the local players board-- no networking here
     {
@@ -207,6 +214,7 @@ public class hitherormiss : MonoBehaviour
             }
             else if(plr1arre[row,column] == 1){
                 plr1arre[row, column] = -1;
+                //gameplayAnimator.SetTrigger("OnSuccessfulHit");
                 ShipActionsP1.isItMyTurn = 1;
                 print("its p1 turn now");
                 checkThemBoards();
@@ -227,6 +235,7 @@ public class hitherormiss : MonoBehaviour
             }
             else if(plr2arre[row,column] == 1){
                 plr2arre[row, column] = -1;
+                //gameplayAnimator.SetTrigger("OnSuccessfulHit");
                 ShipActionsP2.isItMyTurn = 1;
                 print("its p2 turn now");
                 checkThemBoards();

@@ -88,7 +88,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 121
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -136,10 +136,10 @@ TextureImporter:
       name: explosios sprite image top_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 415
-        width: 79
-        height: 79
+        x: 0
+        y: 388
+        width: 121
+        height: 121
       alignment: 9
       pivot: {x: 0.57726693, y: 0.44620222}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,10 +157,10 @@ TextureImporter:
       name: explosios sprite image top_1
       rect:
         serializedVersion: 2
-        x: 138
-        y: 393
-        width: 99
-        height: 112
+        x: 125
+        y: 388
+        width: 121
+        height: 121
       alignment: 9
       pivot: {x: 0.54120904, y: 0.49757195}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,10 +178,10 @@ TextureImporter:
       name: explosios sprite image top_2
       rect:
         serializedVersion: 2
-        x: 261
+        x: 255
         y: 388
-        width: 111
-        height: 124
+        width: 121
+        height: 121
       alignment: 9
       pivot: {x: 0.51715225, y: 0.49342027}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,9 +199,9 @@ TextureImporter:
       name: explosios sprite image top_3
       rect:
         serializedVersion: 2
-        x: 389
+        x: 385
         y: 388
-        width: 117
+        width: 121
         height: 121
       alignment: 9
       pivot: {x: 0.5069739, y: 0.4842658}
@@ -220,10 +220,10 @@ TextureImporter:
       name: explosios sprite image top_4
       rect:
         serializedVersion: 2
-        x: 9
+        x: 0
         y: 262
-        width: 109
-        height: 119
+        width: 121
+        height: 121
       alignment: 9
       pivot: {x: 0.48617348, y: 0.48727977}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,10 +241,10 @@ TextureImporter:
       name: explosios sprite image top_5
       rect:
         serializedVersion: 2
-        x: 139
-        y: 263
-        width: 105
-        height: 117
+        x: 125
+        y: 262
+        width: 121
+        height: 121
       alignment: 9
       pivot: {x: 0.49242845, y: 0.48867485}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -262,10 +262,10 @@ TextureImporter:
       name: explosios sprite image top_6
       rect:
         serializedVersion: 2
-        x: 267
-        y: 267
-        width: 99
-        height: 110
+        x: 255
+        y: 262
+        width: 121
+        height: 121
       alignment: 9
       pivot: {x: 0.5133846, y: 0.48554522}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -283,10 +283,10 @@ TextureImporter:
       name: explosios sprite image top_7
       rect:
         serializedVersion: 2
-        x: 396
-        y: 276
-        width: 95
-        height: 96
+        x: 385
+        y: 262
+        width: 121
+        height: 121
       alignment: 9
       pivot: {x: 0.527896, y: 0.46135297}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -304,10 +304,10 @@ TextureImporter:
       name: explosios sprite image top_8
       rect:
         serializedVersion: 2
-        x: 14
-        y: 150
-        width: 91
-        height: 91
+        x: 0
+        y: 134
+        width: 121
+        height: 121
       alignment: 9
       pivot: {x: 0.51046365, y: 0.45814547}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -325,12 +325,12 @@ TextureImporter:
       name: explosios sprite image top_9
       rect:
         serializedVersion: 2
-        x: 163
-        y: 164
-        width: 50
-        height: 56
+        x: 125
+        y: 134
+        width: 121
+        height: 121
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -346,12 +346,12 @@ TextureImporter:
       name: explosios sprite image top_10
       rect:
         serializedVersion: 2
-        x: 291
-        y: 165
-        width: 50
-        height: 54
+        x: 255
+        y: 134
+        width: 121
+        height: 121
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -367,12 +367,12 @@ TextureImporter:
       name: explosios sprite image top_11
       rect:
         serializedVersion: 2
-        x: 421
-        y: 166
-        width: 46
-        height: 51
+        x: 385
+        y: 134
+        width: 121
+        height: 121
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -388,12 +388,12 @@ TextureImporter:
       name: explosios sprite image top_12
       rect:
         serializedVersion: 2
-        x: 36
-        y: 39
-        width: 46
-        height: 50
+        x: 0
+        y: 5
+        width: 121
+        height: 121
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -409,12 +409,12 @@ TextureImporter:
       name: explosios sprite image top_13
       rect:
         serializedVersion: 2
-        x: 164
-        y: 38
-        width: 45
-        height: 51
+        x: 125
+        y: 5
+        width: 121
+        height: 121
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

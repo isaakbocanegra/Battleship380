@@ -45,6 +45,7 @@ public class Player2Board : MonoBehaviour
         gridSpaceObject.transform.position = new Vector2((float) (x+20)*1.33f, (float) (y-3)*-1.33f);
         gridSpaceObject.AddComponent<SpriteRenderer>().sprite = tempGridSpaces;
         gridSpaceObject.AddComponent<BoxCollider2D>();
+        gridSpaceObject.AddComponent<Animator>();
         gridSpaceObject.AddComponent<GridMouseP2>();
         layer = gridSpaceObject.GetComponent<SpriteRenderer>();
         layer.sortingLayerName = "Grid";
