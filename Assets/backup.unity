@@ -2384,6 +2384,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   server: {fileID: 1741834421}
   client: {fileID: 1741834420}
+  P1AllShipsPlaced: 0
+  P2AllShipsPlaced: 0
+  hitOrMissSceneChangeLooper: 0
+  looperInsideHitOrMissLooper: 0
+  PlayerTurn: {fileID: 0}
+  InGameVideoPlayer: {fileID: 0}
+  menuBG: {fileID: 0}
+  topDown: {fileID: 0}
   menuAnimator: {fileID: 1741834419}
   addressInput: {fileID: 1424647740}
 --- !u!95 &1741834419
@@ -3369,7 +3377,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.54, y: 2.13}
+    oldSize: {x: 2.8222222, y: 2.3666666}
     newSize: {x: 2.54, y: 2.13}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

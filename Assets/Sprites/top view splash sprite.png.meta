@@ -1,0 +1,468 @@
+fileFormatVersion: 2
+guid: 8fd2a26b9eff6ea41b6003edf09c1709
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -493574598210847089
+    second: top view splash sprite_0
+  - first:
+      213: 5834117534523772932
+    second: top view splash sprite_1
+  - first:
+      213: -2266166746683389494
+    second: top view splash sprite_2
+  - first:
+      213: 3541431615206322638
+    second: top view splash sprite_3
+  - first:
+      213: 9205764113828066324
+    second: top view splash sprite_4
+  - first:
+      213: 2468682731599241444
+    second: top view splash sprite_5
+  - first:
+      213: 6043631878679563481
+    second: top view splash sprite_6
+  - first:
+      213: 1897661323772466430
+    second: top view splash sprite_7
+  - first:
+      213: -7372938015283726648
+    second: top view splash sprite_8
+  - first:
+      213: 1842466540422762047
+    second: top view splash sprite_9
+  - first:
+      213: -9130051720338529085
+    second: top view splash sprite_10
+  - first:
+      213: -2712990453998012992
+    second: top view splash sprite_11
+  - first:
+      213: 7960421737478935239
+    second: top view splash sprite_12
+  - first:
+      213: 7714407222343922033
+    second: top view splash sprite_13
+  - first:
+      213: 1917645731615221966
+    second: top view splash sprite_14
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: top view splash sprite_0
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 1115
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8e7c7b94887629f0800000000000000
+      internalID: -493574598210847089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top view splash sprite_1
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 1100
+        width: 76
+        height: 77
+      alignment: 9
+      pivot: {x: 0.5205725, y: 0.46954265}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 400da27bcf2f6f050800000000000000
+      internalID: 5834117534523772932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top view splash sprite_2
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 1090
+        width: 96
+        height: 97
+      alignment: 9
+      pivot: {x: 0.45928445, y: 0.45164505}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac9422eb955fc80e0800000000000000
+      internalID: -2266166746683389494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top view splash sprite_3
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 1084
+        width: 126
+        height: 117
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46659237}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec1f5bc6a41b52130800000000000000
+      internalID: 3541431615206322638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top view splash sprite_4
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 757
+        width: 136
+        height: 133
+      alignment: 9
+      pivot: {x: 0.5136594, y: 0.43572447}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 414b2c2ffa171cf70800000000000000
+      internalID: 9205764113828066324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top view splash sprite_5
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 745
+        width: 163
+        height: 152
+      alignment: 9
+      pivot: {x: 0.51604515, y: 0.44838232}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e02d106dd5824220800000000000000
+      internalID: 2468682731599241444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top view splash sprite_6
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 731
+        width: 182
+        height: 171
+      alignment: 9
+      pivot: {x: 0.54310995, y: 0.4949023}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dc0ce15c2b4fd350800000000000000
+      internalID: 6043631878679563481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top view splash sprite_7
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 707
+        width: 193
+        height: 208
+      alignment: 9
+      pivot: {x: 0.5956304, y: 0.51690173}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef494737be8d55a10800000000000000
+      internalID: 1897661323772466430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top view splash sprite_8
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 372
+        width: 217
+        height: 237
+      alignment: 9
+      pivot: {x: 0.5811726, y: 0.50479513}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c63a0840ff0ea990800000000000000
+      internalID: -7372938015283726648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top view splash sprite_9
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 379
+        width: 243
+        height: 234
+      alignment: 9
+      pivot: {x: 0.55378103, y: 0.48543072}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3e01748e81c19910800000000000000
+      internalID: 1842466540422762047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top view splash sprite_10
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 369
+        width: 237
+        height: 231
+      alignment: 9
+      pivot: {x: 0.5023976, y: 0.5467359}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c4274c555a8b4180800000000000000
+      internalID: -9130051720338529085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top view splash sprite_11
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 363
+        width: 258
+        height: 251
+      alignment: 9
+      pivot: {x: 0.5110119, y: 0.53395694}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c53c6e5e85895ad0800000000000000
+      internalID: -2712990453998012992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top view splash sprite_12
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 155
+        width: 40
+        height: 58
+      alignment: 9
+      pivot: {x: 0.5284103, y: 0.28447276}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c2dab4e469197e60800000000000000
+      internalID: 7960421737478935239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top view splash sprite_13
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 151
+        width: 53
+        height: 70
+      alignment: 9
+      pivot: {x: 0.52144176, y: 0.32142073}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 171748cfe741f0b60800000000000000
+      internalID: 7714407222343922033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: top view splash sprite_14
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 149
+        width: 62
+        height: 83
+      alignment: 9
+      pivot: {x: 0.5274944, y: 0.42469603}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec828fdf1a8dc9a10800000000000000
+      internalID: 1917645731615221966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

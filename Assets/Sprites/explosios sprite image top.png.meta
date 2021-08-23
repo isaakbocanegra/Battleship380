@@ -1,0 +1,444 @@
+fileFormatVersion: 2
+guid: 948749d826acb8d458c273559e3aa7e7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5094750762872017992
+    second: explosios sprite image top_0
+  - first:
+      213: 8266874065768575787
+    second: explosios sprite image top_1
+  - first:
+      213: -722632978087742293
+    second: explosios sprite image top_2
+  - first:
+      213: 8424204724935003833
+    second: explosios sprite image top_3
+  - first:
+      213: -158697644829778606
+    second: explosios sprite image top_4
+  - first:
+      213: -5567546066033231725
+    second: explosios sprite image top_5
+  - first:
+      213: 1171793184198021832
+    second: explosios sprite image top_6
+  - first:
+      213: 1961418623688612409
+    second: explosios sprite image top_7
+  - first:
+      213: -1357334633508398496
+    second: explosios sprite image top_8
+  - first:
+      213: -8327571545100822993
+    second: explosios sprite image top_9
+  - first:
+      213: 1245876692013864858
+    second: explosios sprite image top_10
+  - first:
+      213: -1541757401361308095
+    second: explosios sprite image top_11
+  - first:
+      213: -2392235385461921091
+    second: explosios sprite image top_12
+  - first:
+      213: 5003756649111091644
+    second: explosios sprite image top_13
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: explosios sprite image top_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 415
+        width: 79
+        height: 79
+      alignment: 9
+      pivot: {x: 0.57726693, y: 0.44620222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bbecdf9c2fcb49b0800000000000000
+      internalID: -5094750762872017992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosios sprite image top_1
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 393
+        width: 99
+        height: 112
+      alignment: 9
+      pivot: {x: 0.54120904, y: 0.49757195}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b23760db926d9b270800000000000000
+      internalID: 8266874065768575787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosios sprite image top_2
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 388
+        width: 111
+        height: 124
+      alignment: 9
+      pivot: {x: 0.51715225, y: 0.49342027}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba4f8169221b8f5f0800000000000000
+      internalID: -722632978087742293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosios sprite image top_3
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 388
+        width: 117
+        height: 121
+      alignment: 9
+      pivot: {x: 0.5069739, y: 0.4842658}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9be0be06099c8e470800000000000000
+      internalID: 8424204724935003833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosios sprite image top_4
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 262
+        width: 109
+        height: 119
+      alignment: 9
+      pivot: {x: 0.48617348, y: 0.48727977}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25dda3535513ccdf0800000000000000
+      internalID: -158697644829778606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosios sprite image top_5
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 263
+        width: 105
+        height: 117
+      alignment: 9
+      pivot: {x: 0.49242845, y: 0.48867485}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 398377fd95a1cb2b0800000000000000
+      internalID: -5567546066033231725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosios sprite image top_6
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 267
+        width: 99
+        height: 110
+      alignment: 9
+      pivot: {x: 0.5133846, y: 0.48554522}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c2d85e41bb034010800000000000000
+      internalID: 1171793184198021832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosios sprite image top_7
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 276
+        width: 95
+        height: 96
+      alignment: 9
+      pivot: {x: 0.527896, y: 0.46135297}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93a9bc0a8db583b10800000000000000
+      internalID: 1961418623688612409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosios sprite image top_8
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 150
+        width: 91
+        height: 91
+      alignment: 9
+      pivot: {x: 0.51046365, y: 0.45814547}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06a9560a757c92de0800000000000000
+      internalID: -1357334633508398496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosios sprite image top_9
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 164
+        width: 50
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f265d941dc58e6c80800000000000000
+      internalID: -8327571545100822993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosios sprite image top_10
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 165
+        width: 50
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a97dc6d104e3a4110800000000000000
+      internalID: 1245876692013864858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosios sprite image top_11
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 166
+        width: 46
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 146a702efc39a9ae0800000000000000
+      internalID: -1541757401361308095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosios sprite image top_12
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 39
+        width: 46
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dba2c6e67921dced0800000000000000
+      internalID: -2392235385461921091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosios sprite image top_13
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 38
+        width: 45
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb9f3cc492ae07540800000000000000
+      internalID: 5003756649111091644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
