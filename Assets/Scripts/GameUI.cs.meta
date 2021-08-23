@@ -3,7 +3,15 @@ guid: 86c50b98f61b4fc4583c2361fbc5e118
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - server: {instanceID: 0}
+  - client: {instanceID: 0}
+  - PlayerTurn: {instanceID: 0}
+  - InGameVideoPlayer: {instanceID: 0}
+  - menuBG: {instanceID: 0}
+  - topDown: {fileID: 32900000, guid: 002cc9ebf01c924479ab799f19b17471, type: 3}
+  - menuAnimator: {instanceID: 0}
+  - addressInput: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
