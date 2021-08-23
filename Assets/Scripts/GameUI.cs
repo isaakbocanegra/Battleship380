@@ -78,7 +78,7 @@ public class GameUI : MonoBehaviour
     // "cred" from main
     public void OnCreditsButton(){
         Debug.Log("OnCreditsButton");
-        SceneManager.LoadScene("HowTo");
+        menuAnimator.SetTrigger("Credits");
     }
 
     public void BackToMainFromConnect(){
@@ -356,6 +356,11 @@ public class GameUI : MonoBehaviour
         }
         Debug.Log("BackToMainMenuButton");
         menuAnimator.SetTrigger("StartMenu");
+    }
+
+    public void HowToPlayButton(){
+        Debug.Log("HowToPlayButton");
+        menuAnimator.SetTrigger("HowToPlay");
     }
 
     // Exit button (will be used throughout game for exiting to desktop/quiting player in Unity Editor)

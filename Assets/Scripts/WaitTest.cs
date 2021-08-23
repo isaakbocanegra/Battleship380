@@ -35,7 +35,7 @@ public class WaitTest : MonoBehaviour
         //pan1pos.transform.position = GameObject.Find("JoinGame").transform.position;
         // panlpos.position = new Vector3((float)(GameObject.Find("JoinGame").transform.position.x + 100), GameObject.Find("JoinGame").transform.position.y+100, GameObject.Find("JoinGame").transform.position.z);
         print("For starting");
-        yield return StartCoroutine(Waitforseconds(5.0f));
+        yield return StartCoroutine(Waitforseconds(2.0f));
         yield return StartCoroutine(makecheemsvisorinvis(false));// make it visable
         yield return StartCoroutine(makecheemsvisorinvis(true));
 
