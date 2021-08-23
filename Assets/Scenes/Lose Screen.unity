@@ -265,7 +265,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 560482234}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d282f7ca20af4694a92d7b7aadb9fee9, type: 3}
+  m_Script: {fileID: 11500000, guid: 07623332d2092e7408ac880523d4da16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &596722359
@@ -745,8 +745,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1009782067}
-        m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
+      - m_Target: {fileID: 560482239}
+        m_TargetAssemblyTypeName: ExitGameOnWinLoss, Assembly-CSharp
         m_MethodName: OnExitGameButton
         m_Mode: 1
         m_Arguments:
