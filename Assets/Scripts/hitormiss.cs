@@ -119,6 +119,9 @@ public class hitherormiss : MonoBehaviour
 
     }
 
+    //To call the animation:
+    //animator.SetTrigger("OnHit");
+
     public void loadotherplayersboardin(int playernumber, int row,int column)        // this function
     {
         if (playernumber == 1)
